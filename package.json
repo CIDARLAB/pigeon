@@ -1,0 +1,14 @@
+{
+  "name": "pigeon-example",
+  "version": "1.0.0",
+  "description": "cool software tool",
+  "main": "Pigeon.js",
+  "author": "CIDAR Lab Boston University",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "antlr4": "^4.8.0",
+    "browserify-fs": "^1.0.0",
+    "http-server": "^0.12.1",
+    "node-fetch": "^2.6.0"
+  }
+}
