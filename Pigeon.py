@@ -12,9 +12,6 @@ from matplotlib import gridspec
 
 def main(argv):
 
-    fig = []
-    axis = []
-
 
     input = FileStream(argv[1])
     lexer = PigeonLexer(input)
@@ -31,6 +28,8 @@ def main(argv):
 
     # should be doing all the rendering in here
     # get the design list from HtmlPigeonListener
+
+
 
     dr = dpl.DNARenderer()
     part_renderers = dr.SBOL_part_renderers()
