@@ -1,3 +1,13 @@
-p test1 2
-r test2 3
-c test3 4
+c test 6
+p p1 4
+o A 7
+<c ssrA 12
+r 13
+<r 13
+t t1 4
+<t 6
+c test4 12
+
+
+test rep ssrA
+test rep test4

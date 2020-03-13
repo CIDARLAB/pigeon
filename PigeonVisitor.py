@@ -1,4 +1,4 @@
-# Generated from /Users/benlaskaris/Desktop/PigeonPy/Pigeon.g4 by ANTLR 4.8
+# Generated from /Users/benlaskaris/Documents/GitHub/pidgeon/Pigeon.g4 by ANTLR 4.8
 from antlr4 import *
 if __name__ is not None and "." in __name__:
     from .PigeonParser import PigeonParser
@@ -64,18 +64,8 @@ class PigeonVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by PigeonParser#dash.
-    def visitDash(self, ctx:PigeonParser.DashContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by PigeonParser#period.
-    def visitPeriod(self, ctx:PigeonParser.PeriodContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by PigeonParser#bar.
-    def visitBar(self, ctx:PigeonParser.BarContext):
+    # Visit a parse tree produced by PigeonParser#invert.
+    def visitInvert(self, ctx:PigeonParser.InvertContext):
         return self.visitChildren(ctx)
 
 

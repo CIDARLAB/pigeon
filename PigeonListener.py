@@ -1,4 +1,4 @@
-# Generated from /Users/benlaskaris/Desktop/PigeonPy/Pigeon.g4 by ANTLR 4.8
+# Generated from /Users/benlaskaris/Documents/GitHub/pidgeon/Pigeon.g4 by ANTLR 4.8
 from antlr4 import *
 if __name__ is not None and "." in __name__:
     from .PigeonParser import PigeonParser
@@ -107,30 +107,12 @@ class PigeonListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by PigeonParser#dash.
-    def enterDash(self, ctx:PigeonParser.DashContext):
+    # Enter a parse tree produced by PigeonParser#invert.
+    def enterInvert(self, ctx:PigeonParser.InvertContext):
         pass
 
-    # Exit a parse tree produced by PigeonParser#dash.
-    def exitDash(self, ctx:PigeonParser.DashContext):
-        pass
-
-
-    # Enter a parse tree produced by PigeonParser#period.
-    def enterPeriod(self, ctx:PigeonParser.PeriodContext):
-        pass
-
-    # Exit a parse tree produced by PigeonParser#period.
-    def exitPeriod(self, ctx:PigeonParser.PeriodContext):
-        pass
-
-
-    # Enter a parse tree produced by PigeonParser#bar.
-    def enterBar(self, ctx:PigeonParser.BarContext):
-        pass
-
-    # Exit a parse tree produced by PigeonParser#bar.
-    def exitBar(self, ctx:PigeonParser.BarContext):
+    # Exit a parse tree produced by PigeonParser#invert.
+    def exitInvert(self, ctx:PigeonParser.InvertContext):
         pass
 
 
