@@ -1,7 +1,7 @@
 import sys
 from antlr4 import *
-from antlr.PigeonLexer import PigeonLexer
-from antlr.PigeonParser import PigeonParser
+from antlr_pigeon.PigeonLexer import PigeonLexer
+from antlr_pigeon.PigeonParser import PigeonParser
 from HtmlPigeonListener import HtmlPigeonListener
 import dnaplotlib as dpl
 import matplotlib.pyplot as plt
