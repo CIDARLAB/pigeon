@@ -318,25 +318,19 @@ class HtmlPigeonListener(PigeonListener):
             if (self.type == 'CDS'):
                 self.y_offset = 0
 
-
-
             if (self.gettingArcLabels and not self.haveArcType):
                 for i in self.design:
-
                     if (i['name'] == self.name):
                         self.cur_arc['from_part'] = i
-
             elif (self.gettingArcLabels and self.haveArcType):
                 for i in self.design:
                     if (i['name'] == self.name):
                         self.cur_arc['to_part'] = i
-
             pass
 
         # Exit a parse tree produced by PigeonParser#label.
         def exitLabel(self, ctx: PigeonParser.LabelContext):
             print('exitLabel')
-
             pass
 
         # Enter a parse tree produced by PigeonParser#color.
@@ -375,11 +369,15 @@ class HtmlPigeonListener(PigeonListener):
         def exitArccommands(self, ctx: PigeonParser.ArccommandsContext):
             self.gettingArcLabels = False
             self.haveArcType = False
-            # need to add a check here that the arc command is valid
-            # arcs can only be drawn from pigeon command c to command p
-            self.arcs += [self.cur_arc]
-            self.cur_arc = {}
-            # print(self.cur_arc)
+            print(self.cur_arc['from_part']['type'])
+            print(self.cur_arc['to_part']['type'])
+
+            if ((self.cur_arc['from_part']['type'] != 'CDS') or (self.cur_arc['to_part']['type'] != 'Promoter')):
+                self.cur_arc = {}
+                print("ERROR: Invalid Arc. Arcs must be drawn from command c to command p")
+            else:
+                self.arcs += [self.cur_arc]
+                self.cur_arc = {}
             print('exitArccommands')
             pass
 

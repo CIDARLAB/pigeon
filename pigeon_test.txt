@@ -9,5 +9,5 @@ t t1 4
 c test4 12
 
 
-test rep ssrA
+test rep p1
 test rep test4

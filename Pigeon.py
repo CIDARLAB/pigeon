@@ -31,7 +31,7 @@ def main(argv):
     design = HtmlPigeonListener.getDesignList(htmlPigeon)
     # print(design)
     arcs = HtmlPigeonListener.getArcList(htmlPigeon)
-    print(arcs)
+    # print(arcs)
 
     # need to play with this more - what exactly does it do can we play with it?
     fig = plt.figure(figsize=(design.__len__()/2, 1.5))  # plot size should be based on number of glyphs?
