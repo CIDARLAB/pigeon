@@ -1,7 +1,20 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "7f7606f08e0544d8d012ef4d097dabdd6df6843a28793eb6551245d4b2db4242"
+            "sha256": "6589d4bff26d7c997c80ded47b186b11476ad45f4b0dccf3edfc856865c237f2"
+        },
+        "host-environment-markers": {
+            "implementation_name": "cpython",
+            "implementation_version": "3.6.10",
+            "os_name": "posix",
+            "platform_machine": "x86_64",
+            "platform_python_implementation": "CPython",
+            "platform_release": "19.3.0",
+            "platform_system": "Darwin",
+            "platform_version": "Darwin Kernel Version 19.3.0: Thu Jan  9 20:58:23 PST 2020; root:xnu-6153.81.5~1/RELEASE_X86_64",
+            "python_full_version": "3.6.10",
+            "python_version": "3.6",
+            "sys_platform": "darwin"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -15,6 +28,39 @@
             }
         ]
     },
-    "default": {},
+    "default": {
+        "antlr4-python3-runtime": {
+            "hashes": [],
+            "version": "==4.8"
+        },
+        "cycler": {
+            "hashes": [],
+            "version": "==0.10.0"
+        },
+        "kiwisolver": {
+            "hashes": [],
+            "version": "==1.1.0"
+        },
+        "matplotlib": {
+            "hashes": [],
+            "version": "==3.2.0"
+        },
+        "numpy": {
+            "hashes": [],
+            "version": "==1.18.1"
+        },
+        "pyparsing": {
+            "hashes": [],
+            "version": "==2.4.6"
+        },
+        "python-dateutil": {
+            "hashes": [],
+            "version": "==2.8.1"
+        },
+        "six": {
+            "hashes": [],
+            "version": "==1.14.0"
+        }
+    },
     "develop": {}
 }
