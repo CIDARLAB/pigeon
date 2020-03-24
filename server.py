@@ -1,22 +1,21 @@
-from flask import Flask
-from flask import request
+from flask import Flask, render_template, request
+import Pigeon
 
-pigeon_app = Flask(__name__)
+pigeon_app = Flask(__name__, static_url_path='')
 
-# test
-@pigeon_app.route('/', methods= ['GET'])
+
+@pigeon_app.route('/')
 def index():
-    return "<h1>Pigeon Visualizer</h1><p>This site is a prototype API for rendering synthetic biological circuits using the pigeon visualizer</p>"
+    return render_template('index.html')
 
 
-# sample file load function
-# should be getting the pigeon script here and generating the image
-
-# @app.route('/upload', methods=['GET', 'POST'])
-# def upload_file():
-#     if request.method == 'POST':
-#         static_file = request.files['the_file']
-#         # here you can send this static_file to a storage service
-#         # or save it permanently to the file system
-#         static_file.save('/var/www/uploads/profilephoto.png')
-
+@pigeon_app.route('/submit', methods=['POST'])
+def submit():
+    # get the pigeon script from the textarea input
+    script = request.form['script']
+    print(script)
+    # generate the image
+    Pigeon.main(script)
+    # should return and render the image
+    # give user option to download?
+    return 'You entered: {}'.format(request.form['script'])

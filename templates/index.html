@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pigeon Design Visualizer</title>
+</head>
+<body>
+    <h1>Pigeon Visualizer</h1>
+    <p>This site is a prototype API for rendering synthetic biological circuits using the pigeon visualizer</p>
+
+    <form action="{{ url_for('submit') }}" method="post">
+    <textarea name="script" rows="10" cols="30"></textarea>
+    <input type="submit">
+    </form>
+
+</body>
+</html>
