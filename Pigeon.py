@@ -37,6 +37,7 @@ def main(str):
     axis.set_aspect('equal')
     axis.axis('off')
 
+    # somehow generating the image twice - look into that
     fig.savefig('pigeon_design.png', dpi=300)
 
     #this should return the image - can we generate an SVG?

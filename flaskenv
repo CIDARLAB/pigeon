@@ -1,0 +1,4 @@
+FLASK_ENV=development
+FLASK_APP=server.py
+LC_ALL=C.UTF-8
+LANG=C.UTF-8

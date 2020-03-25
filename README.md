@@ -1,8 +1,18 @@
-To run current example enter:
--
-- python Pigeon.py pigeon_test.txt
-- there is an example pigeon script (pigeon_test.txt) and the generated image for that script (pigeon_design.png) in the directory. The script can be modified and a new image will overwrite the current one. 
+## Setup
 
-Miscellaneous bugs and incomplete work: 
-- 
-- Three glyphs from the original pigeon command list cannot be drawn - no matching glyphs in the dnaplotlib library  
+Set appropriate Flask variables:
+
+    export FLASK_ENV=development
+    export FLASK_APP=server.py
+  
+And run the application:
+
+    flask run
+
+
+
+## Miscellaneous bugs and incomplete work 
+
+- Three glyphs from the original pigeon command list cannot be drawn - no matching glyphs in the dnaplotlib library 
+- Generated image not being displayed on webpage 
+- Need to package cmdline.py as a binary executable and clean up command line interface using argparse
