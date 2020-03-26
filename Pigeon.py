@@ -44,7 +44,6 @@ def main(data):
     axis.set_aspect('equal')
     axis.axis('off')
 
-    #fig.savefig('pigeon_design.png', dpi=300) # keeps saving to the same image - shouldn't be an issue in the final product
     return fig
 
 
