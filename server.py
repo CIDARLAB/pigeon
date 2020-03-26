@@ -1,5 +1,8 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, Response
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+from matplotlib.figure import Figure
 import Pigeon
+import io
 
 pigeon_app = Flask(__name__, static_url_path='')
 
@@ -9,13 +12,15 @@ def index():
     return render_template('index.html')
 
 
-@pigeon_app.route('/submit', methods=['POST'])
+@pigeon_app.route('/parse', methods=['POST'])
 def submit():
-    # get the pigeon script from the textarea input
     script = request.form['script']
-    print(script)
-    # generate the image
-    Pigeon.main(script)
-    # should return and render the image
-    # give user option to download?
-    return 'You entered: {}'.format(request.form['script'])
+    fig = getDesign(script)
+    output = io.BytesIO()
+    FigureCanvas(fig).print_png(output)
+    return Response(output.getvalue(), mimetype='image/png')
+
+def getDesign(script):
+    fig = Pigeon.main(script)
+    fig.savefig('pigeon_design.png', dpi=300)
+    return fig

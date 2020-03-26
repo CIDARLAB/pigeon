@@ -8,10 +8,14 @@
     <h1>Pigeon Visualizer</h1>
     <p>This site is a prototype API for rendering synthetic biological circuits using the pigeon visualizer</p>
 
-    <form action="{{ url_for('submit') }}" method="post">
-    <textarea name="script" rows="10" cols="30"></textarea>
-    <input type="submit">
+    <form action="{{ url_for('submit') }}" method="post" >
+        <textarea name="script" rows="30" cols="30"></textarea>
+        <input type="submit">
     </form>
+
+
+
+<script src = "Pigeon.py"></script>
 
 </body>
 </html>

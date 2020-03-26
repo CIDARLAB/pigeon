@@ -1,6 +1,6 @@
 ## Setup
 
-Set appropriate Flask variables:
+Set Flask variables:
 
     export FLASK_ENV=development
     export FLASK_APP=server.py
