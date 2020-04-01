@@ -3,19 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <title>Pigeon Design Visualizer</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
-<body>
-    <h1>Pigeon Visualizer</h1>
-    <p>This site is a prototype API for rendering synthetic biological circuits using the pigeon visualizer</p>
+<body id="body">
 
-    <form action="{{ url_for('submit') }}" method="post" >
-        <textarea name="script" rows="30" cols="30"></textarea>
+    <h1>Pigeon Visualizer</h1>
+    <p>Enter Pigeon Script Here:</p>
+
+    <form id="p_form" method="get">
+        <textarea id="p_script" rows="30" cols="30"></textarea>
         <input type="submit">
     </form>
 
+    <img src="{{url_for('static', filename='Hermes.png')}}" align="middle" />
+
+    <img src="{{ user_image }}" alt="User Image">
+{#    need to figure out how to pass the image or image url correctly #}
+
+    <script>
+        $("#p_form").submit(function(e) {
+            e.preventDefault();
+            alert("Form Submitted");
+            var script = $('#p_script').val();
+            alert(script);
+            $.get("/parse", {"script" : script} )
+                .done(function(data) {
+                alert("Data: " + data);
+                create_image();
+            });
+         });
 
 
-<script src = "Pigeon.py"></script>
+        function create_image() {
+            var img = document.createElement('img');
+            img.src = "{{url_for('parse', filename='pigeon_design.png')}}";
+            document.getElementById('body').appendChild(img);
+            img.innerHTML = "Image Element Added.";
+         }
+
+    </script>
 
 </body>
 </html>

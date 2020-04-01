@@ -1,11 +1,11 @@
 c c1 4
-p p1 5
-t 12
-s 12
+p t1 7
+r p1 12
+<p p2 12
 c c2 6
-<p p2 14
+t p1 14
 r r1 2
 o 12
-
+<c 13
 
 c1 rep p2

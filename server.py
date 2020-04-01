@@ -1,26 +1,32 @@
-from flask import Flask, render_template, request, Response
-from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
-from matplotlib.figure import Figure
+from flask import Flask, render_template, request, send_from_directory
+
 import Pigeon
-import io
+import os
 
-pigeon_app = Flask(__name__, static_url_path='')
 
+pigeon_app = Flask(__name__, static_url_path='', static_folder='static')
 
 @pigeon_app.route('/')
 def index():
     return render_template('index.html')
 
 
-@pigeon_app.route('/parse', methods=['POST'])
-def submit():
-    script = request.form['script']
-    fig = getDesign(script)
-    output = io.BytesIO()
-    FigureCanvas(fig).print_png(output)
-    return Response(output.getvalue(), mimetype='image/png')
+@pigeon_app.route('/parse', methods=['GET'])
+def parse():
+    script = request.args.get('script')
+    parser = Pigeon.Pigeon()
+    parser.parse(script)
 
-def getDesign(script):
-    fig = Pigeon.main(script)
-    fig.savefig('pigeon_design.png', dpi=300)
-    return fig
+    # not sure this will work for the deployed version...
+    # root_dir = os.path.dirname((os.getcwd()))
+    # image_path = root_dir + '/pidgeon/static/pigeon_design.png'
+    filename = "pigeon_design.png"
+    # return render_template('index.html', user_image = image_path)
+    return send_from_directory(pigeon_app.static_folder, filename)
+
+
+
+
+
+
+
