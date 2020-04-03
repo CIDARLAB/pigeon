@@ -12,8 +12,8 @@ def main():
         data=myfile.read()
 
     parser = Pigeon.Pigeon()
-    parser.parse(data)
-
+    fig = parser.parse(data)
+    parser.save(fig)
     pass
     
 

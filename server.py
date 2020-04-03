@@ -1,10 +1,9 @@
-from flask import Flask, render_template, request, send_from_directory
-
+from flask import Flask, render_template, request, Response, send_file
 import Pigeon
-import os
+from io import BytesIO
 
 
-pigeon_app = Flask(__name__, static_url_path='', static_folder='static')
+pigeon_app = Flask(__name__, static_url_path='')
 
 @pigeon_app.route('/')
 def index():
@@ -15,14 +14,14 @@ def index():
 def parse():
     script = request.args.get('script')
     parser = Pigeon.Pigeon()
-    parser.parse(script)
+    fig = parser.parse(script)
 
-    # not sure this will work for the deployed version...
-    # root_dir = os.path.dirname((os.getcwd()))
-    # image_path = root_dir + '/pidgeon/static/pigeon_design.png'
-    filename = "pigeon_design.png"
-    # return render_template('index.html', user_image = image_path)
-    return send_from_directory(pigeon_app.static_folder, filename)
+    figsvg = BytesIO()
+    fig.savefig(figsvg, format="svg")
+    figsvg.seek(0)
+    return send_file(figsvg, mimetype='image/svg')
+    # return "why"
+
 
 
 

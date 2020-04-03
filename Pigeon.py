@@ -6,6 +6,7 @@ from HtmlPigeonListener import HtmlPigeonListener
 import dnaplotlib as dpl
 import matplotlib.pyplot as plt
 from matplotlib import gridspec
+import numpy as np
 
 
 class Pigeon(object):
@@ -40,13 +41,11 @@ class Pigeon(object):
         axis.set_ylim([-30, 30])
         axis.set_aspect('equal')
         axis.axis('off')
-
-        fig.savefig('static/pigeon_design.png', dpi=300) # Save .svg file
         return fig
 
-
-#
-# if __name__ == '__main__':
-#     main(data)
-
+    def save(self, fig):
+        fig.savefig('pigeon_design.png', dpi=300) # Save .svg file
+        fig.savefig('pigeon_design.pdf', dpi=300) # Save .svg file
+        fig.savefig('pigeon_design.svg', dpi=300) # Save .svg file
+        pass
 

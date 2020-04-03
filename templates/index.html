@@ -15,10 +15,9 @@
         <input type="submit">
     </form>
 
-    <img src="{{url_for('static', filename='Hermes.png')}}" align="middle" />
 
-    <img src="{{ user_image }}" alt="User Image">
-{#    need to figure out how to pass the image or image url correctly #}
+{#    <img src="{{ url_for('/parse') }}" alt="Image Placeholder">#}
+
 
     <script>
         $("#p_form").submit(function(e) {
@@ -28,15 +27,15 @@
             alert(script);
             $.get("/parse", {"script" : script} )
                 .done(function(data) {
-                alert("Data: " + data);
-                create_image();
+                    alert("Data: " + data);
+                    create_image(data);
             });
          });
 
 
-        function create_image() {
+        function create_image(data) {
             var img = document.createElement('img');
-            img.src = "{{url_for('parse', filename='pigeon_design.png')}}";
+            img.src = data;
             document.getElementById('body').appendChild(img);
             img.innerHTML = "Image Element Added.";
          }
