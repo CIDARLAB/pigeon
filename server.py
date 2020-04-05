@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, Response, send_file
 import Pigeon
-from io import BytesIO
+from io import StringIO
 
 
 pigeon_app = Flask(__name__, static_url_path='')
@@ -15,12 +15,14 @@ def parse():
     script = request.args.get('script')
     parser = Pigeon.Pigeon()
     fig = parser.parse(script)
+    imgdata = StringIO()
+    fig.savefig(imgdata, format='svg')
+    return imgdata.getvalue()
 
-    figsvg = BytesIO()
-    fig.savefig(figsvg, format="svg")
-    figsvg.seek(0)
-    return send_file(figsvg, mimetype='image/svg')
-    # return "why"
+
+
+
+
 
 
 

@@ -4,41 +4,34 @@
     <meta charset="UTF-8">
     <title>Pigeon Design Visualizer</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel= "stylesheet" type= "text/css" href="{{ url_for('static', filename='index.css') }}" >
 </head>
 <body id="body">
 
-    <h1>Pigeon Visualizer</h1>
-    <p>Enter Pigeon Script Here:</p>
+    <h1 id = "Title">Pigeon Visualizer</h1>
 
-    <form id="p_form" method="get">
-        <textarea id="p_script" rows="30" cols="30"></textarea>
-        <input type="submit">
-    </form>
+    <div class="page_content">
+        <form id="p_form" method="get">
+            <p class="form_label">Enter Pigeon Script Here:</p>
+            <textarea id="p_script" rows="30" cols="50"></textarea>
+            <input type="submit">
+        </form>
 
-
-{#    <img src="{{ url_for('/parse') }}" alt="Image Placeholder">#}
-
+        <div id="image">
+            <p1 class="design_label"> See Pigeon Design Here: </p1>
+        </div>
+    </div>
 
     <script>
         $("#p_form").submit(function(e) {
             e.preventDefault();
-            alert("Form Submitted");
             var script = $('#p_script').val();
-            alert(script);
             $.get("/parse", {"script" : script} )
                 .done(function(data) {
-                    alert("Data: " + data);
-                    create_image(data);
+                    $('#image').html(data);
             });
          });
 
-
-        function create_image(data) {
-            var img = document.createElement('img');
-            img.src = data;
-            document.getElementById('body').appendChild(img);
-            img.innerHTML = "Image Element Added.";
-         }
 
     </script>
 
