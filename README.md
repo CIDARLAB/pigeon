@@ -14,5 +14,4 @@ And run the application:
 ## Miscellaneous bugs and incomplete work 
 
 - Three glyphs from the original pigeon command list cannot be drawn - no matching glyphs in the dnaplotlib library 
-- Need to package cmdline.py as a binary executable 
-- If you run the script twice through the webpage it doesn't clear the old image and generate a new one but adds more glyphs to the design already in the directory
+- Caching issue - have to restart to server each time I want to generate and show an image on the web page. Each time you refresh the new image is added onto the previous cached one
