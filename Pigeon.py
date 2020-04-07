@@ -43,9 +43,9 @@ class Pigeon(object):
         axis.axis('off')
         return fig
 
-    def save(self, fig):
-        fig.savefig('pigeon_design.png', dpi=300) # Save as png file
-        fig.savefig('pigeon_design.pdf', dpi=300) # Save as pdf file
-        fig.savefig('pigeon_design.svg', dpi=300) # Save as svg file
+    # need to finish path options here too
+    def save(self, fig, imgtype='svg', imgpath = ''):
+        save_path = imgpath + 'pigeon_design.' + imgtype
+        fig.savefig(save_path, dpi=300) # Save as png file
         pass
 
