@@ -44,8 +44,8 @@ class Pigeon(object):
         return fig
 
     # need to finish path options here too
-    def save(self, fig, imgtype='svg', imgpath = ''):
-        save_path = imgpath + 'pigeon_design.' + imgtype
+    def save(self, fig, format, location):
+        save_path = location + 'pigeon_design.' + format
         fig.savefig(save_path, dpi=300) # Save as png file
         pass
 
