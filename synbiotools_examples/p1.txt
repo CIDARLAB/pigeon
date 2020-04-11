@@ -1,0 +1,18 @@
+p Psal 14
+r r2 5
+c supD 11
+t t
+p PBAD 14
+r r2 5
+c T7ptag 5
+t t
+p PT7 14
+r r2 5
+c GFP 3
+t t
+# Arcs
+supD ind PT7
+T7ptag ind PT7
+NahR ind Psal
+AraC ind PBAD
+

@@ -1,0 +1,27 @@
+p p 13 nl
+r r 13 nl
+c tetR 13
+t t 13 nl
+p P_LtetO 2
+> FRT_f 2
+<p pBAD 6
+r r 1 nl
+c flp_e 2
+d ssrA 12
+t
+< FRT_r 2
+> loxP_f 6
+<p P_A1lacO 4
+r r 5 nl
+c cre 6
+d ssrA 12
+t
+< loxP_r 6
+r r 3 nl
+c gfp 4
+t
+# Arcs
+tetR rep P_LtetO
+aTc rep tetR-P_LtetO
+Ara ind pBAD
+IPTG ind P_A1lacO

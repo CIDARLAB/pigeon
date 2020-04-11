@@ -1740,7 +1740,7 @@ def sbol_operator (ax, type, num, start, end, prev_end, scale, linewidth, opts):
                   (start, -y_extent),
                   (start+x_extent, -y_extent),
                   (start+x_extent, y_extent)],
-                  edgecolor=(0,0,0), facecolor=(1,1,1), linewidth=linewidth, zorder=11+zorder_add, 
+                  edgecolor=(0,0,0), facecolor=color, linewidth=linewidth, zorder=11+zorder_add,
                   path_effects=[Stroke(joinstyle="miter")]) # This is a work around for matplotlib < 1.4.0)     
 
     ax.add_patch(p1)
@@ -1830,6 +1830,451 @@ def sbol_insulator (ax, type, num, start, end, prev_end, scale, linewidth, opts)
         return prev_end, final_start
     else:
         return prev_end, final_end
+
+# added by Ben Laskaris 4/11/20
+def sbol_triangle(ax, type, num, start, end, prev_end, scale, linewidth, opts):
+    """ Built-in SBOL coding sequence renderer.
+    """
+    # Default options
+    zorder_add = 0.0
+    color = (0.7,0.7,0.7)
+    hatch = ''
+    start_pad = 1.0
+    end_pad = 1.0
+    y_extent = 5
+    x_extent = 13
+    arrowhead_height = 4
+    arrowhead_length = 8
+    edgecolor = (0,0,0)
+    # Reset defaults if provided
+    if opts != None:
+        if 'zorder_add' in list(opts.keys()):
+            zorder_add = opts['zorder_add']
+        if 'color' in list(opts.keys()):
+            color = opts['color']
+        if 'hatch' in list(opts.keys()):
+            hatch = opts['hatch']
+        if 'start_pad' in list(opts.keys()):
+            start_pad = opts['start_pad']
+        if 'end_pad' in list(opts.keys()):
+            end_pad = opts['end_pad']
+        if 'y_extent' in list(opts.keys()):
+            y_extent = opts['y_extent']
+        if 'x_extent' in list(opts.keys()):
+            x_extent = opts['x_extent']
+        if 'arrowhead_height' in list(opts.keys()):
+            arrowhead_height = opts['arrowhead_height']
+        if 'arrowhead_length' in list(opts.keys()):
+            arrowhead_length = opts['arrowhead_length']
+        if 'linewidth' in list(opts.keys()):
+            linewidth = opts['linewidth']
+        if 'scale' in list(opts.keys()):
+            scale = opts['scale']
+        if 'edge_color' in list(opts.keys()):
+            edgecolor = opts['edge_color']
+
+    # Check direction add start padding
+    dir_fac = 1.0
+    final_end = end
+    final_start = prev_end
+    if start > end:
+        dir_fac = -1.0
+        start = prev_end+end_pad+x_extent
+        end = prev_end+end_pad
+        final_end = start+start_pad
+    else:
+        start = prev_end+start_pad
+        end = start+x_extent
+        final_end = end+end_pad
+    # Draw the CDS symbol
+    p1 = Polygon([(start, y_extent),
+                  (start, -y_extent),
+                  (end, 0)],
+                  edgecolor=edgecolor, facecolor=color, linewidth=linewidth,
+                  hatch=hatch, zorder=11+zorder_add,
+                  path_effects=[Stroke(joinstyle="miter")]) # This is a work around for matplotlib < 1.4.0
+    ax.add_patch(p1)
+    if opts != None and 'label' in list(opts.keys()):
+        if final_start > final_end:
+            write_label(ax, opts['label'], final_end+((final_start-final_end)/2.0), opts=opts)
+        else:
+            write_label(ax, opts['label'], final_start+((final_end-final_start)/2.0), opts=opts)
+    if final_start > final_end:
+        return prev_end, final_start
+    else:
+        return prev_end, final_end
+
+# added by Ben Laskaris 4/11/20
+def sbol_degredation(ax, type, num, start, end, prev_end, scale, linewidth, opts):
+    """ Built-in SBOL spacer renderer.
+    """
+    # Default options
+    zorder_add = 0.0
+    color = (1, 1, 1)
+    edgecolor = (0, 0, 0)
+    start_pad = 2.0
+    end_pad = 2.0
+    x_extent = 3.0
+    y_extent = 3.0
+    linestyle = '-'
+    # Reset defaults if provided
+    if opts != None:
+        if 'zorder_add' in list(opts.keys()):
+            zorder_add = opts['zorder_add']
+        if 'edgecolor' in list(opts.keys()):
+            edgecolor = opts['edgecolor']
+        if 'color' in list(opts.keys()):
+            color = opts['color']
+        if 'start_pad' in list(opts.keys()):
+            start_pad = opts['start_pad']
+        if 'end_pad' in list(opts.keys()):
+            end_pad = opts['end_pad']
+        if 'x_extent' in list(opts.keys()):
+            x_extent = opts['x_extent']
+        if 'y_extent' in list(opts.keys()):
+            y_extent = opts['y_extent']
+        if 'linestyle' in list(opts.keys()):
+            linestyle = opts['linestyle']
+        if 'linewidth' in list(opts.keys()):
+            linewidth = opts['linewidth']
+        if 'scale' in list(opts.keys()):
+            scale = opts['scale']
+    # Check direction add start padding
+    final_end = end
+    final_start = prev_end
+
+    start = prev_end + start_pad
+    end = start + x_extent
+    final_end = end + end_pad
+    rbs_center = (start + ((end - start) / 2.0), 0)
+    center_x = start + (end - start) / 2.0
+    radius = x_extent / 2
+
+    delta = radius - 0.5 * radius * math.sqrt(2)
+
+    c1 = Circle(rbs_center, x_extent / 2.0, linewidth=linewidth, edgecolor=edgecolor,
+                facecolor=color, zorder=12 + zorder_add)
+
+    ax.add_patch(c1)
+
+
+    if opts != None and 'label' in list(opts.keys()):
+        if final_start > final_end:
+            write_label(ax, opts['label'], final_end + ((final_start - final_end) / 2.0), opts=opts)
+        else:
+            write_label(ax, opts['label'], final_start + ((final_end - final_start) / 2.0), opts=opts)
+
+    if final_start > final_end:
+        return prev_end, final_start
+    else:
+        return prev_end, final_end
+
+# added by Ben Laskaris 4/11/20
+def sbol_bar (ax, type, num, start, end, prev_end, scale, linewidth, opts):
+    """ Built-in SBOL coding sequence renderer.
+    """
+    # Default options
+    # zorder_add = 0.0
+    color = (0.7,0.7,0.7)
+    hatch = ''
+    start_pad = 1.0
+    end_pad = 1.0
+    y_extent = 20
+    x_extent = 2.5
+    arrowhead_height = 4
+    arrowhead_length = 8
+    edgecolor = (0,0,0)
+    # Reset defaults if provided
+    if opts != None:
+        if 'zorder_add' in list(opts.keys()):
+            zorder_add = opts['zorder_add']
+        if 'color' in list(opts.keys()):
+            color = opts['color']
+        if 'hatch' in list(opts.keys()):
+            hatch = opts['hatch']
+        if 'start_pad' in list(opts.keys()):
+            start_pad = opts['start_pad']
+        if 'end_pad' in list(opts.keys()):
+            end_pad = opts['end_pad']
+        if 'y_extent' in list(opts.keys()):
+            y_extent = opts['y_extent']
+        if 'x_extent' in list(opts.keys()):
+            x_extent = opts['x_extent']
+        if 'arrowhead_height' in list(opts.keys()):
+            arrowhead_height = opts['arrowhead_height']
+        if 'arrowhead_length' in list(opts.keys()):
+            arrowhead_length = opts['arrowhead_length']
+        if 'linewidth' in list(opts.keys()):
+            linewidth = opts['linewidth']
+        if 'scale' in list(opts.keys()):
+            scale = opts['scale']
+        if 'edge_color' in list(opts.keys()):
+            edgecolor = opts['edge_color']
+
+    # Check direction add start padding
+    dir_fac = 1.0
+    final_end = end
+    final_start = prev_end
+    if start > end:
+        dir_fac = -1.0
+        start = prev_end+end_pad+x_extent
+        end = prev_end+end_pad
+        final_end = start+start_pad
+    else:
+        start = prev_end+start_pad
+        end = start+x_extent
+        final_end = end+end_pad
+    # Draw the CDS symbol
+    p1 = Polygon([(start, y_extent),
+                  (start, 0),
+                  (end, 0),
+                  (end, y_extent),],
+                  edgecolor=color, facecolor=color, linewidth=linewidth,
+                  hatch=hatch,
+                  path_effects=[Stroke(joinstyle="miter")]) # This is a work around for matplotlib < 1.4.0
+    ax.add_patch(p1)
+    if opts != None and 'label' in list(opts.keys()):
+        if final_start > final_end:
+            write_label(ax, opts['label'], final_end+((final_start-final_end)/2.0), opts=opts)
+        else:
+            write_label(ax, opts['label'], final_start+((final_end-final_start)/2.0), opts=opts)
+    if final_start > final_end:
+        return prev_end, final_start
+    else:
+        return prev_end, final_end
+
+# added by Ben Laskaris 4/11/20
+def sbol_f_sequence(ax, type, num, start, end, prev_end, scale, linewidth, opts):
+    """ Built-in SBOL coding sequence renderer.
+    """
+    # Default options
+    zorder_add = 0.0
+    color = (0.7,0.7,0.7)
+    hatch = ''
+    start_pad = 1.0
+    end_pad = 1.0
+    y_extent = 5
+    x_extent = 40
+    arrowhead_height = 0
+    arrowhead_length = 8
+    edgecolor = (0,0,0)
+    # Reset defaults if provided
+    if opts != None:
+        if 'zorder_add' in list(opts.keys()):
+            zorder_add = opts['zorder_add']
+        if 'color' in list(opts.keys()):
+            color = opts['color']
+        if 'hatch' in list(opts.keys()):
+            hatch = opts['hatch']
+        if 'start_pad' in list(opts.keys()):
+            start_pad = opts['start_pad']
+        if 'end_pad' in list(opts.keys()):
+            end_pad = opts['end_pad']
+        if 'y_extent' in list(opts.keys()):
+            y_extent = opts['y_extent']
+        if 'x_extent' in list(opts.keys()):
+            x_extent = opts['x_extent']
+        if 'arrowhead_height' in list(opts.keys()):
+            arrowhead_height = opts['arrowhead_height']
+        if 'arrowhead_length' in list(opts.keys()):
+            arrowhead_length = opts['arrowhead_length']
+        if 'linewidth' in list(opts.keys()):
+            linewidth = opts['linewidth']
+        if 'scale' in list(opts.keys()):
+            scale = opts['scale']
+        if 'edge_color' in list(opts.keys()):
+            edgecolor = opts['edge_color']
+
+    # Check direction add start padding
+    dir_fac = 1.0
+    final_end = end
+    final_start = prev_end
+    if start > end:
+        dir_fac = -1.0
+        start = prev_end+end_pad+x_extent
+        end = prev_end+end_pad
+        final_end = start+start_pad
+    else:
+        start = prev_end+start_pad
+        end = start+x_extent
+        final_end = end+end_pad
+    # Draw the CDS symbol
+    p1 = Polygon([(start, y_extent),
+                  (start, -y_extent),
+                  (end-dir_fac*arrowhead_length, -y_extent),
+                  (end-dir_fac*arrowhead_length, -y_extent-arrowhead_height),
+                  (end, 0),
+                  (end-dir_fac*arrowhead_length, y_extent+arrowhead_height),
+                  (end-dir_fac*arrowhead_length, y_extent)],
+                  edgecolor=edgecolor, facecolor=color, linewidth=linewidth,
+                  hatch=hatch, zorder=11+zorder_add,
+                  path_effects=[Stroke(joinstyle="miter")])# This is a work around for matplotlib < 1.4.0
+    p2 = Polygon([(start, y_extent),
+                  (start, -y_extent),
+                  (end - dir_fac*(2*x_extent)/3 , -y_extent),
+                  (end - dir_fac*(2*x_extent)/3 , y_extent),],
+                edgecolor=edgecolor, facecolor=(0, 0, 0), linewidth=linewidth,
+                 hatch=hatch, zorder=11 + zorder_add,
+                 path_effects=[Stroke(joinstyle="miter")])
+
+
+    ax.add_patch(p1)
+    ax.add_patch(p2)
+    if opts != None and 'label' in list(opts.keys()):
+        if final_start > final_end:
+            write_label(ax, opts['label'], final_end+((final_start-final_end)/2.0), opts=opts)
+        else:
+            write_label(ax, opts['label'], final_start+((final_end-final_start)/2.0), opts=opts)
+    if final_start > final_end:
+        return prev_end, final_start
+    else:
+        return prev_end, final_end
+
+# added by Ben Laskaris 4/11/20
+def sbol_zring(ax, type, num, start, end, prev_end, scale, linewidth, opts):
+    """ Built-in SBOL spacer renderer.
+    """
+    # Default options
+    zorder_add = 0.0
+    color = (1, 1, 1)
+    edgecolor = (0, 0, 0)
+    start_pad = 2.0
+    end_pad = 2.0
+    x_extent = 6.0
+    y_extent = 6.0
+    linestyle = '-'
+    # Reset defaults if provided
+    if opts != None:
+        if 'zorder_add' in list(opts.keys()):
+            zorder_add = opts['zorder_add']
+        if 'edgecolor' in list(opts.keys()):
+            edgecolor = opts['edgecolor']
+        if 'color' in list(opts.keys()):
+            color = opts['color']
+        if 'start_pad' in list(opts.keys()):
+            start_pad = opts['start_pad']
+        if 'end_pad' in list(opts.keys()):
+            end_pad = opts['end_pad']
+        if 'x_extent' in list(opts.keys()):
+            x_extent = opts['x_extent']
+        if 'y_extent' in list(opts.keys()):
+            y_extent = opts['y_extent']
+        if 'linestyle' in list(opts.keys()):
+            linestyle = opts['linestyle']
+        if 'linewidth' in list(opts.keys()):
+            linewidth = opts['linewidth']
+        if 'scale' in list(opts.keys()):
+            scale = opts['scale']
+    # Check direction add start padding
+    final_end = end
+    final_start = prev_end
+
+    start = prev_end + start_pad
+    end = start + x_extent
+    final_end = end + end_pad
+    rbs_center = (start + ((end - start) / 2.0), 0)
+    center_x = start + (end - start) / 2.0
+    radius = x_extent / 2
+
+    delta = radius - 0.5 * radius * math.sqrt(2)
+
+
+    c1 = Circle(rbs_center, x_extent / 2.0, linewidth=linewidth, edgecolor=color,
+                facecolor=color, zorder=12 + zorder_add)
+
+    c2 = Circle(rbs_center, x_extent / 3.0, linewidth=linewidth, edgecolor=(1,1,1),
+                facecolor=(1,1,1), zorder=12 + zorder_add)
+
+    ax.add_patch(c1)
+    ax.add_patch(c2)
+
+    if opts != None and 'label' in list(opts.keys()):
+        if final_start > final_end:
+            write_label(ax, opts['label'], final_end + ((final_start - final_end) / 2.0), opts=opts)
+        else:
+            write_label(ax, opts['label'], final_start + ((final_end - final_start) / 2.0), opts=opts)
+
+    if final_start > final_end:
+        return prev_end, final_start
+    else:
+        return prev_end, final_end
+
+
+
+def sbol_xbar (ax, type, num, start, end, prev_end, scale, linewidth, opts):
+    """ Built-in SBOL coding sequence renderer.
+    """
+    # Default options
+    # zorder_add = 0.0
+    zorder_add = 0.0
+    color = (0.7,0.7,0.7)
+    hatch = ''
+    start_pad = 1.0
+    end_pad = 1.0
+    y_extent = 4
+    x_extent = 2
+    arrowhead_height = 4
+    arrowhead_length = 8
+    edgecolor = (0,0,0)
+    # Reset defaults if provided
+    if opts != None:
+        if 'zorder_add' in list(opts.keys()):
+            zorder_add = opts['zorder_add']
+        if 'color' in list(opts.keys()):
+            color = opts['color']
+        if 'hatch' in list(opts.keys()):
+            hatch = opts['hatch']
+        if 'start_pad' in list(opts.keys()):
+            start_pad = opts['start_pad']
+        if 'end_pad' in list(opts.keys()):
+            end_pad = opts['end_pad']
+        if 'y_extent' in list(opts.keys()):
+            y_extent = opts['y_extent']
+        if 'x_extent' in list(opts.keys()):
+            x_extent = opts['x_extent']
+        if 'arrowhead_height' in list(opts.keys()):
+            arrowhead_height = opts['arrowhead_height']
+        if 'arrowhead_length' in list(opts.keys()):
+            arrowhead_length = opts['arrowhead_length']
+        if 'linewidth' in list(opts.keys()):
+            linewidth = opts['linewidth']
+        if 'scale' in list(opts.keys()):
+            scale = opts['scale']
+        if 'edge_color' in list(opts.keys()):
+            edgecolor = opts['edge_color']
+
+    # Check direction add start padding
+    dir_fac = 1.0
+    final_end = end
+    final_start = prev_end
+    if start > end:
+        dir_fac = -1.0
+        start = prev_end+end_pad+x_extent
+        end = prev_end+end_pad
+        final_end = start+start_pad
+    else:
+        start = prev_end+start_pad
+        end = start+x_extent
+        final_end = end+end_pad
+    # Draw the CDS symbol
+    p1 = Polygon([(start, y_extent),
+                  (start, -y_extent),
+                  (end, -y_extent),
+                  (end, y_extent),],
+                  edgecolor=color, facecolor=color, linewidth=linewidth,
+                  hatch=hatch, zorder=12 + zorder_add,
+                  path_effects=[Stroke(joinstyle="miter")]) # This is a work around for matplotlib < 1.4.0
+    ax.add_patch(p1)
+    if opts != None and 'label' in list(opts.keys()):
+        if final_start > final_end:
+            write_label(ax, opts['label'], final_end+((final_start-final_end)/2.0), opts=opts)
+        else:
+            write_label(ax, opts['label'], final_start+((final_end-final_start)/2.0), opts=opts)
+    if final_start > final_end:
+        return prev_end, final_start
+    else:
+        return prev_end, final_end
+
 
 
 # Not used at present
@@ -2487,7 +2932,14 @@ class DNARenderer:
             '5StickyRestrictionSite' :sbol_5_sticky_restriction_site,
             '3StickyRestrictionSite' :sbol_3_sticky_restriction_site,
             'UserDefined'        :sbol_user_defined,
-            'Signature'          :sbol_signature}
+            'Signature'          :sbol_signature,
+            # added by Ben Laskaris 4/11/20
+            'Triangle'           :sbol_triangle,
+            'Degredation'        :sbol_degredation,
+            'Bar'                :sbol_bar,
+            'FSequence'          :sbol_f_sequence,
+            'ZRing'              :sbol_zring,
+            'XBar'               :sbol_xbar}
 
     def trace_part_renderers (self):
         """ Return dictionary of all standard built-in trace part renderers.

@@ -1,0 +1,9 @@
+p J23104 1
+r BCD2 9
+c araC 5
+t B0015 14
+p I13453 2
+r BCD2 9
+c XFP 7
+t B0015 14
+

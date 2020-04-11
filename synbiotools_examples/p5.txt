@@ -1,0 +1,46 @@
+o C 4
+> X' 2
+p pY
+r r 4
+c Y 4
+r r 10
+c B 10
+t
+p pB 10
+r r 6
+c Y' 6
+t
+> Y' 6
+p pZ
+r r 7
+c C 7
+r
+c out-1
+t
+p pC 7
+r
+c out-0
+t
+> Y' 6
+> Y 4
+p pZ
+r r 7
+c C 7
+r
+c out-3
+t
+p pC 7
+r
+c out-2
+t
+> Y 4
+> X' 2
+o D 2
+# Arcs
+C rep pC
+c3 rep p3
+Zin ind pZ
+Yin ind pY
+Xin ind pX
+B rep pB
+A rep pA

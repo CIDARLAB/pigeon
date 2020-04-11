@@ -1,0 +1,9 @@
+p p 2
+r r 2
+c c 2
+r r 3
+g g 3
+t t 2
+# Arcs
+c rep p
+c rep r

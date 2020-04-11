@@ -62,6 +62,24 @@ class PigeonListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by PigeonParser#gene.
+    def enterGene(self, ctx:PigeonParser.GeneContext):
+        pass
+
+    # Exit a parse tree produced by PigeonParser#gene.
+    def exitGene(self, ctx:PigeonParser.GeneContext):
+        pass
+
+
+    # Enter a parse tree produced by PigeonParser#fseq.
+    def enterFseq(self, ctx:PigeonParser.FseqContext):
+        pass
+
+    # Exit a parse tree produced by PigeonParser#fseq.
+    def exitFseq(self, ctx:PigeonParser.FseqContext):
+        pass
+
+
     # Enter a parse tree produced by PigeonParser#stop.
     def enterStop(self, ctx:PigeonParser.StopContext):
         pass
@@ -104,6 +122,60 @@ class PigeonListener(ParseTreeListener):
 
     # Exit a parse tree produced by PigeonParser#lefttriangle.
     def exitLefttriangle(self, ctx:PigeonParser.LefttriangleContext):
+        pass
+
+
+    # Enter a parse tree produced by PigeonParser#bar.
+    def enterBar(self, ctx:PigeonParser.BarContext):
+        pass
+
+    # Exit a parse tree produced by PigeonParser#bar.
+    def exitBar(self, ctx:PigeonParser.BarContext):
+        pass
+
+
+    # Enter a parse tree produced by PigeonParser#three.
+    def enterThree(self, ctx:PigeonParser.ThreeContext):
+        pass
+
+    # Exit a parse tree produced by PigeonParser#three.
+    def exitThree(self, ctx:PigeonParser.ThreeContext):
+        pass
+
+
+    # Enter a parse tree produced by PigeonParser#five.
+    def enterFive(self, ctx:PigeonParser.FiveContext):
+        pass
+
+    # Exit a parse tree produced by PigeonParser#five.
+    def exitFive(self, ctx:PigeonParser.FiveContext):
+        pass
+
+
+    # Enter a parse tree produced by PigeonParser#zring.
+    def enterZring(self, ctx:PigeonParser.ZringContext):
+        pass
+
+    # Exit a parse tree produced by PigeonParser#zring.
+    def exitZring(self, ctx:PigeonParser.ZringContext):
+        pass
+
+
+    # Enter a parse tree produced by PigeonParser#xbar.
+    def enterXbar(self, ctx:PigeonParser.XbarContext):
+        pass
+
+    # Exit a parse tree produced by PigeonParser#xbar.
+    def exitXbar(self, ctx:PigeonParser.XbarContext):
+        pass
+
+
+    # Enter a parse tree produced by PigeonParser#box.
+    def enterBox(self, ctx:PigeonParser.BoxContext):
+        pass
+
+    # Exit a parse tree produced by PigeonParser#box.
+    def exitBox(self, ctx:PigeonParser.BoxContext):
         pass
 
 

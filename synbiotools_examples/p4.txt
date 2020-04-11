@@ -1,0 +1,20 @@
+o A 6
+p pX
+r r 1
+c X 1
+r r 9
+c A 9
+t
+p pA 9
+r r 2
+c X' 2
+t
+o B 6
+# Arcs
+C rep pC
+c3 rep p3
+Zin ind pZ
+Yin ind pY
+Xin ind pX
+B rep pB
+A rep pA

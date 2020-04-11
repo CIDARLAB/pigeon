@@ -1,0 +1,13 @@
+<t t
+<c c2 4
+<r r1 1
+<p p1 6
+p p2 2
+r r2 5
+c c1 6
+t t
+# Arcs
+c1 rep p1
+c2 rep p2
+y rep c1-p1
+x rep c2-p2

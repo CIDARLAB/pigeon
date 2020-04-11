@@ -39,6 +39,16 @@ class PigeonVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by PigeonParser#gene.
+    def visitGene(self, ctx:PigeonParser.GeneContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by PigeonParser#fseq.
+    def visitFseq(self, ctx:PigeonParser.FseqContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by PigeonParser#stop.
     def visitStop(self, ctx:PigeonParser.StopContext):
         return self.visitChildren(ctx)
@@ -61,6 +71,36 @@ class PigeonVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by PigeonParser#lefttriangle.
     def visitLefttriangle(self, ctx:PigeonParser.LefttriangleContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by PigeonParser#bar.
+    def visitBar(self, ctx:PigeonParser.BarContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by PigeonParser#three.
+    def visitThree(self, ctx:PigeonParser.ThreeContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by PigeonParser#five.
+    def visitFive(self, ctx:PigeonParser.FiveContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by PigeonParser#zring.
+    def visitZring(self, ctx:PigeonParser.ZringContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by PigeonParser#xbar.
+    def visitXbar(self, ctx:PigeonParser.XbarContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by PigeonParser#box.
+    def visitBox(self, ctx:PigeonParser.BoxContext):
         return self.visitChildren(ctx)
 
 

@@ -1,0 +1,12 @@
+p pRep 2
+r rbs  1
+c Rep1 3
+c RFP  4
+t term 1
+p pRep2
+r rbs 1
+c GFP 5
+t term 1
+# Arcs
+Rep1 rep pRep2
+sm rep pRep

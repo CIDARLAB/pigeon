@@ -1,0 +1,5 @@
+<c ccdA 2
+<p pLux
+p pTET
+c LuxR 8
+c lasI 8

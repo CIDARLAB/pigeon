@@ -15,12 +15,14 @@ class HtmlPigeonListener(PigeonListener):
         name = ''
         fwd = True
         color = ''
-        y_offset = 0
+        label_y_offset = 0
         col_map = {}
 
         # vars for drawing arcs
         arcs = []
-        cur_arc = {'type' : '', 'from_part' : '', 'to_part' : '', 'opts':{'color':(0,0,0),    'linewidth':1}}
+        cur_arc = {'type' : '', 'from_part' : '', 'to_part' : '',
+                   'opts':{'color':(0,0,0), 'linewidth':1,
+                           'arc_height_start':10, 'arc_height_end':15}}
         gettingArcLabels = False
         haveArcType = False
         arc_type = ''
@@ -44,8 +46,8 @@ class HtmlPigeonListener(PigeonListener):
             self.col_map['9'] = (0.8, 0.4, 0.8)  # light purple
             self.col_map['10'] = (0.45, 0.0, 0.45)  # purple
 
-            self.col_map['11'] = (1.0, 1.0, 0.6)  # light yellow
-            self.col_map['12'] = (0.95, 0.95, 0.0)  # yellow
+            self.col_map['11'] = (1.0, 1.0, 0.4)  # light yellow
+            self.col_map['12'] = (0.9, 0.9, 0.0)  # yellow
 
             self.col_map['13'] = (0.7, 0.7, 0.7)  # grey
             self.col_map['14'] = (0.0, 0.0, 0.0)  # black
@@ -87,7 +89,7 @@ class HtmlPigeonListener(PigeonListener):
         def enterPromoter(self, ctx:PigeonParser.PromoterContext):
             self.type = 'Promoter'
             self.color = (0.0, 0.0, 0.0)
-            self.y_offset = -5
+            self.label_y_offset = -5
             # print('enterPromoter')
             pass
 
@@ -95,8 +97,8 @@ class HtmlPigeonListener(PigeonListener):
         def exitPromoter(self, ctx:PigeonParser.PromoterContext):
             self.cur_part = {'type': self.type, 'name': self.name, 'fwd': self.fwd,
                              'opts':{'color':self.color, 'label': self.name,
-                             'label_y_offset':self.y_offset, 'label_style':'italic',
-                             'label_size': 5, 'start_pad':3.5, 'end_pad':3.5}}
+                             'label_y_offset':self.label_y_offset, 'label_style':'italic',
+                             'label_size': 5, 'start_pad':4, 'end_pad':4}}
             self.design += [self.cur_part]
             self.cur_part = {}
             self.type = ''
@@ -111,7 +113,7 @@ class HtmlPigeonListener(PigeonListener):
         def enterRepressor(self, ctx:PigeonParser.RepressorContext):
             self.type = 'RBS'
             self.color = (0.0, 0.0, 0.0)
-            self.y_offset = -5
+            self.label_y_offset = -5
             # print('enterRepressor')
 
             pass
@@ -120,8 +122,8 @@ class HtmlPigeonListener(PigeonListener):
         def exitRepressor(self, ctx:PigeonParser.RepressorContext):
             self.cur_part = {'type': self.type, 'name': self.name, 'fwd': self.fwd,
                              'opts': {'color': self.color, 'label': self.name,
-                                      'label_y_offset': self.y_offset, 'label_style': 'italic',
-                                      'label_size': 5, 'start_pad': 3.5, 'end_pad': 3.5}}
+                                      'label_y_offset': self.label_y_offset, 'label_style': 'italic',
+                                      'label_size': 5, 'start_pad': 4, 'end_pad': 4}}
             self.design += [self.cur_part]
             self.cur_part = {}
             self.type = ''
@@ -136,7 +138,7 @@ class HtmlPigeonListener(PigeonListener):
         def enterCodingseq(self, ctx:PigeonParser.CodingseqContext):
             self.type = 'CDS'
             self.color = (0.0, 0.0, 0.0)
-            self.y_offset = 0
+            self.label_y_offset = 0
             # print('enterCodingseq')
             pass
 
@@ -144,8 +146,9 @@ class HtmlPigeonListener(PigeonListener):
         def exitCodingseq(self, ctx: PigeonParser.CodingseqContext):
             self.cur_part = {'type': self.type, 'name': self.name, 'fwd': self.fwd,
                              'opts': {'color': self.color, 'label': self.name,
-                                      'label_y_offset': self.y_offset, 'label_style': 'italic',
-                                      'label_size': 5, 'start_pad': 3.5, 'end_pad': 3.5}}
+                                      'label_y_offset': self.label_y_offset, 'label_style': 'italic',
+                                      'label_size': 5, 'start_pad': 4, 'end_pad': 4, 'arrowhead_height': 0},
+                                      }
             self.design += [self.cur_part]
             self.cur_part = {}
             self.type = ''
@@ -160,7 +163,7 @@ class HtmlPigeonListener(PigeonListener):
         def enterTranscription(self, ctx:PigeonParser.TranscriptionContext):
             self.type = 'Terminator'
             self.color = (0.0, 0.0, 0.0)
-            self.y_offset = -5
+            self.label_y_offset = -5
             # print('enterTranscription')
             pass
 
@@ -168,8 +171,8 @@ class HtmlPigeonListener(PigeonListener):
         def exitTranscription(self, ctx:PigeonParser.TranscriptionContext):
             self.cur_part = {'type': self.type, 'name': self.name, 'fwd': self.fwd,
                              'opts': {'color': self.color, 'label': self.name,
-                                      'label_y_offset': self.y_offset, 'label_style': 'italic',
-                                      'label_size': 5, 'start_pad': 3.5, 'end_pad': 3.5}}
+                                      'label_y_offset': self.label_y_offset, 'label_style': 'italic',
+                                      'label_size': 5, 'start_pad': 4, 'end_pad': 4}}
             self.design += [self.cur_part]
             self.cur_part = {}
             self.type = ''
@@ -184,7 +187,7 @@ class HtmlPigeonListener(PigeonListener):
         def enterStop(self, ctx:PigeonParser.StopContext):
             self.type = 'Spacer'
             self.color = (0.0, 0.0, 0.0)
-            self.y_offset = -5
+            self.label_y_offset = -6
             # print('enterStop')
 
             pass
@@ -193,8 +196,8 @@ class HtmlPigeonListener(PigeonListener):
         def exitStop(self, ctx:PigeonParser.StopContext):
             self.cur_part = {'type': self.type, 'name': self.name, 'fwd': self.fwd,
                              'opts': {'color': self.color, 'label': self.name,
-                                      'label_y_offset': self.y_offset, 'label_style': 'italic',
-                                      'label_size': 5, 'start_pad': 3.5, 'end_pad': 3.5}}
+                                      'label_y_offset': self.label_y_offset, 'label_style': 'italic',
+                                      'label_size': 5, 'start_pad': 4, 'end_pad': 4}}
             self.design += [self.cur_part]
             self.cur_part = {}
             self.type = ''
@@ -209,7 +212,7 @@ class HtmlPigeonListener(PigeonListener):
         def enterOperator(self, ctx:PigeonParser.OperatorContext):
             self.type = 'Operator'
             self.color = (0.0, 0.0, 0.0)
-            self.y_offset = 0
+            self.label_y_offset = 0
             # print('enterOperator')
 
             pass
@@ -218,8 +221,8 @@ class HtmlPigeonListener(PigeonListener):
         def exitOperator(self, ctx:PigeonParser.OperatorContext):
             self.cur_part = {'type': self.type, 'name': self.name, 'fwd': self.fwd,
                              'opts': {'color': self.color, 'label': self.name,
-                                      'label_y_offset': self.y_offset, 'label_style': 'italic',
-                                      'label_size': 5, 'start_pad': 3.5, 'end_pad': 3.5}}
+                                      'label_y_offset': self.label_y_offset, 'label_style': 'italic',
+                                      'label_size': 5, 'start_pad': 4, 'end_pad': 4}}
             self.design += [self.cur_part]
             self.cur_part = {}
             self.type = ''
@@ -232,34 +235,75 @@ class HtmlPigeonListener(PigeonListener):
 
         # Enter a parse tree produced by PigeonParser#degredationtag.
         def enterDegredationtag(self, ctx:PigeonParser.DegredationtagContext):
+            self.type = 'Degredation'
+            self.color = (0.0, 0.0, 0.0)
+            self.label_y_offset = -6
             # print('enterDegredationtag')
             pass
 
         # Exit a parse tree produced by PigeonParser#degredationtag.
         def exitDegredationtag(self, ctx:PigeonParser.DegredationtagContext):
+            self.cur_part = {'type': self.type, 'name': self.name, 'fwd': self.fwd,
+                             'opts': {'color': self.color, 'label': self.name,
+                                      'label_y_offset': self.label_y_offset, 'label_style': 'italic',
+                                      'label_size': 5, 'start_pad': 4, 'end_pad': 4}}
+            self.design += [self.cur_part]
+            self.cur_part = {}
+            self.type = ''
+            self.name = ''
+            self.fwd = True
+            self.color = (0.0, 0.0, 0.0)
+
             # print('exitDegredationtag')
             pass
 
         # Enter a parse tree produced by PigeonParser#righttriangle.
         def enterRighttriangle(self, ctx:PigeonParser.RighttriangleContext):
+            self.type = 'Triangle'
+            self.color = (0.0, 0.0, 0.0)
+            self.label_y_offset = -8
             # print('enterRighttriangle')
 
             pass
 
         # Exit a parse tree produced by PigeonParser#righttriangle.
         def exitRighttriangle(self, ctx:PigeonParser.RighttriangleContext):
+            self.cur_part = {'type': self.type, 'name': self.name, 'fwd': self.fwd,
+                             'opts': {'color': self.color, 'label': self.name,
+                                      'label_y_offset': self.label_y_offset, 'label_style': 'italic',
+                                      'label_size': 5, 'start_pad': 4, 'end_pad': 4}}
+            self.design += [self.cur_part]
+            self.cur_part = {}
+            self.type = ''
+            self.name = ''
+            self.fwd = True
+            self.color = (0.0, 0.0, 0.0)
             # print('exitRighttriangle')
 
             pass
 
         # Enter a parse tree produced by PigeonParser#lefttriangle.
         def enterLefttriangle(self, ctx: PigeonParser.LefttriangleContext):
+            self.type = 'Triangle'
+            self.color = (0.0, 0.0, 0.0)
+            self.label_y_offset = -8
+            self.fwd = False
             # print('enterLefttriangle')
 
             pass
 
         # Exit a parse tree produced by PigeonParser#lefttriangle.
         def exitLefttriangle(self, ctx: PigeonParser.LefttriangleContext):
+            self.cur_part = {'type': self.type, 'name': self.name, 'fwd': self.fwd,
+                             'opts': {'color': self.color, 'label': self.name,
+                                      'label_y_offset': self.label_y_offset, 'label_style': 'italic',
+                                      'label_size': 5, 'start_pad': 4, 'end_pad': 4}}
+            self.design += [self.cur_part]
+            self.cur_part = {}
+            self.type = ''
+            self.name = ''
+            self.fwd = True
+            self.color = (0.0, 0.0, 0.0)
             # print('exitLefttriangle')
 
             pass
@@ -268,7 +312,7 @@ class HtmlPigeonListener(PigeonListener):
 
         def enterInvert(self, ctx: PigeonParser.InvertContext):
             self.fwd = False
-            self.y_offset = 5 # don't necessarily want to always do this
+            self.label_y_offset = 5 # don't necessarily want to always do this
             pass
 
             # Exit a parse tree produced by PigeonParser#invert.
@@ -276,47 +320,208 @@ class HtmlPigeonListener(PigeonListener):
         def exitInvert(self, ctx: PigeonParser.InvertContext):
             pass
 
-        # # Enter a parse tree produced by PigeonParser#dash.
-        # def enterDash(self, ctx: PigeonParser.DashContext):
-        #     print('enterDash')
-        #
-        #     pass
-        #
-        # # Exit a parse tree produced by PigeonParser#dash.
-        # def exitDash(self, ctx: PigeonParser.DashContext):
-        #     print('exitDash')
-        #
-        #     pass
-        #
-        # # Enter a parse tree produced by PigeonParser#period.
-        # def enterPeriod(self, ctx: PigeonParser.PeriodContext):
-        #     print('enterPeriod')
-        #
-        #     pass
-        #
-        # # Exit a parse tree produced by PigeonParser#period.
-        # def exitPeriod(self, ctx: PigeonParser.PeriodContext):
-        #     print('exitPeriod')
-        #
-        #     pass
-        #
-        # # Enter a parse tree produced by PigeonParser#bar.
-        # def enterBar(self, ctx: PigeonParser.BarContext):
-        #     print('enterBar')
-        #
-        #     pass
-        #
-        # # Exit a parse tree produced by PigeonParser#bar.
-        # def exitBar(self, ctx: PigeonParser.BarContext):
-        #     print('exitBar')
-        #     pass
+
+        # Enter a parse tree produced by PigeonParser#bar.
+        def enterBar(self, ctx: PigeonParser.BarContext):
+            self.type = 'Bar'
+            self.color = (0.0, 0.0, 0.0)
+            self.label_y_offset = -6
+            print('enterBar')
+
+            pass
+
+        # Exit a parse tree produced by PigeonParser#bar.
+        def exitBar(self, ctx: PigeonParser.BarContext):
+            self.cur_part = {'type': self.type, 'name': self.name, 'fwd': self.fwd,
+                             'opts': {'color': self.color, 'label': self.name,
+                                      'label_y_offset': self.label_y_offset, 'label_style': 'italic',
+                                      'label_size': 5, 'start_pad': 4, 'end_pad': 4}}
+            self.design += [self.cur_part]
+            self.cur_part = {}
+            self.type = ''
+            self.name = ''
+            self.fwd = True
+            self.color = (0.0, 0.0, 0.0)
+            print('exitBar')
+            pass
+
+        def enterThree(self, ctx: PigeonParser.BarContext):
+            self.type = '3Overhang'
+            self.color = (0.0, 0.0, 0.0)
+            self.label_y_offset = -8
+            print('enterThree')
+
+            pass
+
+        # Exit a parse tree produced by PigeonParser#bar.
+        def exitThree(self, ctx: PigeonParser.BarContext):
+            self.cur_part = {'type': self.type, 'name': self.name, 'fwd': self.fwd,
+                             'opts': {'color': self.color, 'label': self.name,
+                                      'label_y_offset': self.label_y_offset, 'label_style': 'italic',
+                                      'label_size': 5, 'start_pad': 4.0, 'end_pad': 4.0,
+                                      'y_extent': 1.5, 'x_extent': 10, 'linewidth': 1.5}}
+            self.design += [self.cur_part]
+            self.cur_part = {}
+            self.type = ''
+            self.name = ''
+            self.fwd = True
+            self.color = (0.0, 0.0, 0.0)
+            print('exitThree')
+            pass
+
+        def enterFive(self, ctx: PigeonParser.BarContext):
+            self.type = '5Overhang'
+            self.color = (0.0, 0.0, 0.0)
+            self.label_y_offset = -8
+            print('enterFive')
+
+            pass
+
+        # Exit a parse tree produced by PigeonParser#bar.
+        def exitFive(self, ctx: PigeonParser.BarContext):
+            self.cur_part = {'type': self.type, 'name': self.name, 'fwd': self.fwd,
+                             'opts': {'color': self.color, 'label': self.name,
+                                      'label_y_offset': self.label_y_offset, 'label_style': 'italic',
+                                      'label_size': 5, 'start_pad': 4.0, 'end_pad': 4.0,
+                                      'y_extent': 1.5, 'x_extent': 10, 'linewidth': 1.5}}
+            self.design += [self.cur_part]
+            self.cur_part = {}
+            self.type = ''
+            self.name = ''
+            self.fwd = True
+            self.color = (0.0, 0.0, 0.0)
+            print('exitFive')
+            pass
+
+        def enterGene(self, ctx:PigeonParser.CodingseqContext):
+            self.type = 'CDS'
+            self.color = (0.0, 0.0, 0.0)
+            self.label_y_offset = 0
+            # print('enterCodingseq')
+            pass
+
+        # Exit a parse tree produced by PigeonParser#codingseq.
+        def exitGene(self, ctx: PigeonParser.CodingseqContext):
+            self.cur_part = {'type': self.type, 'name': self.name, 'fwd': self.fwd,
+                             'opts': {'color': self.color, 'label': self.name,
+                                      'label_y_offset': self.label_y_offset, 'label_style': 'italic',
+                                      'label_size': 5, 'start_pad': 4, 'end_pad': 4,
+                                      'y_extent': 4, 'x_extent': 20},
+                                      }
+            self.design += [self.cur_part]
+            self.cur_part = {}
+            self.type = ''
+            self.name = ''
+            self.fwd = True
+            self.color = (0.0, 0.0, 0.0)
+            # print('exitCodingseq')
+
+            pass
+
+        def enterFseq(self, ctx:PigeonParser.CodingseqContext):
+            self.type = 'FSequence'
+            self.color = (0.0, 0.0, 0.0)
+            self.label_y_offset = 0
+            # print('enterCodingseq')
+            pass
+
+        # Exit a parse tree produced by PigeonParser#codingseq.
+        def exitFseq(self, ctx: PigeonParser.CodingseqContext):
+            self.cur_part = {'type': self.type, 'name': self.name, 'fwd': self.fwd,
+                             'opts': {'color': self.color, 'label': self.name,
+                                      'label_y_offset': 0, 'label_style': 'italic',
+                                      'label_size': 5, 'start_pad': 4, 'end_pad': 4,
+                                      'y_extent': 5, 'x_extent': 40},
+                                      }
+            self.design += [self.cur_part]
+            self.cur_part = {}
+            self.type = ''
+            self.name = ''
+            self.fwd = True
+            self.color = (0.0, 0.0, 0.0)
+            # print('exitCodingseq')
+
+            pass
+
+
+        def enterZring(self, ctx:PigeonParser.DegredationtagContext):
+            self.type = 'ZRing'
+            self.color = (0.0, 0.0, 0.0)
+            self.label_y_offset = -6
+            # print('enterDegredationtag')
+            pass
+
+        # Exit a parse tree produced by PigeonParser#degredationtag.
+        def exitZring(self, ctx:PigeonParser.DegredationtagContext):
+            self.cur_part = {'type': self.type, 'name': self.name, 'fwd': self.fwd,
+                             'opts': {'color': self.color, 'label': self.name,
+                                      'label_y_offset': self.label_y_offset, 'label_style': 'italic',
+                                      'label_size': 5, 'start_pad': 4, 'end_pad': 4}}
+            self.design += [self.cur_part]
+            self.cur_part = {}
+            self.type = ''
+            self.name = ''
+            self.fwd = True
+            self.color = (0.0, 0.0, 0.0)
+
+            # print('exitDegredationtag')
+            pass
+
+        def enterXbar(self, ctx: PigeonParser.BarContext):
+            self.type = 'XBar'
+            self.color = (0.0, 0.0, 0.0)
+            self.label_y_offset = -8
+            print('enterBar')
+
+            pass
+
+        # Exit a parse tree produced by PigeonParser#bar.
+        def exitXbar(self, ctx: PigeonParser.BarContext):
+            self.cur_part = {'type': self.type, 'name': self.name, 'fwd': self.fwd,
+                             'opts': {'color': self.color, 'label': self.name,
+                                      'label_y_offset': self.label_y_offset, 'label_style': 'italic',
+                                      'label_size': 5, 'start_pad': 4, 'end_pad': 4}}
+            self.design += [self.cur_part]
+            self.cur_part = {}
+            self.type = ''
+            self.name = ''
+            self.fwd = True
+            self.color = (0.0, 0.0, 0.0)
+            print('exitBar')
+            pass
+
+        def enterBox(self, ctx:PigeonParser.CodingseqContext):
+            self.type = 'CDS'
+            self.color = (0.0, 0.0, 0.0)
+            self.label_y_offset = -8
+            # print('enterCodingseq')
+            pass
+
+        # Exit a parse tree produced by PigeonParser#codingseq.
+        def exitBox(self, ctx: PigeonParser.CodingseqContext):
+            self.cur_part = {'type': self.type, 'name': self.name, 'fwd': self.fwd,
+                             'opts': {'color': self.color, 'label': self.name,
+                                      'label_y_offset': self.label_y_offset, 'label_style': 'italic',
+                                      'label_size': 5, 'start_pad': 4, 'end_pad': 4,
+                                      'arrowhead_height': 0, 'arrowhead_length': 0,
+                                      'x_extent': 15, 'y_extent': 4},
+                                      }
+            self.design += [self.cur_part]
+            self.cur_part = {}
+            self.type = ''
+            self.name = ''
+            self.fwd = True
+            self.color = (0.0, 0.0, 0.0)
+            # print('exitCodingseq')
+
+            pass
 
         # Enter a parse tree produced by PigeonParser#label.
         def enterLabel(self, ctx: PigeonParser.LabelContext):
             # print('enterLabel')
             self.name = ctx.getText()
             if (self.type == 'CDS'):
-                self.y_offset = 0
+                self.label_y_offset = 0
 
             if (self.gettingArcLabels and not self.haveArcType):
                 for i in self.design:
@@ -361,7 +566,7 @@ class HtmlPigeonListener(PigeonListener):
         # Enter a parse tree produced by PigeonParser#arccommands.
         def enterArccommands(self, ctx: PigeonParser.ArccommandsContext):
             self.gettingArcLabels = True
-            # print('enterArccommands')
+            print('enterArccommands')
 
             pass
 
@@ -369,34 +574,36 @@ class HtmlPigeonListener(PigeonListener):
         def exitArccommands(self, ctx: PigeonParser.ArccommandsContext):
             self.gettingArcLabels = False
             self.haveArcType = False
-            # print(self.cur_arc['from_part']['type'])
-            # print(self.cur_arc['to_part']['type'])
+            print(self.cur_arc['from_part']['type'] + ": " + self.cur_arc['from_part']['name'])
+            print(self.cur_arc['to_part']['type'] + ": " + self.cur_arc['to_part']['name'])
 
             if ((self.cur_arc['from_part']['type'] != 'CDS') or (self.cur_arc['to_part']['type'] != 'Promoter')):
                 self.cur_arc = {}
                 print("ERROR: Invalid Arc. Arcs must be drawn from command c to command p")
             else:
+                # if (self.cur_arc['to_part']['fwd'] == False):
+                #     self.cur_arc['opts']['arc_height_end'] = 15
                 self.arcs += [self.cur_arc]
                 self.cur_arc = {}
-            # print('exitArccommands')
+            print('exitArccommands')
             pass
 
         # Enter a parse tree produced by PigeonParser#arc.
         def enterArc(self, ctx: PigeonParser.ArcContext):
+            print('enterArc')
             arc = ctx.getText()
             # if ind do this else if rep do that
             if (arc == 'rep'):
                 self.cur_arc['type'] = 'Repression'
             elif (arc == 'ind'):
-                self.cur_arc['type'] = 'Connection' # is this correct?
+                self.cur_arc['type'] = 'Activation' # is this correct?
 
             self.haveArcType = True
-            # print('enterArc')
             pass
 
         # Exit a parse tree produced by PigeonParser#arc.
         def exitArc(self, ctx: PigeonParser.ArcContext):
-            # print('exitArc')
+            print('exitArc')
 
             pass
 

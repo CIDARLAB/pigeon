@@ -28,6 +28,7 @@
             var script = $('#p_script').val();
             $.get("/parse", {"script" : script} )
                 .done(function(data) {
+                    alert("Data: " + data)
                     $('#image').html(data);
             });
          });

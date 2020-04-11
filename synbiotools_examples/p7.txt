@@ -1,0 +1,20 @@
+p pb 8
+p pa 8
+r r9 4
+c g9 6
+t t
+p pn_3 8
+p pc 8
+r r8 4
+c g8 6
+t t
+p pn_5 8
+p pd 8
+r r7 4
+c g7 6
+t t
+p pout_x 8
+# Arcs
+g7 rep pout_x
+g8 ind pn_5
+g9 ind pn_3

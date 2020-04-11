@@ -1,0 +1,18 @@
+p p1
+c c1 5
+p p1
+c c2 8
+c c3 3
+c c4 6
+p p3
+c c5 11
+p p1
+c c6 1
+p p5
+c c7 2
+c c8 4
+# Arcs
+c1 ind p1
+# c6 ind p5
+#c7 rep p1
+#c5 rep p5
