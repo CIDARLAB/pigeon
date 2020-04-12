@@ -1,23 +1,12 @@
-? ? 7
-3 3 1
-5 5 2
-p p 3
-<p <p 4
-r r 5
-<r <r 6
-c c 7
-<c <c 8
-g g 9
-<g <g 10
-f f 3
-<f <f 4
-t t 11
-<t <t 12
-s s 13
-o o 13
-> > 1
-< < 2
-| | 3
-d d 4
-z z 5
-x x 6
+p Psal 14
+r r2 5
+c supD 11
+t t
+p PBAD 14
+r r2 5
+c T7ptag 5
+t t
+p PT7 14
+r r2 5
+c GFP 3
+t t

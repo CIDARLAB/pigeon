@@ -89,7 +89,7 @@ class HtmlPigeonListener(PigeonListener):
         def enterPromoter(self, ctx:PigeonParser.PromoterContext):
             self.type = 'Promoter'
             self.color = (0.0, 0.0, 0.0)
-            self.label_y_offset = -5
+            self.label_y_offset = -8
             # print('enterPromoter')
             pass
 
@@ -113,7 +113,7 @@ class HtmlPigeonListener(PigeonListener):
         def enterRepressor(self, ctx:PigeonParser.RepressorContext):
             self.type = 'RBS'
             self.color = (0.0, 0.0, 0.0)
-            self.label_y_offset = -5
+            self.label_y_offset = -8
             # print('enterRepressor')
 
             pass
@@ -163,7 +163,7 @@ class HtmlPigeonListener(PigeonListener):
         def enterTranscription(self, ctx:PigeonParser.TranscriptionContext):
             self.type = 'Terminator'
             self.color = (0.0, 0.0, 0.0)
-            self.label_y_offset = -5
+            self.label_y_offset = -8
             # print('enterTranscription')
             pass
 
@@ -187,7 +187,7 @@ class HtmlPigeonListener(PigeonListener):
         def enterStop(self, ctx:PigeonParser.StopContext):
             self.type = 'Spacer'
             self.color = (0.0, 0.0, 0.0)
-            self.label_y_offset = -6
+            self.label_y_offset = -8
             # print('enterStop')
 
             pass
@@ -237,7 +237,7 @@ class HtmlPigeonListener(PigeonListener):
         def enterDegredationtag(self, ctx:PigeonParser.DegredationtagContext):
             self.type = 'Degredation'
             self.color = (0.0, 0.0, 0.0)
-            self.label_y_offset = -6
+            self.label_y_offset = -8
             # print('enterDegredationtag')
             pass
 
@@ -325,7 +325,7 @@ class HtmlPigeonListener(PigeonListener):
         def enterBar(self, ctx: PigeonParser.BarContext):
             self.type = 'Bar'
             self.color = (0.0, 0.0, 0.0)
-            self.label_y_offset = -6
+            self.label_y_offset = -8
             print('enterBar')
 
             pass
@@ -447,7 +447,7 @@ class HtmlPigeonListener(PigeonListener):
         def enterZring(self, ctx:PigeonParser.DegredationtagContext):
             self.type = 'ZRing'
             self.color = (0.0, 0.0, 0.0)
-            self.label_y_offset = -6
+            self.label_y_offset = -8
             # print('enterDegredationtag')
             pass
 

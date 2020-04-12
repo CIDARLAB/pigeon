@@ -215,6 +215,15 @@ class PigeonListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by PigeonParser#commands.
+    def enterCommands(self, ctx:PigeonParser.CommandsContext):
+        pass
+
+    # Exit a parse tree produced by PigeonParser#commands.
+    def exitCommands(self, ctx:PigeonParser.CommandsContext):
+        pass
+
+
     # Enter a parse tree produced by PigeonParser#arccommands.
     def enterArccommands(self, ctx:PigeonParser.ArccommandsContext):
         pass

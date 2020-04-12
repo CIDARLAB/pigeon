@@ -124,6 +124,11 @@ class PigeonVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by PigeonParser#commands.
+    def visitCommands(self, ctx:PigeonParser.CommandsContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by PigeonParser#arccommands.
     def visitArccommands(self, ctx:PigeonParser.ArccommandsContext):
         return self.visitChildren(ctx)
