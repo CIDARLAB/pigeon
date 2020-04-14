@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['cmdline.py'],
-             pathex=['/Users/krishna/Documents/GitHub/pidgeon'],
+             pathex=['.'],
              binaries=[],
              datas=[],
              hiddenimports=['pkg_resources.py2_warn'],
