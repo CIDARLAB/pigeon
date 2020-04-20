@@ -103,6 +103,38 @@ def write_label (ax, label_text, x_pos, opts=None):
             verticalalignment='center', fontsize=label_size, fontstyle=label_style, 
             color=label_color, rotation=label_rotation, zorder=30+zorder_add)
 
+def write_arc_label (ax, label_text, x_pos, y_pos, opts=None):
+    """ Renders labels on parts.
+    """
+    zorder_add = 0.0
+    y_offset = 0.0
+    label_style = 'normal'
+    label_size = 7
+    label_y_offset = 0
+    label_x_offset = 0
+    label_color = (0,0,0)
+    label_rotation = 0
+    if opts != None:
+        if 'zorder_add' in list(opts.keys()):
+            zorder_add = opts['zorder_add']
+        if 'y_offset' in list(opts.keys()):
+            y_offset = opts['y_offset']
+        if 'label_style' in list(opts.keys()):
+            label_style = opts['label_style']
+        if 'label_size' in list(opts.keys()):
+            label_size = opts['label_size']
+        if 'label_y_offset' in list(opts.keys()):
+            label_y_offset = opts['label_y_offset']
+        if 'label_x_offset' in list(opts.keys()):
+            label_x_offset = opts['label_x_offset']
+        if 'label_color' in list(opts.keys()):
+            label_color = opts['label_color']
+        if 'label_rotation' in list(opts.keys()):
+            label_rotation = opts['label_rotation']
+    ax.text(x_pos+label_x_offset, y_pos+label_y_offset+y_offset, label_text, horizontalalignment='center',
+            verticalalignment='center', fontsize=label_size, fontstyle=label_style,
+            color=label_color, rotation=label_rotation, zorder=30+zorder_add)
+
 
 def sbol_promoter (ax, type, num, start, end, prev_end, scale, linewidth, opts):
     """ Built-in SBOL promoter renderer.
@@ -2345,6 +2377,11 @@ def temporary_repressor (ax, type, num, start, end, prev_end, scale, linewidth, 
 # Regulation renderers
 ###############################################################################
 
+def indicate (ax, type, num, from_part, to_part, scale, linewidth, arc_height_index, opts):
+    """ Standard repression regulation renderer.
+    """
+    regulation(ax, type, num, from_part, to_part, scale, linewidth, arc_height_index, opts)
+
 
 def repress (ax, type, num, from_part, to_part, scale, linewidth, arc_height_index, opts):
     """ Standard repression regulation renderer.
@@ -2410,9 +2447,12 @@ def regulation (ax, type, num, from_part, to_part, scale, linewidth, arc_height_
 
     start = ((from_part['start'] + from_part['end']) / 2) + arc_start_x_offset
     end   = ((to_part['start']   + to_part['end']) / 2) + arc_end_x_offset
+    middle = (start + end)/2
+    midRepOffset = 3
+    arcLabelOffset = 5
 
-    top = arcHeight;
-    base = startHeight;
+    top = arcHeight
+    base = startHeight
     indHeight = arrowhead_length
     corr = linewidth
 
@@ -2422,6 +2462,8 @@ def regulation (ax, type, num, from_part, to_part, scale, linewidth, arc_height_
         top  = -1*arcHeight
         indHeight = -1*arrowhead_length
         corr *= -1
+        midRepOffset *= -1
+        arcLabelOffset *= -1
 
 
     line_away   = Line2D([start,start],[base,top], 
@@ -2437,11 +2479,35 @@ def regulation (ax, type, num, from_part, to_part, scale, linewidth, arc_height_
     line_ind2    = Line2D([end+arrowhead_length,end],[arcHeightEnd+indHeight,arcHeightEnd], 
                 linewidth=linewidth, color=color, zorder=12, linestyle='-')
 
+    # added by Ben Laskaris 4/15/20
+    tall_line_toward = Line2D([end, end], [top + arcHeightEnd, arcHeightEnd + corr],
+                         linewidth=linewidth, color=color, zorder=12, linestyle=linestyle)
+
+    mid_line_toward = Line2D([middle, middle], [top - midRepOffset , top + arcHeightEnd + corr],
+                         linewidth=linewidth, color=color, zorder=12, linestyle=linestyle)
+
+    mid_line_rep = Line2D([middle-arrowhead_length,middle+arrowhead_length],[top - midRepOffset ,top - midRepOffset],
+                linewidth=linewidth, color=color, zorder=12, linestyle='-')
+
+
     if(type == 'Repression'):
         ax.add_line(line_rep)
         ax.add_line(line_away)
         ax.add_line(line_across)
         ax.add_line(line_toward)
+
+
+    if (type == 'Repression2'):
+        ax.add_line(mid_line_toward)
+        ax.add_line(mid_line_rep)
+        # print('REPRESSION 2 ----------------------- ')
+        # print('top:' + str(top))
+        # print('middle: ' + str(middle))
+        # print('end: ' + str(end))
+        # print('archeightend: ' + str(arcHeightEnd))
+        write_arc_label(ax, from_part['name'], middle, top + arcHeightEnd + arcLabelOffset, opts=opts)
+
+
 
     if(type == 'Activation'):
         ax.add_line(line_ind1)
@@ -2450,12 +2516,25 @@ def regulation (ax, type, num, from_part, to_part, scale, linewidth, arc_height_
         ax.add_line(line_across)
         ax.add_line(line_toward)
 
+
     if(type == 'Connection'):
         verts = [ (start, base), (start, top), (end, top),  (end, base) ]
         codes = [Path.MOVETO, Path.CURVE4, Path.CURVE4, Path.CURVE4]
         path1 = Path(verts, codes)
         patch = patches.PathPatch(path1, facecolor='none', lw=linewidth, edgecolor=color)
         ax.add_patch(patch)
+
+    # added by Ben Laskaris 4/15/20
+    if(type== 'Indication'):
+        ax.add_line(line_ind1)
+        ax.add_line(line_ind2)
+        ax.add_line(tall_line_toward)
+        # print('INDICATION  -------------------------- ')
+        # print('top:' + str(top))
+        # print('middle: ' + str(middle))
+        # print('end: ' + str(end))
+        # print('archeightend: ' + str(arcHeightEnd))
+        write_arc_label(ax, from_part['name'], end, top + arcHeightEnd + arcLabelOffset,  opts=opts)
 
 
 ###############################################################################
@@ -2870,7 +2949,9 @@ class DNARenderer:
     # Standard regulatory types
     STD_REG_TYPES = ['Repression',
                      'Activation',
-                     'Connection']
+                     'Connection',
+                     'Indication',
+                     'Repression2']
 
     def __init__(self, scale=1.0, linewidth=1.0, linecolor=(0,0,0), 
                  backbone_pad_left=0.0, backbone_pad_right=0.0):
@@ -2957,7 +3038,9 @@ class DNARenderer:
         return {
             'Repression' :repress, 
             'Activation' :induce,
-            'Connection' :connect}
+            'Connection' :connect,
+            'Indication' :indicate,
+            'Repression2':repress}
 
     def renderDNA (self, ax, parts, part_renderers, regs=None, reg_renderers=None, plot_backbone=True):
         """ Render the parts on the DNA and regulation.

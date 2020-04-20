@@ -79,7 +79,7 @@ subcomponents = []
 for ann in module[0].annotations:
     dc = ann.subcomponent
     subcomponents.append(dc)
-    SO_term = dc.type.split('/')[-1]
+    SO_term = dc.part_type.split('/')[-1]
     part = {}
     if SO_term in list(dr.SO_terms().keys()):
         part['type'] = dr.SO_terms()[SO_term]

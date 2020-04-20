@@ -109,13 +109,13 @@ class PigeonVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by PigeonParser#label.
-    def visitLabel(self, ctx:PigeonParser.LabelContext):
+    # Visit a parse tree produced by PigeonParser#color.
+    def visitColor(self, ctx:PigeonParser.ColorContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by PigeonParser#color.
-    def visitColor(self, ctx:PigeonParser.ColorContext):
+    # Visit a parse tree produced by PigeonParser#label.
+    def visitLabel(self, ctx:PigeonParser.LabelContext):
         return self.visitChildren(ctx)
 
 
@@ -134,8 +134,18 @@ class PigeonVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by PigeonParser#arc.
-    def visitArc(self, ctx:PigeonParser.ArcContext):
+    # Visit a parse tree produced by PigeonParser#rep.
+    def visitRep(self, ctx:PigeonParser.RepContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by PigeonParser#rep2.
+    def visitRep2(self, ctx:PigeonParser.Rep2Context):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by PigeonParser#ind.
+    def visitInd(self, ctx:PigeonParser.IndContext):
         return self.visitChildren(ctx)
 
 

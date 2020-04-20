@@ -104,7 +104,7 @@ class SBOLRenderer(dpl.DNARenderer):
                 print("DNAComponent does not have subcomponents.  Cannot render SBOL.")
 
             # Translate from SBOL data model to DNAPlotLib dictionary specification for designs
-            SO_term = subcomponent.type.split('/')[-1]
+            SO_term = subcomponent.part_type.split('/')[-1]
             if SO_term in list(self.SO_terms().keys()):
                 part = {}
                 part['type'] = self.SO_terms()[SO_term]

@@ -188,21 +188,21 @@ class PigeonListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by PigeonParser#label.
-    def enterLabel(self, ctx:PigeonParser.LabelContext):
-        pass
-
-    # Exit a parse tree produced by PigeonParser#label.
-    def exitLabel(self, ctx:PigeonParser.LabelContext):
-        pass
-
-
     # Enter a parse tree produced by PigeonParser#color.
     def enterColor(self, ctx:PigeonParser.ColorContext):
         pass
 
     # Exit a parse tree produced by PigeonParser#color.
     def exitColor(self, ctx:PigeonParser.ColorContext):
+        pass
+
+
+    # Enter a parse tree produced by PigeonParser#label.
+    def enterLabel(self, ctx:PigeonParser.LabelContext):
+        pass
+
+    # Exit a parse tree produced by PigeonParser#label.
+    def exitLabel(self, ctx:PigeonParser.LabelContext):
         pass
 
 
@@ -233,12 +233,30 @@ class PigeonListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by PigeonParser#arc.
-    def enterArc(self, ctx:PigeonParser.ArcContext):
+    # Enter a parse tree produced by PigeonParser#rep.
+    def enterRep(self, ctx:PigeonParser.RepContext):
         pass
 
-    # Exit a parse tree produced by PigeonParser#arc.
-    def exitArc(self, ctx:PigeonParser.ArcContext):
+    # Exit a parse tree produced by PigeonParser#rep.
+    def exitRep(self, ctx:PigeonParser.RepContext):
+        pass
+
+
+    # Enter a parse tree produced by PigeonParser#rep2.
+    def enterRep2(self, ctx:PigeonParser.Rep2Context):
+        pass
+
+    # Exit a parse tree produced by PigeonParser#rep2.
+    def exitRep2(self, ctx:PigeonParser.Rep2Context):
+        pass
+
+
+    # Enter a parse tree produced by PigeonParser#ind.
+    def enterInd(self, ctx:PigeonParser.IndContext):
+        pass
+
+    # Exit a parse tree produced by PigeonParser#ind.
+    def exitInd(self, ctx:PigeonParser.IndContext):
         pass
 
 

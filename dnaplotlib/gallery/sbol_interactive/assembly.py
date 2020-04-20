@@ -267,7 +267,7 @@ def verify_base(ref_base, query_base) :
 #     return None
 
 def is_mutation(dna_component) :
-    if dna_component.type in [
+    if dna_component.part_type in [
         SO_INSERTION,
         SO_DELETION,
         SO_SUBSTITUTION,
@@ -277,13 +277,13 @@ def is_mutation(dna_component) :
         return False
 
 def is_ambiguity(dna_component) :
-    if dna_component.type == SO_POSSIBLE_ASSEMBLY_ERROR:
+    if dna_component.part_type == SO_POSSIBLE_ASSEMBLY_ERROR:
         return True
     else:
         return False
 
 def is_match(dna_component) :
-    if dna_component.type == SO_NUCLEOTIDE_MATCH:
+    if dna_component.part_type == SO_NUCLEOTIDE_MATCH:
         return True
     else:
         return False
@@ -541,14 +541,14 @@ def qc(design, data=None, infile=None):
                             annotated_region.end = qc_end
                             annotated_region.subcomponent = sbol.DNAComponent(doc,"%s/MatchedSequence/SA%d/DC%d" %(design.uri, n_annotations, n_components) )
                             annotated_region.subcomponent.display_id = ""
-                            annotated_region.subcomponent.type = qc_classification
+                            annotated_region.subcomponent.part_type = qc_classification
                         else:  # A mismatch was identified
                             annotated_region = sbol.SequenceAnnotation(doc, "%s/AssemblyErrors/SA%d" %(design.uri, n_annotations))
                             annotated_region.start = qc_start
                             annotated_region.end = qc_end
                             annotated_region.subcomponent = sbol.DNAComponent(doc,"%s/AssemblyErrors/SA%d/DC%d" %(design.uri, n_annotations, n_components) )
                             annotated_region.subcomponent.display_id = ""
-                            annotated_region.subcomponent.type = qc_classification
+                            annotated_region.subcomponent.part_type = qc_classification
                     print("Adding %s to %s from %d to %d" %(annotated_region.uri, ann.subcomponent.display_id, annotated_region.start, annotated_region.end))
                     ann.subcomponent.annotations.append(annotated_region)
 
@@ -574,9 +574,9 @@ def find_consensus(alignment):
     return consensus
 
 def initialize_design(doc):
-    n_designs = len([part for part in doc.components if part.type and part.type == DESIGN])
+    n_designs = len([part for part in doc.components if part.part_type and part.part_type == DESIGN])
     root = sbol.DNAComponent(doc, '%s/Design_%d' %(BASE_URI, n_designs + 1))
-    root.type = DESIGN
+    root.part_type = DESIGN
     root.display_id = 'Design %d' %(n_designs + 1)
     root.name = 'Design %d' %(n_designs + 1)
     root.sequence = sbol.DNASequence(doc, '%s/Design_%d/Seq_%d' %(BASE_URI, n_designs + 1, n_designs + 1))
