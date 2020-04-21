@@ -1,27 +1,14 @@
+c c1 5
 d 3
-c c1 6
+p p1 4
 d 3
+p p2 5
 d 3
-c c3 6
+p p3 5
 d 3
+p p4 5
 d 3
-c c2 6
-d 3
-p p1 6
-d 3
-<p p2 8
-p p4 8
-d 3
-<p p3 8
-d 3
-d 3
-p p5 9
 
-c1 rep p1
-c2 rep p2
-c3 rep p4
-A ind p3
-B ind p5
-test rep c1-p1
-test1 rep c2-p2
+c1 rep p2
+seRv ind p1
 

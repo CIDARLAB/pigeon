@@ -2497,16 +2497,11 @@ def regulation (ax, type, num, from_part, to_part, scale, linewidth, arc_height_
         ax.add_line(line_toward)
 
 
-    if (type == 'Repression2'):
+    # added by Ben Laskaris 4/15/20
+    if (type == 'RepToRep'):
         ax.add_line(mid_line_toward)
         ax.add_line(mid_line_rep)
-        # print('REPRESSION 2 ----------------------- ')
-        # print('top:' + str(top))
-        # print('middle: ' + str(middle))
-        # print('end: ' + str(end))
-        # print('archeightend: ' + str(arcHeightEnd))
-        write_arc_label(ax, from_part['name'], middle, top + arcHeightEnd + arcLabelOffset, opts=opts)
-
+        write_arc_label(ax, opts['arc_label_name'], middle, top + arcHeightEnd + arcLabelOffset, opts=opts)
 
 
     if(type == 'Activation'):
@@ -2524,17 +2519,12 @@ def regulation (ax, type, num, from_part, to_part, scale, linewidth, arc_height_
         patch = patches.PathPatch(path1, facecolor='none', lw=linewidth, edgecolor=color)
         ax.add_patch(patch)
 
-    # added by Ben Laskaris 4/15/20
-    if(type== 'Indication'):
+
+    if (type == 'PointingActivation'):
         ax.add_line(line_ind1)
         ax.add_line(line_ind2)
         ax.add_line(tall_line_toward)
-        # print('INDICATION  -------------------------- ')
-        # print('top:' + str(top))
-        # print('middle: ' + str(middle))
-        # print('end: ' + str(end))
-        # print('archeightend: ' + str(arcHeightEnd))
-        write_arc_label(ax, from_part['name'], end, top + arcHeightEnd + arcLabelOffset,  opts=opts)
+        write_arc_label(ax, opts['arc_label_name'], end, top + arcHeightEnd + arcLabelOffset, opts=opts)
 
 
 ###############################################################################
@@ -2948,10 +2938,10 @@ class DNARenderer:
 
     # Standard regulatory types
     STD_REG_TYPES = ['Repression',
+                     'RepToRep',
                      'Activation',
-                     'Connection',
-                     'Indication',
-                     'Repression2']
+                     'PointingActivation',
+                     'Connection',]
 
     def __init__(self, scale=1.0, linewidth=1.0, linecolor=(0,0,0), 
                  backbone_pad_left=0.0, backbone_pad_right=0.0):
@@ -3036,11 +3026,11 @@ class DNARenderer:
         """ Return dictionary of all standard built-in regulation renderers.
         """
         return {
-            'Repression' :repress, 
+            'Repression' :repress,
+            'RepToRep'   :repress,
             'Activation' :induce,
-            'Connection' :connect,
-            'Indication' :indicate,
-            'Repression2':repress}
+            'PointingActivation':induce,
+            'Connection' :connect}
 
     def renderDNA (self, ax, parts, part_renderers, regs=None, reg_renderers=None, plot_backbone=True):
         """ Render the parts on the DNA and regulation.

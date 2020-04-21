@@ -31,6 +31,11 @@ class Pigeon(object):
 
         design = HtmlPigeonListener.getDesignList(htmlPigeon)
         arcs = HtmlPigeonListener.getArcList(htmlPigeon)
+        # print('############################################')
+        # for i in arcs:
+        #     print(i)
+        #     print('############################################')
+
 
         fig = plt.figure(figsize=(design.__len__()/3, 1.5))
         gs = gridspec.GridSpec(1, 1)
@@ -40,7 +45,7 @@ class Pigeon(object):
 
         start, end = dr.renderDNA(axis, design, part_renderers, regs = arcs, reg_renderers=dr.std_reg_renderers())
         axis.set_xlim([start, end])
-        axis.set_ylim([-(design.__len__() * 3), (design.__len__() * 3)])
+        axis.set_ylim([-(design.__len__() * 4), (design.__len__() * 4)])
         axis.set_aspect('equal')
         axis.axis('off')
         return fig

@@ -23,14 +23,15 @@ class HtmlPigeonListener(PigeonListener):
         cur_arc = {'type' : '', 'from_part' : '', 'to_part' : '',
                    'opts':{'color':(0,0,0), 'linewidth':1,
                            'arc_height_start':10, 'arc_height_end':15,
-                           'label_y_offset': 0}}
-        gettingArcParts = False
+                           'label_y_offset': 0, 'rep_to_rep_name': ''}}
         gettingFromPart = False
+        haveFromPart = False
         arc_type = ''
         from_part = {}
         to_part = {}
         ind_name = ''
         rep2_name = ''
+        glyphToGlyphInd = False
 
         def clear_cur_part(self):
             self.part_type = ''
@@ -44,12 +45,14 @@ class HtmlPigeonListener(PigeonListener):
 
 
         def clear_cur_arc(self):
-            self.gettingArcParts = False
             self.gettingFromPart = False
+            self.haveFromPart = False
+            self.glyphToGlyphInd = False
             self.arc_type = ''
+            self.ind_name = ''
+            self.rep2_name = ''
             self.from_part = {}
             self.to_part = {}
-            self.ind_name = ''
             self.cur_arc = {'type': '', 'from_part': '', 'to_part': '',
                             'opts': {'color': (0, 0, 0), 'linewidth': 1,
                                      'arc_height_start': 10, 'arc_height_end': 15,
@@ -455,34 +458,61 @@ class HtmlPigeonListener(PigeonListener):
             print('enterLabel')
             self.name = ctx.getText()
 
-            # can probably move this somewhere else
-            if (self.part_type == 'CDS'):
-                self.label_y_offset = 0
-
-            if (self.cur_arc['type'] == 'Repression2' and not self.gettingArcParts):
-                self.rep2_name = self.name
-                print("rep2_name: " + self.rep2_name)
-                self.gettingArcParts = True
-                self.gettingFromPart = True
-
-            elif (self.gettingArcParts and self.gettingFromPart):
-                self.ind_name = self.name
+            # NORMAL REPRESSION ARCS
+            if(self.gettingFromPart and self.cur_arc['type'] == 'Repression'):
+                # print('REPRESSION ARC - GETTING LABELS')
                 for i in self.design:
                     if (i['name'] == self.name):
                         self.cur_arc['from_part'] = i
-                        print("from part: " + self.cur_arc['from_part']['name'])
-                self.gettingFromPart = False  # got the from_part
-            elif (self.gettingArcParts and not self.gettingFromPart):
+                self.gettingFromPart = False
+            else:
                 for i in self.design:
                     if (i['name'] == self.name):
                         self.cur_arc['to_part'] = i
-                        if (self.cur_arc['type'] == 'Indication'):
+
+            # ACTIVATION ARCS
+            if (self.gettingFromPart and self.cur_arc['type'] == 'Activation'):
+                # print('ACTIVATION ARC - GETTING LABELS')
+
+                for i in self.design:
+                    if (i['name'] == self.name):
+                        self.cur_arc['from_part'] = i
+                        self.glyphToGlyphInd = True
+                        print('from part name: ' + self.cur_arc['from_part']['name'])
+                if(not self.glyphToGlyphInd):
+                    self.ind_name = self.name
+                self.gettingFromPart = False
+            else:
+                for i in self.design:
+                    if (i['name'] == self.name):
+                        self.cur_arc['to_part'] = i
+                        if (not self.glyphToGlyphInd and self.cur_arc['type'] == 'Activation'):
                             self.cur_arc['from_part'] = self.cur_arc['to_part']
-                            self.cur_arc['from_part']['name'] = self.ind_name
-                            # if (self.cur_arc['to_part']['fwd'] == False):
-                            #     self.cur_arc['opts']['label_y_offset'] = -50
-                        elif (self.cur_arc['type'] == 'Repression2'):
-                            self.cur_arc['from_part']['name'] = self.rep2_name
+                            self.cur_arc['type'] = 'PointingActivation' # set the new type on the way out
+                            self.cur_arc['opts']['arc_label_name'] = self.ind_name
+
+
+
+            # REPRESSION ARC TO REPRESSION ARC
+            if(self.cur_arc['type'] == 'RepToRep'):
+                # print('REPRESSION ARC TO REPRESSION ARC - GETTING LABELS')
+
+                if (not self.gettingFromPart):
+                    self.rep2_name = self.name
+                    self.gettingFromPart = True
+                    self.haveFromPart = False
+                elif (self.gettingFromPart and not self.haveFromPart):
+                    for i in self.design:
+                        if (i['name'] == self.name):
+                            self.cur_arc['from_part'] = i
+                    self.haveFromPart = True
+                else:
+                    for i in self.design:
+                        if (i['name'] == self.name):
+                            self.cur_arc['to_part'] = i
+                            # print('to part name: ' + self.cur_arc['to_part']['name'])
+                    self.cur_arc['opts']['arc_label_name'] = self.rep2_name
+
 
             pass
 
@@ -507,37 +537,27 @@ class HtmlPigeonListener(PigeonListener):
             self.color = (0.0, 0.0, 0.0)
             self.name = ''
             # print('enterIgnorecolor')
-
             pass
 
         # Exit a parse tree produced by PigeonParser#ignorecolor.
         def exitIgnorecolor(self, ctx: PigeonParser.IgnorecolorContext):
             # print('exitIgnorecolor')
-
             pass
 
         # Enter a parse tree produced by PigeonParser#arccommands.
         def enterArccommands(self, ctx: PigeonParser.ArccommandsContext):
-            self.gettingArcParts = True
+            self.clear_cur_arc()
             print('enterArccommands')
-
             pass
 
         # Exit a parse tree produced by PigeonParser#arccommands.
         def exitArccommands(self, ctx: PigeonParser.ArccommandsContext):
-            self.gettingArcParts = False
-            self.gettingFromPart = False
-            # print(self.cur_arc['from_part']['type'] + ": " + self.cur_arc['from_part']['name'])
-            # print(self.cur_arc['to_part']['type'] + ": " + self.cur_arc['to_part']['name'])
-
-            if ((self.cur_arc['type'] == 'Repression') and ((self.cur_arc['from_part']['type'] != 'CDS') or (self.cur_arc['to_part']['type'] != 'Promoter'))):
-                self.cur_arc = {}
-                print("ERROR: Invalid Arc. Arcs must be drawn from command c to command p")
-            else:
-                self.arcs += [self.cur_arc]
-                self.clear_cur_arc()
-
-                # self.cur_arc = {}
+            # if ((self.cur_arc['type'] != 'Activation') and ((self.cur_arc['from_part']['type'] != 'CDS') or (self.cur_arc['to_part']['type'] != 'Promoter'))):
+            #     self.cur_arc = {}
+            #     print("ERROR: Invalid Arc. Arcs must be drawn from a CDS (c) to a Promoter (p)")
+            # else:
+            self.arcs += [self.cur_arc]
+            self.clear_cur_arc()
             print('exitArccommands')
             pass
 
@@ -554,8 +574,7 @@ class HtmlPigeonListener(PigeonListener):
 
         def enterInd(self, ctx:PigeonParser.IndContext):
             print('enterInd')
-            self.cur_arc['type'] = 'Indication'
-            # self.cur_arc['opts']['label_y_offset'] = 50
+            self.cur_arc['type'] = 'Activation'
             self.gettingFromPart = True
 
             pass
@@ -566,8 +585,8 @@ class HtmlPigeonListener(PigeonListener):
 
         def enterRep2(self, ctx:PigeonParser.Rep2Context):
             print('enterRep2')
-            self.cur_arc['type'] = 'Repression2'
-            self.gettingArcParts = False
+            self.cur_arc['type'] = 'RepToRep'
+            self.gettingFromPart = False
             pass
 
         def exitRep2(self, ctx:PigeonParser.Rep2Context):
