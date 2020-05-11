@@ -1,0 +1,4 @@
+p p1 14 nl
+r r1 2 nl
+f fp 14
+t t1 6 nl

@@ -1,9 +1,9 @@
-p p 2
-r r 2
-c c 2
-r r 3
-g g 3
-t t 2
+p p1 2
+r r1 2
+c c1 2
+r r2 3
+g g1 3
+t t1 2
 # Arcs
-c rep p
-c rep r
+c1 rep p1
+c1 rep r1

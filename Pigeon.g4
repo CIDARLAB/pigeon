@@ -57,7 +57,7 @@ invert : '<';
 
 color: (INT | '3' | '5');
 
-label: ( ID INT? ID? | commands INT | commands '3' | commands '5' );
+label: ( ID INT? ID? | INT ID | commands INT | commands '3' | commands '5' | '<' ID | '>' ID);
 
 ignorecolor : 'nl';
 
@@ -82,7 +82,7 @@ ind : label WS 'ind' WS label NL+;
 Lexer Rules
 */
 
-ID  :	('a'..'z'|'A'..'Z'|'_' | '[' | ']')+ ;
+ID  :	('a'..'z'|'A'..'Z'|'_'| '[' | ']')+ ;
 INT :   [0-9]+ ;
 LINE_COMMENT : '#' ~[\r\n]* -> skip;
 WS  :   ' '+;

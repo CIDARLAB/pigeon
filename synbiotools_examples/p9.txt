@@ -1,0 +1,15 @@
+o A1 1
+<t t1
+<c c2 2
+<r r1 1
+<p p1 6
+p p2 2
+r r2 5
+c c1 6
+t t2
+o B1 1
+# Arcs
+c1 rep p1
+c2 rep p2
+yy rep c1-p1
+xx rep c2-p2

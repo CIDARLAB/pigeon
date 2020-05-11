@@ -11,10 +11,10 @@ c X' 2
 t
 o B 6
 # Arcs
-C rep pC
+Cb rep pC
 c3 rep p3
 Zin ind pZ
 Yin ind pY
 Xin ind pX
-B rep pB
-A rep pA
+Bc rep pB
+Ab rep pA

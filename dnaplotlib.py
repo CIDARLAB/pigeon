@@ -184,17 +184,17 @@ def sbol_promoter (ax, type, num, start, end, prev_end, scale, linewidth, opts):
         end = start+x_extent
         final_end = end+end_pad
     # Draw the promoter symbol
-    l1 = Line2D([start,start],[0,dir_fac*y_extent], linewidth=linewidth, 
+    l1 = Line2D([start,start],[0,dir_fac*y_extent], linewidth=linewidth,
                 color=color, zorder=9+zorder_add)
     l2 = Line2D([start,start+dir_fac*x_extent-dir_fac*(arrowhead_length*0.5)],
-                [dir_fac*y_extent,dir_fac*y_extent], linewidth=linewidth, 
+                [dir_fac*y_extent,dir_fac*y_extent], linewidth=linewidth,
                 color=color, zorder=10+zorder_add)
     ax.add_line(l1)
     ax.add_line(l2)
-    p1 = Polygon([(start+dir_fac*x_extent-dir_fac*arrowhead_length, 
-                   dir_fac*y_extent+(arrowhead_height)), 
+    p1 = Polygon([(start+dir_fac*x_extent-dir_fac*arrowhead_length,
+                   dir_fac*y_extent+(arrowhead_height)),
                   (start+dir_fac*x_extent, dir_fac*y_extent),
-                  (start+dir_fac*x_extent-dir_fac*arrowhead_length, 
+                  (start+dir_fac*x_extent-dir_fac*arrowhead_length,
                    dir_fac*y_extent-(arrowhead_height))],
                   facecolor=color, edgecolor=color, linewidth=linewidth,  zorder=1+zorder_add,
                   path_effects=[Stroke(joinstyle="miter")]) # This is a work around for matplotlib < 1.4.0
@@ -265,7 +265,7 @@ def sbol_cds (ax, type, num, start, end, prev_end, scale, linewidth, opts):
         end = start+x_extent
         final_end = end+end_pad
     # Draw the CDS symbol
-    p1 = Polygon([(start, y_extent), 
+    p1 = Polygon([(start, y_extent),
                   (start, -y_extent),
                   (end-dir_fac*arrowhead_length, -y_extent),
                   (end-dir_fac*arrowhead_length, -y_extent-arrowhead_height),
@@ -273,8 +273,10 @@ def sbol_cds (ax, type, num, start, end, prev_end, scale, linewidth, opts):
                   (end-dir_fac*arrowhead_length, y_extent+arrowhead_height),
                   (end-dir_fac*arrowhead_length, y_extent)],
                   edgecolor=edgecolor, facecolor=color, linewidth=linewidth, 
-                  hatch=hatch, zorder=11+zorder_add, 
+                  hatch=hatch, zorder=11+zorder_add,
                   path_effects=[Stroke(joinstyle="miter")]) # This is a work around for matplotlib < 1.4.0
+
+
     ax.add_patch(p1)
     if opts != None and 'label' in list(opts.keys()):
         if final_start > final_end:
@@ -1000,6 +1002,7 @@ def sbol_3_overhang (ax, type, num, start, end, prev_end, scale, linewidth, opts
     x_extent = 6.0
     y_extent = 1.0
     linestyle = '-'
+    scale = 1
     # Reset defaults if provided
     if opts != None:
         if 'zorder_add' in list(opts.keys()):
@@ -1037,7 +1040,7 @@ def sbol_3_overhang (ax, type, num, start, end, prev_end, scale, linewidth, opts
                   (start, -y_extent),
                   (start+x_extent, -y_extent),
                   (start+x_extent, y_extent)],
-                  edgecolor=(1,1,1), facecolor=(1,1,1), linewidth=linewidth, zorder=11+zorder_add, 
+                  edgecolor=(1,1,1), facecolor=(1,1,1), linewidth=linewidth, zorder=11+zorder_add,
                   path_effects=[Stroke(joinstyle="miter")]) # This is a work around for matplotlib < 1.4.0)     
 
     ax.add_patch(p1)
@@ -1711,7 +1714,7 @@ def sbol_origin (ax, type, num, start, end, prev_end, scale, linewidth, opts):
     final_end = end+end_pad
     ori_center = (start+((end-start)/2.0),0)
     
-    c1 = Circle(ori_center, x_extent/2.0, linewidth=linewidth, edgecolor=color, 
+    c1 = Circle(ori_center, x_extent/2.0, linewidth=linewidth, edgecolor=color,
                 facecolor=(1,1,1), zorder=12+zorder_add)
     
     ax.add_patch(c1)
@@ -1739,6 +1742,7 @@ def sbol_operator (ax, type, num, start, end, prev_end, scale, linewidth, opts):
     x_extent = 6.0
     y_extent = 3.0
     linestyle = '-'
+    scale = 1
     # Reset defaults if provided
     if opts != None:
         if 'zorder_add' in list(opts.keys()):
@@ -1768,10 +1772,10 @@ def sbol_operator (ax, type, num, start, end, prev_end, scale, linewidth, opts):
     final_end = end+end_pad
     
     #white rectangle overlays backbone line
-    p1 = Polygon([(start, y_extent), 
+    p1 = Polygon([(start , y_extent),
                   (start, -y_extent),
-                  (start+x_extent, -y_extent),
-                  (start+x_extent, y_extent)],
+                  ((start+x_extent) , -y_extent),
+                  ((start+x_extent), y_extent)],
                   edgecolor=(0,0,0), facecolor=color, linewidth=linewidth, zorder=11+zorder_add,
                   path_effects=[Stroke(joinstyle="miter")]) # This is a work around for matplotlib < 1.4.0)     
 
@@ -1878,6 +1882,7 @@ def sbol_triangle(ax, type, num, start, end, prev_end, scale, linewidth, opts):
     arrowhead_height = 4
     arrowhead_length = 8
     edgecolor = (0,0,0)
+    scale = 1
     # Reset defaults if provided
     if opts != None:
         if 'zorder_add' in list(opts.keys()):
@@ -1919,7 +1924,7 @@ def sbol_triangle(ax, type, num, start, end, prev_end, scale, linewidth, opts):
         end = start+x_extent
         final_end = end+end_pad
     # Draw the CDS symbol
-    p1 = Polygon([(start, y_extent),
+    p1 = Polygon([(start , y_extent),
                   (start, -y_extent),
                   (end, 0)],
                   edgecolor=edgecolor, facecolor=color, linewidth=linewidth,
@@ -2404,6 +2409,11 @@ def connect (ax, type, num, from_part, to_part, scale, linewidth, arc_height_ind
 def regulation (ax, type, num, from_part, to_part, scale, linewidth, arc_height_index, opts):
     """ General function for drawing regulation arcs.
     """
+    print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`')
+    print('Type: ' + str(type))
+    print('From Part: ' + str(from_part['name']))
+    print('To Part: ' + str(to_part['name']))
+    print('Arc Height Index: ' + str(arc_height_index))
 
     color = (0.0,0.0,0.0)
     arrowhead_length = 3
@@ -2943,7 +2953,7 @@ class DNARenderer:
                      'PointingActivation',
                      'Connection',]
 
-    def __init__(self, scale=1.0, linewidth=1.0, linecolor=(0,0,0), 
+    def __init__(self, scale=1.0, linewidth=1.0, linecolor=(0,0,0),
                  backbone_pad_left=0.0, backbone_pad_right=0.0):
         """ Constructor to generate an empty DNARenderer.
 
@@ -3134,7 +3144,7 @@ class DNARenderer:
                         prev_start, prev_end = part_renderers[part['type']](ax, 
                                        part['type'], part_num, 
                                        part['start'], part['end'], 
-                                       prev_end, self.scale, 
+                                       prev_end, self.scale,
                                        self.linewidth, opts=part_opts)
                         
                         #update start,end for regulation [TEG]

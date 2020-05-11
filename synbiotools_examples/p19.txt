@@ -1,0 +1,17 @@
+> >R 3
+p p3 8
+p p1 8
+r r1 4
+c cds2 6
+t t1
+p p2 8
+r r1 4
+c cds1 6
+< <R 3
+t t1
+p p1 8
+# Arcs
+cds1 rep p1
+cds2 rep p2
+y rep c1-p1
+x rep c2-p2

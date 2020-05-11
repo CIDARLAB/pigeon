@@ -13,6 +13,6 @@ c c7 2
 c c8 4
 # Arcs
 c1 ind p1
-# c6 ind p5
-#c7 rep p1
-#c5 rep p5
+c6 ind p5
+c7 rep p1
+c5 rep p5

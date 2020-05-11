@@ -1,0 +1,16 @@
+5 EcoRI 2
+? 10bp_spacer 3
+p PspaR 2
+r RBS-spaRK 2
+? post-RBS_spacer 2
+c spaRK 2
+t rrnB-T1 6
+t rrnO 6
+? post-rrnO_6bp_spacer 5
+p PspaS 8
+r RBS-spaS 8
+? post-RBS_spacer 8
+> Met 4
+5 NheI 2
+# Arcs
+spaRK ind PspaS

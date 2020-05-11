@@ -10,7 +10,7 @@ class HtmlPigeonListener(PigeonListener):
         # vars for drawing glpyhs
         design = []
         cur_part = {'type': '', 'name': '', 'fwd': True,
-                         'opts': {'color': (0,0,0), 'label': '', 'label_y_offset': 0}}
+                         'opts': {'color': (0,0,0), 'label': '', 'label_y_offset': 0, 'label_size': 5}}
         part_type = ''
         name = ''
         fwd = True
@@ -40,7 +40,8 @@ class HtmlPigeonListener(PigeonListener):
             self.color = ''
             self.label_y_offset = 0
             self.cur_part = {'type': '', 'name': '', 'fwd': True,
-                         'opts': {'color': (0,0,0), 'label': '', 'label_y_offset': 0}}
+                         'opts': {'color': (0,0,0), 'label': '', 'label_y_offset': 0, 'label_size': 3.5,
+                                  'scale': 1}}
 
 
 
@@ -56,7 +57,7 @@ class HtmlPigeonListener(PigeonListener):
             self.cur_arc = {'type': '', 'from_part': '', 'to_part': '',
                             'opts': {'color': (0, 0, 0), 'linewidth': 1,
                                      'arc_height_start': 10, 'arc_height_end': 15,
-                                     'label_y_offset': 0}}
+                                     'label_y_offset': 0, 'label_size': 3.5}}
 
 
         def __init__(self):
@@ -124,10 +125,12 @@ class HtmlPigeonListener(PigeonListener):
 
         # Exit a parse tree produced by PigeonParser#promoter.
         def exitPromoter(self, ctx:PigeonParser.PromoterContext):
+            if(not self.fwd):
+                self.label_y_offset *= -1
             self.cur_part = {'type': self.part_type, 'name': self.name, 'fwd': self.fwd,
                              'opts':{'color':self.color, 'label': self.name,
                              'label_y_offset':self.label_y_offset, 'label_style':'italic',
-                             'label_size': 5, 'start_pad':4, 'end_pad':4}}
+                             'label_size': 3.5, 'start_pad':4, 'end_pad':4}}
             self.design += [self.cur_part]
             self.clear_cur_part()
             # print('exitPromoter')
@@ -143,10 +146,12 @@ class HtmlPigeonListener(PigeonListener):
 
         # Exit a parse tree produced by PigeonParser#repressor.
         def exitRepressor(self, ctx:PigeonParser.RepressorContext):
+            if (not self.fwd):
+                self.label_y_offset *= -1
             self.cur_part = {'type': self.part_type, 'name': self.name, 'fwd': self.fwd,
                              'opts': {'color': self.color, 'label': self.name,
                                       'label_y_offset': self.label_y_offset, 'label_style': 'italic',
-                                      'label_size': 5, 'start_pad': 4, 'end_pad': 4}}
+                                      'label_size': 3.5, 'start_pad': 4, 'end_pad': 4, }}
             self.design += [self.cur_part]
             self.clear_cur_part()
             # print('exitRepressor')
@@ -162,10 +167,11 @@ class HtmlPigeonListener(PigeonListener):
 
         # Exit a parse tree produced by PigeonParser#codingseq.
         def exitCodingseq(self, ctx: PigeonParser.CodingseqContext):
-            self.cur_part = {'type': self.part_type, 'name': self.name, 'fwd': self.fwd,
+            self.cur_part = {'type': self.part_type, 'name': self.name, 'fwd': self.fwd,'scale': 5,
                              'opts': {'color': self.color, 'label': self.name,
                                       'label_y_offset': self.label_y_offset, 'label_style': 'italic',
-                                      'label_size': 5, 'start_pad': 4, 'end_pad': 4, 'arrowhead_height': 0},
+                                      'label_size': 3.5, 'start_pad': 4, 'end_pad': 4, 'arrowhead_height': 0
+                                      },
                              }
             self.design += [self.cur_part]
             self.clear_cur_part()
@@ -182,10 +188,12 @@ class HtmlPigeonListener(PigeonListener):
 
         # Exit a parse tree produced by PigeonParser#transcription.
         def exitTranscription(self, ctx:PigeonParser.TranscriptionContext):
+            if (not self.fwd):
+                self.label_y_offset *= -1
             self.cur_part = {'type': self.part_type, 'name': self.name, 'fwd': self.fwd,
                              'opts': {'color': self.color, 'label': self.name,
                                       'label_y_offset': self.label_y_offset, 'label_style': 'italic',
-                                      'label_size': 5, 'start_pad': 4, 'end_pad': 4}}
+                                      'label_size': 3.5, 'start_pad': 4, 'end_pad': 4}}
             self.design += [self.cur_part]
             self.clear_cur_part()
             # print('exitTranscription')
@@ -204,7 +212,7 @@ class HtmlPigeonListener(PigeonListener):
             self.cur_part = {'type': self.part_type, 'name': self.name, 'fwd': self.fwd,
                              'opts': {'color': self.color, 'label': self.name,
                                       'label_y_offset': self.label_y_offset, 'label_style': 'italic',
-                                      'label_size': 5, 'start_pad': 4, 'end_pad': 4}}
+                                      'label_size': 3.5, 'start_pad': 4, 'end_pad': 4}}
             self.design += [self.cur_part]
             self.clear_cur_part()
             # print('exitStop')
@@ -223,7 +231,7 @@ class HtmlPigeonListener(PigeonListener):
             self.cur_part = {'type': self.part_type, 'name': self.name, 'fwd': self.fwd,
                              'opts': {'color': self.color, 'label': self.name,
                                       'label_y_offset': self.label_y_offset, 'label_style': 'italic',
-                                      'label_size': 5, 'start_pad': 4, 'end_pad': 4}}
+                                      'label_size': 3.5, 'start_pad': 4, 'end_pad': 4}}
             self.design += [self.cur_part]
             self.clear_cur_part()
             # print('exitOperator')
@@ -242,7 +250,7 @@ class HtmlPigeonListener(PigeonListener):
             self.cur_part = {'type': self.part_type, 'name': self.name, 'fwd': self.fwd,
                              'opts': {'color': self.color, 'label': self.name,
                                       'label_y_offset': self.label_y_offset, 'label_style': 'italic',
-                                      'label_size': 5, 'start_pad': 4, 'end_pad': 4}}
+                                      'label_size': 3.5, 'start_pad': 4, 'end_pad': 4}}
             self.design += [self.cur_part]
             self.clear_cur_part()
             # print('exitDegredationtag')
@@ -258,10 +266,12 @@ class HtmlPigeonListener(PigeonListener):
 
         # Exit a parse tree produced by PigeonParser#righttriangle.
         def exitRighttriangle(self, ctx:PigeonParser.RighttriangleContext):
+            if (not self.fwd):
+                self.label_y_offset *= -1
             self.cur_part = {'type': self.part_type, 'name': self.name, 'fwd': self.fwd,
                              'opts': {'color': self.color, 'label': self.name,
                                       'label_y_offset': self.label_y_offset, 'label_style': 'italic',
-                                      'label_size': 5, 'start_pad': 4, 'end_pad': 4}}
+                                      'label_size': 3.5, 'start_pad': 4, 'end_pad': 4}}
             self.design += [self.cur_part]
             self.clear_cur_part()
             # print('exitRighttriangle')
@@ -278,10 +288,12 @@ class HtmlPigeonListener(PigeonListener):
 
         # Exit a parse tree produced by PigeonParser#lefttriangle.
         def exitLefttriangle(self, ctx: PigeonParser.LefttriangleContext):
+            if (not self.fwd):
+                self.label_y_offset *= -1
             self.cur_part = {'type': self.part_type, 'name': self.name, 'fwd': self.fwd,
                              'opts': {'color': self.color, 'label': self.name,
                                       'label_y_offset': self.label_y_offset, 'label_style': 'italic',
-                                      'label_size': 5, 'start_pad': 4, 'end_pad': 4}}
+                                      'label_size': 3.5, 'start_pad': 4, 'end_pad': 4}}
             self.design += [self.cur_part]
             self.clear_cur_part()
             # print('exitLefttriangle')
@@ -290,7 +302,7 @@ class HtmlPigeonListener(PigeonListener):
         # Enter a parse tree produced by PigeonParser#invert.
         def enterInvert(self, ctx: PigeonParser.InvertContext):
             self.fwd = False
-            self.label_y_offset = 5 # don't necessarily want to always do this
+            # self.label_y_offset = 5 # don't necessarily want to always do this
             pass
 
         # Exit a parse tree produced by PigeonParser#invert.
@@ -308,10 +320,12 @@ class HtmlPigeonListener(PigeonListener):
 
         # Exit a parse tree produced by PigeonParser#bar.
         def exitBar(self, ctx: PigeonParser.BarContext):
+            if (not self.fwd):
+                self.label_y_offset *= -1
             self.cur_part = {'type': self.part_type, 'name': self.name, 'fwd': self.fwd,
                              'opts': {'color': self.color, 'label': self.name,
                                       'label_y_offset': self.label_y_offset, 'label_style': 'italic',
-                                      'label_size': 5, 'start_pad': 4, 'end_pad': 4}}
+                                      'label_size': 3.5, 'start_pad': 4, 'end_pad': 4}}
             self.design += [self.cur_part]
             self.clear_cur_part()
             # print('exitBar')
@@ -329,7 +343,7 @@ class HtmlPigeonListener(PigeonListener):
             self.cur_part = {'type': self.part_type, 'name': self.name, 'fwd': self.fwd,
                              'opts': {'color': self.color, 'label': self.name,
                                       'label_y_offset': self.label_y_offset, 'label_style': 'italic',
-                                      'label_size': 5, 'start_pad': 4.0, 'end_pad': 4.0,
+                                      'label_size': 3.5, 'start_pad': 4.0, 'end_pad': 4.0,
                                       'y_extent': 1.5, 'x_extent': 10, 'linewidth': 1.5}}
             self.design += [self.cur_part]
             self.clear_cur_part()
@@ -348,7 +362,7 @@ class HtmlPigeonListener(PigeonListener):
             self.cur_part = {'type': self.part_type, 'name': self.name, 'fwd': self.fwd,
                              'opts': {'color': self.color, 'label': self.name,
                                       'label_y_offset': self.label_y_offset, 'label_style': 'italic',
-                                      'label_size': 5, 'start_pad': 4.0, 'end_pad': 4.0,
+                                      'label_size': 3.5, 'start_pad': 4.0, 'end_pad': 4.0,
                                       'y_extent': 1.5, 'x_extent': 10, 'linewidth': 1.5}}
             self.design += [self.cur_part]
             self.clear_cur_part()
@@ -367,7 +381,7 @@ class HtmlPigeonListener(PigeonListener):
             self.cur_part = {'type': self.part_type, 'name': self.name, 'fwd': self.fwd,
                              'opts': {'color': self.color, 'label': self.name,
                                       'label_y_offset': self.label_y_offset, 'label_style': 'italic',
-                                      'label_size': 5, 'start_pad': 4, 'end_pad': 4,
+                                      'label_size': 3.5, 'start_pad': 4, 'end_pad': 4,
                                       'y_extent': 4, 'x_extent': 20},
                              }
             self.design += [self.cur_part]
@@ -387,7 +401,7 @@ class HtmlPigeonListener(PigeonListener):
             self.cur_part = {'type': self.part_type, 'name': self.name, 'fwd': self.fwd,
                              'opts': {'color': self.color, 'label': self.name,
                                       'label_y_offset': 0, 'label_style': 'italic',
-                                      'label_size': 5, 'start_pad': 4, 'end_pad': 4,
+                                      'label_size': 3.5, 'start_pad': 4, 'end_pad': 4,
                                       'y_extent': 5, 'x_extent': 40},
                              }
             self.design += [self.cur_part]
@@ -408,7 +422,7 @@ class HtmlPigeonListener(PigeonListener):
             self.cur_part = {'type': self.part_type, 'name': self.name, 'fwd': self.fwd,
                              'opts': {'color': self.color, 'label': self.name,
                                       'label_y_offset': self.label_y_offset, 'label_style': 'italic',
-                                      'label_size': 5, 'start_pad': 4, 'end_pad': 4}}
+                                      'label_size': 3.5, 'start_pad': 4, 'end_pad': 4}}
             self.design += [self.cur_part]
             self.clear_cur_part()
             # print('exitZring')
@@ -426,7 +440,7 @@ class HtmlPigeonListener(PigeonListener):
             self.cur_part = {'type': self.part_type, 'name': self.name, 'fwd': self.fwd,
                              'opts': {'color': self.color, 'label': self.name,
                                       'label_y_offset': self.label_y_offset, 'label_style': 'italic',
-                                      'label_size': 5, 'start_pad': 4, 'end_pad': 4}}
+                                      'label_size': 3.5, 'start_pad': 4, 'end_pad': 4}}
             self.design += [self.cur_part]
             self.clear_cur_part()
             # print('exitBar')
@@ -444,7 +458,7 @@ class HtmlPigeonListener(PigeonListener):
             self.cur_part = {'type': self.part_type, 'name': self.name, 'fwd': self.fwd,
                              'opts': {'color': self.color, 'label': self.name,
                                       'label_y_offset': self.label_y_offset, 'label_style': 'italic',
-                                      'label_size': 5, 'start_pad': 4, 'end_pad': 4,
+                                      'label_size': 3.5, 'start_pad': 4, 'end_pad': 4,
                                       'arrowhead_height': 0, 'arrowhead_length': 0,
                                       'x_extent': 15, 'y_extent': 4},
                              }
