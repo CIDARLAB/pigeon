@@ -15,7 +15,7 @@ def index():
 def parse():
     script = request.args.get('script')
     parser = Pigeon.Pigeon()
-    fig = parser.parse(script)
+    fig = parser.parseAndGenerateImage(script)
     imgdata = StringIO()
     fig.savefig(imgdata, format='svg')
     return imgdata.getvalue()

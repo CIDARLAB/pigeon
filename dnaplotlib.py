@@ -148,6 +148,7 @@ def sbol_promoter (ax, type, num, start, end, prev_end, scale, linewidth, opts):
     x_extent = 10
     arrowhead_height = 2
     arrowhead_length = 4
+    scale = 1
     # Reset defaults if provided
     if opts != None:
         if 'zorder_add' in list(opts.keys()):
@@ -198,6 +199,7 @@ def sbol_promoter (ax, type, num, start, end, prev_end, scale, linewidth, opts):
                    dir_fac*y_extent-(arrowhead_height))],
                   facecolor=color, edgecolor=color, linewidth=linewidth,  zorder=1+zorder_add,
                   path_effects=[Stroke(joinstyle="miter")]) # This is a work around for matplotlib < 1.4.0
+
     ax.add_patch(p1)
     if opts != None and 'label' in list(opts.keys()):
         if final_start > final_end:
@@ -299,6 +301,7 @@ def sbol_terminator (ax, type, num, start, end, prev_end, scale, linewidth, opts
     end_pad = 2.0
     y_extent = 10.0
     x_extent = 8.0
+    scale = 1.0
     # Reset defaults if provided
     if opts != None:
         if 'zorder_add' in list(opts.keys()):
@@ -331,7 +334,7 @@ def sbol_terminator (ax, type, num, start, end, prev_end, scale, linewidth, opts
         end = start+x_extent
         final_end = end+end_pad
     # Draw the terminator symbol
-    l1 = Line2D([start+dir_fac*(x_extent/2.0),start+dir_fac*(x_extent/2.0)],[0,dir_fac*y_extent], linewidth=linewidth, 
+    l1 = Line2D([start+dir_fac*(x_extent/2.0),start+dir_fac*(x_extent/2.0)],[0,dir_fac*y_extent], linewidth=linewidth,
                 color=color, zorder=8+zorder_add)
     l2 = Line2D([start,start+(dir_fac*x_extent)],[dir_fac*y_extent,dir_fac*y_extent], 
                 linewidth=linewidth, color=color, zorder=9+zorder_add)
@@ -3139,6 +3142,7 @@ class DNARenderer:
                         first_start = prev_start
                         first_part = False
                 else:
+
                     # Use standard renderer, if one exists
                     if part['type'] in list(part_renderers.keys()):
                         prev_start, prev_end = part_renderers[part['type']](ax, 

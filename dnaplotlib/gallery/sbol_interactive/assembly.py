@@ -52,7 +52,7 @@ def populate_subcomponents(parent_component):
 
 def find_sequence_homologs(target_seq):
     result_handle = NCBIWWW.qblast("blastn", "nt", target_seq)
-    blast_records = list(NCBIXML.parse(result_handle))
+    blast_records = list(NCBIXML.parseAndGenerateImage(result_handle))
     rec = blast_records[0]
 
     E_VALUE_THRESH = 0.04

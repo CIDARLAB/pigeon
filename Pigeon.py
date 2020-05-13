@@ -11,12 +11,15 @@ import numpy as np
 
 class Pigeon(object):
 
-    def __init__(self):
-        # what do I do here again?
+    format = ''
+    fig = plt.figure()
+
+    def __init__(self, format='svg'):
+        self.format = format
         pass
 
-    def parse(self, script):
-        input = InputStream(script)
+    def parseAndGenerateImage(self, script_string):
+        input = InputStream(script_string)
         lexer = PigeonLexer(input)
         stream = CommonTokenStream(lexer)
         parser = PigeonParser(stream)
@@ -32,24 +35,25 @@ class Pigeon(object):
         design = HtmlPigeonListener.getDesignList(htmlPigeon)
         arcs = HtmlPigeonListener.getArcList(htmlPigeon)
 
-
-
-        fig = plt.figure(figsize=(design.__len__()/3, 1.5))
+        fig = plt.figure(figsize=(design.__len__()/3, 2))
         gs = gridspec.GridSpec(1, 1)
         axis = plt.subplot(gs[0])
+        # axis = plt.axes([0.0, 0.0, 1, 1])
 
         print("Deisgn Length: " + str(design.__len__()))
+        print("Arcs Length: " + str(arcs.__len__()))
 
         start, end = dr.renderDNA(axis, design, part_renderers, regs = arcs, reg_renderers=dr.std_reg_renderers())
         axis.set_xlim([start, end])
-        axis.set_ylim([-(design.__len__() * 5), (design.__len__() * 5)])
+        axis.set_ylim([-(30 + design.__len__()), (30 + design.__len__())])
         axis.set_aspect('equal')
         axis.axis('off')
-        return fig
+        self.fig = fig
+        pass
 
     # need to finish path options here too
-    def save(self, fig, format, location):
-        save_path = location + 'pigeon_design.' + format
-        fig.savefig(save_path, dpi=300) # Save as png file
+    def save(self, location, name):
+        save_path = location + name + '.' + self.format
+        self.fig.savefig(save_path, dpi=300) # Save as png file
         pass
 
