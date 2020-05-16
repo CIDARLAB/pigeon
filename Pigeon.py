@@ -6,18 +6,19 @@ from HtmlPigeonListener import HtmlPigeonListener
 import dnaplotlib as dpl
 import matplotlib.pyplot as plt
 from matplotlib import gridspec
-import numpy as np
 
-
+# class to maintain pigeon script parsing and image generation
 class Pigeon(object):
 
     format = ''
     fig = plt.figure()
 
+    # if no image format is specified when you instantiate the class it will use the default svg format
     def __init__(self, format='svg'):
         self.format = format
         pass
 
+    # takes the pigeon script as a text string, and sets Pigeons fig property to the generated image
     def parseAndGenerateImage(self, script_string):
         input = InputStream(script_string)
         lexer = PigeonLexer(input)
@@ -38,7 +39,6 @@ class Pigeon(object):
         fig = plt.figure(figsize=(design.__len__()/3, 2))
         gs = gridspec.GridSpec(1, 1)
         axis = plt.subplot(gs[0])
-        # axis = plt.axes([0.0, 0.0, 1, 1])
 
         print("Deisgn Length: " + str(design.__len__()))
         print("Arcs Length: " + str(arcs.__len__()))
@@ -51,7 +51,7 @@ class Pigeon(object):
         self.fig = fig
         pass
 
-    # need to finish path options here too
+    # Saves Pigeon's fig using the function input values for name and location
     def save(self, location, name):
         save_path = location + name + '.' + self.format
         self.fig.savefig(save_path, dpi=300) # Save as png file
