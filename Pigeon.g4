@@ -28,15 +28,16 @@ pigeoncommands
     |  xbar
     |  box
     |  scar
+    |  vector
     ;
 
 
-promoter : (invert 'p' | 'p') WS* label? WS* color? WS* ignorecolor? NL+ ;
-repressor : (invert 'r' | 'r') WS* label? WS* color? WS* ignorecolor? NL+ ;
-codingseq : (invert 'c' | 'c') WS* label?  WS* color? WS* ignorecolor? NL+ ;
-transcription : (invert 't' | 't') WS* label?  WS* color? WS* ignorecolor? NL+ ;
-gene : (invert 'g' | 'g') WS* label?  WS* color? WS* ignorecolor? NL+ ;
-fseq : (invert 'f' | 'f') WS* label?  WS* color? WS* ignorecolor? NL+ ;
+promoter : (invert 'p' | 'p') WS? label? WS? color? WS? ignorecolor? NL+ ;
+repressor : (invert 'r' | 'r') WS? label? WS? color? WS? ignorecolor? NL+ ;
+codingseq : (invert 'c' | 'c') WS? label?  WS? color? WS? ignorecolor? NL+ ;
+transcription : (invert 't' | 't') WS? label?  WS? color? WS? ignorecolor? NL+ ;
+gene : (invert 'g' | 'g') WS? label?  WS? color? WS? ignorecolor? NL+ ;
+fseq : (invert 'f' | 'f') WS? label?  WS? color? WS? ignorecolor? NL+ ;
 
 
 
@@ -46,14 +47,14 @@ degredationtag : 'd' WS* label?  WS* color? WS* ignorecolor? NL+;
 righttriangle : '>' WS* label? WS* color? WS* ignorecolor? NL+ ; // not sure this need labels
 lefttriangle : '<' WS* label? WS* color? WS* ignorecolor? NL+ ; // not sure this needs labels
 bar : '|' WS* label? WS* color? WS* ignorecolor? NL+ ;
-three : '3' WS* label? WS* color? WS* ignorecolor? NL+ ;
-five : '5' WS* label? WS* color? WS* ignorecolor? NL+ ;
+three : invert? '3' WS* label? WS* color? WS* ignorecolor? NL+ ;
+five : invert? '5' WS* label? WS* color? WS* ignorecolor? NL+ ;
 zring : invert? 'z' WS* label? WS* color? WS* ignorecolor? NL+ ;
 xbar : 'x' WS* label? WS* color? WS* ignorecolor? NL+ ;
 box : '?' WS* label? WS* color? WS* ignorecolor? NL+ ;
 scar: '=' WS* label? WS* color? WS* ignorecolor? NL+ ;
 
-
+vector: 'v' WS? label? NL+;
 
 
 invert : '<';
@@ -76,19 +77,19 @@ arccommands
 
 
 
-rep : label WS+ 'rep' WS+ label NL+;
-rep2: label WS+ 'rep' WS+ label'-'label NL+;
-ind : label WS+ 'ind' WS+ label NL+;
+rep : label WS 'rep' WS label NL+;
+rep2: label WS 'rep' WS label'-'label NL+;
+ind : label WS 'ind' WS label NL+;
 
 
 /*
 Lexer Rules
 */
 
-ID  :	('a'..'z'|'A'..'Z'|'_'| '-'| '[' | ']')+ ;
+ID  :	('a'..'z'|'A'..'Z'| '_'| '-'| '[' | ']')('a'..'z'|'A'..'Z'|'0'..'9'| '_'| '-'| '[' | ']')* ;
 INT :   [0-9]+ ;
 LINE_COMMENT : '#' ~[\r\n]* -> skip;
-WS  :   ' ';
+WS  :   ' '+;
 NL : ( '\r' ? '\n' | '\r' )+;
 
 

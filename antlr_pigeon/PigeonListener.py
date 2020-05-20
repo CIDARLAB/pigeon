@@ -188,6 +188,15 @@ class PigeonListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by PigeonParser#vector.
+    def enterVector(self, ctx:PigeonParser.VectorContext):
+        pass
+
+    # Exit a parse tree produced by PigeonParser#vector.
+    def exitVector(self, ctx:PigeonParser.VectorContext):
+        pass
+
+
     # Enter a parse tree produced by PigeonParser#invert.
     def enterInvert(self, ctx:PigeonParser.InvertContext):
         pass

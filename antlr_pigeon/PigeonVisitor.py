@@ -109,6 +109,11 @@ class PigeonVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by PigeonParser#vector.
+    def visitVector(self, ctx:PigeonParser.VectorContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by PigeonParser#invert.
     def visitInvert(self, ctx:PigeonParser.InvertContext):
         return self.visitChildren(ctx)
