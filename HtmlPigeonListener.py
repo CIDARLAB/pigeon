@@ -369,6 +369,21 @@ class HtmlPigeonListener(PigeonListener):
             # print('exitFive')
             pass
 
+        def enterScar(self, ctx: PigeonParser.ScarContext):
+            self.part_type = 'Scar'
+            self.color = (0.0, 0.0, 0.0)
+            self.label_y_offset = -8
+
+        def exitScar(self, ctx: PigeonParser.ScarContext):
+            self.cur_part = {'type': self.part_type, 'name': self.name, 'fwd': self.fwd,
+                             'opts': {'color': self.color, 'label': self.name,
+                                      'label_y_offset': self.label_y_offset, 'label_style': 'italic',
+                                      'label_size': 3.5, 'start_pad': 4.0, 'end_pad': 4.0,
+                                      'y_extent': 1.5, 'x_extent': 10, 'linewidth': 1.5}}
+            self.design += [self.cur_part]
+            self.clear_cur_part()
+
+
         def enterGene(self, ctx:PigeonParser.CodingseqContext):
             self.part_type = 'CDS'
             self.color = (0.0, 0.0, 0.0)
@@ -606,12 +621,5 @@ class HtmlPigeonListener(PigeonListener):
         def exitRep2(self, ctx:PigeonParser.Rep2Context):
             print('exitRep2')
             pass
-
-
-
-
-
-
-#del HtmlPigeonListener
 
 

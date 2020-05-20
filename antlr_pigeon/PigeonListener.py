@@ -1,4 +1,4 @@
-# Generated from /Users/benlaskaris/Documents/GitHub/pidgeon/Pigeon.g4 by ANTLR 4.8
+# Generated from /Users/krishna/Documents/GitHub/pidgeon/Pigeon.g4 by ANTLR 4.8
 from antlr4 import *
 if __name__ is not None and "." in __name__:
     from .PigeonParser import PigeonParser
@@ -176,6 +176,15 @@ class PigeonListener(ParseTreeListener):
 
     # Exit a parse tree produced by PigeonParser#box.
     def exitBox(self, ctx:PigeonParser.BoxContext):
+        pass
+
+
+    # Enter a parse tree produced by PigeonParser#scar.
+    def enterScar(self, ctx:PigeonParser.ScarContext):
+        pass
+
+    # Exit a parse tree produced by PigeonParser#scar.
+    def exitScar(self, ctx:PigeonParser.ScarContext):
         pass
 
 
