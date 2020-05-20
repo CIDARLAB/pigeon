@@ -33,6 +33,17 @@ class HtmlPigeonListener(PigeonListener):
         rep2_name = ''
         glyphToGlyphInd = False
 
+        _has_vector = False
+        _vector_label = None
+
+        @property
+        def has_vector(self):
+            return self._has_vector
+
+        @property
+        def vector_label(self):
+            return self._vector_label
+
         def clear_cur_part(self):
             self.part_type = ''
             self.name = ''
@@ -481,6 +492,10 @@ class HtmlPigeonListener(PigeonListener):
             self.clear_cur_part()
             # print('exitBox')
             pass
+
+        def exitVector(self, ctx: PigeonParser.VectorContext):
+            self._has_vector = True
+            self._vector_label = self.name
 
         # Enter a parse tree produced by PigeonParser#label.
         def enterLabel(self, ctx: PigeonParser.LabelContext):

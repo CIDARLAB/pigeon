@@ -3045,7 +3045,7 @@ class DNARenderer:
             'PointingActivation':induce,
             'Connection' :connect}
 
-    def renderDNA (self, ax, parts, part_renderers, regs=None, reg_renderers=None, plot_backbone=False, backbone_label=None):
+    def renderDNA (self, ax, parts, part_renderers, regs=None, reg_renderers=None, plot_backbone=True, plot_vector = False, vector_label=None):
         """ Render the parts on the DNA and regulation.
 
         Parameters
@@ -3299,6 +3299,17 @@ class DNARenderer:
             l1 = Line2D([first_start-self.backbone_pad_left,prev_end+self.backbone_pad_right],[0,0], 
                         linewidth=self.linewidth, color=self.linecolor, zorder=10)
             ax.add_line(l1)
+
+            if plot_vector == True:
+                lv1 = Line2D([first_start-self.backbone_pad_left,first_start-self.backbone_pad_left,prev_end+self.backbone_pad_right, prev_end+self.backbone_pad_right],[0,-20,-20,0], 
+                        linewidth=self.linewidth, color=self.linecolor, zorder=10)
+                ax.add_line(lv1)
+
+                if vector_label is not None:
+                    opt = dict()
+                    opt['label_size'] = 4
+                    write_arc_label(ax, vector_label, 0.5*(first_start + prev_end),-16, opt)
+                
         return first_start, prev_end
 
     def annotate (self, ax, part_renderers, part, annotate_zorder=1000):

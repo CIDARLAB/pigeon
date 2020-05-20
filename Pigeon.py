@@ -43,7 +43,7 @@ class Pigeon(object):
         print("Deisgn Length: " + str(design.__len__()))
         print("Arcs Length: " + str(arcs.__len__()))
 
-        start, end = dr.renderDNA(axis, design, part_renderers, regs = arcs, reg_renderers=dr.std_reg_renderers())
+        start, end = dr.renderDNA(axis, design, part_renderers, regs = arcs, reg_renderers=dr.std_reg_renderers(), plot_vector=htmlPigeon.has_vector, vector_label=htmlPigeon.vector_label)
         axis.set_xlim([start, end])
         axis.set_ylim([-(30 + design.__len__()), (30 + design.__len__())])
         axis.set_aspect('equal')
