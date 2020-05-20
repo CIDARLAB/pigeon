@@ -499,7 +499,7 @@ class PigeonListener(PigeonListener):
 
         # Enter a parse tree produced by PigeonParser#label.
         def enterLabel(self, ctx: PigeonParser.LabelContext):
-            print('enterLabel')
+            # print('enterLabel')
             self.name = ctx.getText()
 
             # NORMAL REPRESSION ARCS
@@ -562,7 +562,7 @@ class PigeonListener(PigeonListener):
 
         # Exit a parse tree produced by PigeonParser#label.
         def exitLabel(self, ctx: PigeonParser.LabelContext):
-            print('exitLabel')
+            # print('exitLabel')
             pass
 
         # Enter a parse tree produced by PigeonParser#color.

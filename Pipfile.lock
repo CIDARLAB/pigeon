@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "6589d4bff26d7c997c80ded47b186b11476ad45f4b0dccf3edfc856865c237f2"
+            "sha256": "a9a8b6963e0ccd606f275899244f2394af7187ea6c70ff1118a04b64a288995c"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -37,21 +37,25 @@
             "hashes": [],
             "version": "==0.10.0"
         },
+        "graphviz": {
+            "hashes": [],
+            "version": "==0.14"
+        },
         "kiwisolver": {
             "hashes": [],
-            "version": "==1.1.0"
+            "version": "==1.2.0"
         },
         "matplotlib": {
             "hashes": [],
-            "version": "==3.2.0"
+            "version": "==3.2.1"
         },
         "numpy": {
             "hashes": [],
-            "version": "==1.18.1"
+            "version": "==1.18.4"
         },
         "pyparsing": {
             "hashes": [],
-            "version": "==2.4.6"
+            "version": "==2.4.7"
         },
         "python-dateutil": {
             "hashes": [],

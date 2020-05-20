@@ -1,5 +1,6 @@
 import argparse
 import Pigeon
+from PigeonGraph import PigeonGraph
 
 def main():
 
@@ -9,6 +10,7 @@ def main():
     parser.add_argument("-location", "--location", help="enter the location where you want the image to be saved \n i.e. -location=/path/to/your/folder/")
     parser.add_argument("-format", "--format", help="enter the format you want the image to be saved in \n i.e. -image_type=pdf \n options are svg, pdf, and png. Default is svg.")
     parser.add_argument("-name", "--name", help="enter a name for the design that is being generated \n i.e. -name=my_image_name")
+    parser.add_argument("-g", "--graph", help="enable the graph processing flag", action="store_true")
     args = parser.parse_args()
 
     # default values
@@ -29,9 +31,14 @@ def main():
     with open (args.pigeon_script, "r") as myfile:
         data=myfile.read()
 
-    parser = Pigeon.Pigeon(imgformat)
-    parser.parseAndGenerateImage(data)
-    parser.save(imglocation, imgname)
+    if args.graph == True:
+        p_graph = PigeonGraph()
+        p_graph.parseAndGenerateImage(data)
+        p_graph.save(imglocation, imgname)
+    else:
+        parser = Pigeon.Pigeon(imgformat)
+        parser.parseAndGenerateImage(data)
+        parser.save(imglocation, imgname)
 
     pass
     

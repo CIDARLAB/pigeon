@@ -1,5 +1,5 @@
 import sys
-from antlr4 import *
+from antlr4 import InputStream, CommonTokenStream, ParseTreeWalker
 from antlr_pigeon.PigeonLexer import PigeonLexer
 from antlr_pigeon.PigeonParser import PigeonParser
 from PigeonListener import PigeonListener
@@ -16,12 +16,11 @@ class Pigeon(object):
     # if no image format is specified when you instantiate the class it will use the default svg format
     def __init__(self, format='svg'):
         self.format = format
-        pass
 
     # takes the pigeon script as a text string, and sets Pigeons fig property to the generated image
     def parseAndGenerateImage(self, script_string):
-        input = InputStream(script_string)
-        lexer = PigeonLexer(input)
+        input_stream = InputStream(script_string)
+        lexer = PigeonLexer(input_stream)
         stream = CommonTokenStream(lexer)
         parser = PigeonParser(stream)
         tree = parser.script()
@@ -52,8 +51,9 @@ class Pigeon(object):
         pass
 
     # Saves Pigeon's fig using the function input values for name and location
-    def save(self, location, name):
+    def save(self, location, name) -> str:
         save_path = location + name + '.' + self.format
         self.fig.savefig(save_path, dpi=300) # Save as png file
-        pass
+        
+        return save_path
 
