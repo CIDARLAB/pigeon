@@ -6,7 +6,7 @@ from antlr_pigeon.PigeonListener import PigeonListener
 
 # HTML Pigeon Listener could take as input some type of design list
 # that can help specify layout
-class HtmlPigeonListener(PigeonListener):
+class PigeonListener(PigeonListener):
         # vars for drawing glpyhs
         design = []
         cur_part = {'type': '', 'name': '', 'fwd': True,

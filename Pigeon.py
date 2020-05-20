@@ -2,7 +2,7 @@ import sys
 from antlr4 import *
 from antlr_pigeon.PigeonLexer import PigeonLexer
 from antlr_pigeon.PigeonParser import PigeonParser
-from HtmlPigeonListener import HtmlPigeonListener
+from PigeonListener import PigeonListener
 import dnaplotlib as dpl
 import matplotlib.pyplot as plt
 from matplotlib import gridspec
@@ -26,15 +26,15 @@ class Pigeon(object):
         parser = PigeonParser(stream)
         tree = parser.script()
 
-        htmlPigeon = HtmlPigeonListener()
+        pigeon_listener = PigeonListener()
         walker = ParseTreeWalker()
-        walker.walk(htmlPigeon, tree)
+        walker.walk(pigeon_listener, tree)
 
         dr = dpl.DNARenderer()
         part_renderers = dr.SBOL_part_renderers()
 
-        design = HtmlPigeonListener.getDesignList(htmlPigeon)
-        arcs = HtmlPigeonListener.getArcList(htmlPigeon)
+        design = PigeonListener.getDesignList(pigeon_listener)
+        arcs = PigeonListener.getArcList(pigeon_listener)
 
         fig = plt.figure(figsize=(design.__len__()/3, 2))
         gs = gridspec.GridSpec(1, 1)
@@ -43,7 +43,7 @@ class Pigeon(object):
         print("Deisgn Length: " + str(design.__len__()))
         print("Arcs Length: " + str(arcs.__len__()))
 
-        start, end = dr.renderDNA(axis, design, part_renderers, regs = arcs, reg_renderers=dr.std_reg_renderers(), plot_vector=htmlPigeon.has_vector, vector_label=htmlPigeon.vector_label)
+        start, end = dr.renderDNA(axis, design, part_renderers, regs = arcs, reg_renderers=dr.std_reg_renderers(), plot_vector=pigeon_listener.has_vector, vector_label=pigeon_listener.vector_label)
         axis.set_xlim([start, end])
         axis.set_ylim([-(30 + design.__len__()), (30 + design.__len__())])
         axis.set_aspect('equal')
