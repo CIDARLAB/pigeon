@@ -5,7 +5,6 @@ from typing.io import TextIO
 import sys
 
 
-
 def serializedATN():
     with StringIO() as buf:
         buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\2\36")
@@ -24,19 +23,19 @@ def serializedATN():
         buf.write("\u0086\3\35\5\35\u008a\n\35\3\35\3\35\6\35\u008e\n\35")
         buf.write("\r\35\16\35\u008f\2\2\36\3\3\5\4\7\5\t\6\13\7\r\b\17\t")
         buf.write("\21\n\23\13\25\f\27\r\31\16\33\17\35\20\37\21!\22#\23")
-        buf.write("%\24\'\25)\26+\27-\30/\31\61\32\63\33\65\34\67\359\36")
+        buf.write("%\24'\25)\26+\27-\30/\31\61\32\63\33\65\34\67\359\36")
         buf.write("\3\2\6\7\2//C]__aac|\b\2//\62;C]__aac|\3\2\62;\4\2\f\f")
         buf.write("\17\17\2\u0097\2\3\3\2\2\2\2\5\3\2\2\2\2\7\3\2\2\2\2\t")
         buf.write("\3\2\2\2\2\13\3\2\2\2\2\r\3\2\2\2\2\17\3\2\2\2\2\21\3")
         buf.write("\2\2\2\2\23\3\2\2\2\2\25\3\2\2\2\2\27\3\2\2\2\2\31\3\2")
         buf.write("\2\2\2\33\3\2\2\2\2\35\3\2\2\2\2\37\3\2\2\2\2!\3\2\2\2")
-        buf.write("\2#\3\2\2\2\2%\3\2\2\2\2\'\3\2\2\2\2)\3\2\2\2\2+\3\2\2")
+        buf.write("\2#\3\2\2\2\2%\3\2\2\2\2'\3\2\2\2\2)\3\2\2\2\2+\3\2\2")
         buf.write("\2\2-\3\2\2\2\2/\3\2\2\2\2\61\3\2\2\2\2\63\3\2\2\2\2\65")
         buf.write("\3\2\2\2\2\67\3\2\2\2\29\3\2\2\2\3;\3\2\2\2\5=\3\2\2\2")
         buf.write("\7?\3\2\2\2\tA\3\2\2\2\13C\3\2\2\2\rE\3\2\2\2\17G\3\2")
         buf.write("\2\2\21I\3\2\2\2\23K\3\2\2\2\25M\3\2\2\2\27O\3\2\2\2\31")
         buf.write("Q\3\2\2\2\33S\3\2\2\2\35U\3\2\2\2\37W\3\2\2\2!Y\3\2\2")
-        buf.write("\2#[\3\2\2\2%]\3\2\2\2\'_\3\2\2\2)a\3\2\2\2+d\3\2\2\2")
+        buf.write("\2#[\3\2\2\2%]\3\2\2\2'_\3\2\2\2)a\3\2\2\2+d\3\2\2\2")
         buf.write("-h\3\2\2\2/j\3\2\2\2\61n\3\2\2\2\63v\3\2\2\2\65z\3\2\2")
         buf.write("\2\67\u0084\3\2\2\29\u008d\3\2\2\2;<\7r\2\2<\4\3\2\2\2")
         buf.write("=>\7t\2\2>\6\3\2\2\2?@\7e\2\2@\b\3\2\2\2AB\7v\2\2B\n\3")
@@ -44,7 +43,7 @@ def serializedATN():
         buf.write("\2H\20\3\2\2\2IJ\7q\2\2J\22\3\2\2\2KL\7f\2\2L\24\3\2\2")
         buf.write("\2MN\7@\2\2N\26\3\2\2\2OP\7>\2\2P\30\3\2\2\2QR\7~\2\2")
         buf.write("R\32\3\2\2\2ST\7\65\2\2T\34\3\2\2\2UV\7\67\2\2V\36\3\2")
-        buf.write("\2\2WX\7|\2\2X \3\2\2\2YZ\7z\2\2Z\"\3\2\2\2[\\\7A\2\2")
+        buf.write('\2\2WX\7|\2\2X \3\2\2\2YZ\7z\2\2Z"\3\2\2\2[\\\7A\2\2')
         buf.write("\\$\3\2\2\2]^\7?\2\2^&\3\2\2\2_`\7x\2\2`(\3\2\2\2ab\7")
         buf.write("p\2\2bc\7n\2\2c*\3\2\2\2de\7t\2\2ef\7g\2\2fg\7r\2\2g,")
         buf.write("\3\2\2\2hi\7/\2\2i.\3\2\2\2jk\7k\2\2kl\7p\2\2lm\7f\2\2")
@@ -53,7 +52,7 @@ def serializedATN():
         buf.write("\3\2\2\2wx\3\2\2\2xv\3\2\2\2xy\3\2\2\2y\64\3\2\2\2z~\7")
         buf.write("%\2\2{}\n\5\2\2|{\3\2\2\2}\u0080\3\2\2\2~|\3\2\2\2~\177")
         buf.write("\3\2\2\2\177\u0081\3\2\2\2\u0080~\3\2\2\2\u0081\u0082")
-        buf.write("\b\33\2\2\u0082\66\3\2\2\2\u0083\u0085\7\"\2\2\u0084\u0083")
+        buf.write('\b\33\2\2\u0082\66\3\2\2\2\u0083\u0085\7"\2\2\u0084\u0083')
         buf.write("\3\2\2\2\u0085\u0086\3\2\2\2\u0086\u0084\3\2\2\2\u0086")
         buf.write("\u0087\3\2\2\2\u00878\3\2\2\2\u0088\u008a\7\17\2\2\u0089")
         buf.write("\u0088\3\2\2\2\u0089\u008a\3\2\2\2\u008a\u008b\3\2\2\2")
@@ -68,7 +67,7 @@ class PigeonLexer(Lexer):
 
     atn = ATNDeserializer().deserialize(serializedATN())
 
-    decisionsToDFA = [ DFA(ds, i) for i, ds in enumerate(atn.decisionToState) ]
+    decisionsToDFA = [DFA(ds, i) for i, ds in enumerate(atn.decisionToState)]
 
     T__0 = 1
     T__1 = 2
@@ -99,31 +98,77 @@ class PigeonLexer(Lexer):
     WS = 27
     NL = 28
 
-    channelNames = [ u"DEFAULT_TOKEN_CHANNEL", u"HIDDEN" ]
+    channelNames = [u"DEFAULT_TOKEN_CHANNEL", u"HIDDEN"]
 
-    modeNames = [ "DEFAULT_MODE" ]
+    modeNames = ["DEFAULT_MODE"]
 
-    literalNames = [ "<INVALID>",
-            "'p'", "'r'", "'c'", "'t'", "'g'", "'f'", "'s'", "'o'", "'d'", 
-            "'>'", "'<'", "'|'", "'3'", "'5'", "'z'", "'x'", "'?'", "'='", 
-            "'v'", "'nl'", "'rep'", "'-'", "'ind'" ]
+    literalNames = [
+        "<INVALID>",
+        "'p'",
+        "'r'",
+        "'c'",
+        "'t'",
+        "'g'",
+        "'f'",
+        "'s'",
+        "'o'",
+        "'d'",
+        "'>'",
+        "'<'",
+        "'|'",
+        "'3'",
+        "'5'",
+        "'z'",
+        "'x'",
+        "'?'",
+        "'='",
+        "'v'",
+        "'nl'",
+        "'rep'",
+        "'-'",
+        "'ind'",
+    ]
 
-    symbolicNames = [ "<INVALID>",
-            "ID", "INT", "LINE_COMMENT", "WS", "NL" ]
+    symbolicNames = ["<INVALID>", "ID", "INT", "LINE_COMMENT", "WS", "NL"]
 
-    ruleNames = [ "T__0", "T__1", "T__2", "T__3", "T__4", "T__5", "T__6", 
-                  "T__7", "T__8", "T__9", "T__10", "T__11", "T__12", "T__13", 
-                  "T__14", "T__15", "T__16", "T__17", "T__18", "T__19", 
-                  "T__20", "T__21", "T__22", "ID", "INT", "LINE_COMMENT", 
-                  "WS", "NL" ]
+    ruleNames = [
+        "T__0",
+        "T__1",
+        "T__2",
+        "T__3",
+        "T__4",
+        "T__5",
+        "T__6",
+        "T__7",
+        "T__8",
+        "T__9",
+        "T__10",
+        "T__11",
+        "T__12",
+        "T__13",
+        "T__14",
+        "T__15",
+        "T__16",
+        "T__17",
+        "T__18",
+        "T__19",
+        "T__20",
+        "T__21",
+        "T__22",
+        "ID",
+        "INT",
+        "LINE_COMMENT",
+        "WS",
+        "NL",
+    ]
 
     grammarFileName = "Pigeon.g4"
 
-    def __init__(self, input=None, output:TextIO = sys.stdout):
+    def __init__(self, input=None, output: TextIO = sys.stdout):
         super().__init__(input, output)
         self.checkVersion("4.8")
-        self._interp = LexerATNSimulator(self, self.atn, self.decisionsToDFA, PredictionContextCache())
+        self._interp = LexerATNSimulator(
+            self, self.atn, self.decisionsToDFA, PredictionContextCache()
+        )
         self._actions = None
         self._predicates = None
-
-

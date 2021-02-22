@@ -3,10 +3,11 @@
 from antlr4 import *
 from io import StringIO
 import sys
+
 if sys.version_info[1] > 5:
-	from typing import TextIO
+    from typing import TextIO
 else:
-	from typing.io import TextIO
+    from typing.io import TextIO
 
 
 def serializedATN():
@@ -100,12 +101,12 @@ def serializedATN():
         buf.write("\3\36\3\36\3\36\3\36\6\36\u02e8\n\36\r\36\16\36\u02e9")
         buf.write("\3\37\3\37\3\37\3\37\3\37\3\37\6\37\u02f2\n\37\r\37\16")
         buf.write("\37\u02f3\3\37\2\2 \2\4\6\b\n\f\16\20\22\24\26\30\32\34")
-        buf.write("\36 \"$&(*,.\60\62\64\668:<\2\4\4\2\17\20\33\33\3\2\3")
+        buf.write('\36 "$&(*,.\60\62\64\668:<\2\4\4\2\17\20\33\33\3\2\3')
         buf.write("\23\2\u0383\2?\3\2\2\2\4_\3\2\2\2\6e\3\2\2\2\b\u0082\3")
         buf.write("\2\2\2\n\u009f\3\2\2\2\f\u00bc\3\2\2\2\16\u00d9\3\2\2")
         buf.write("\2\20\u00f6\3\2\2\2\22\u010f\3\2\2\2\24\u0130\3\2\2\2")
         buf.write("\26\u0151\3\2\2\2\30\u0172\3\2\2\2\32\u0193\3\2\2\2\34")
-        buf.write("\u01b4\3\2\2\2\36\u01d6\3\2\2\2 \u01fa\3\2\2\2\"\u021e")
+        buf.write('\u01b4\3\2\2\2\36\u01d6\3\2\2\2 \u01fa\3\2\2\2"\u021e')
         buf.write("\3\2\2\2$\u0241\3\2\2\2&\u0262\3\2\2\2(\u0283\3\2\2\2")
         buf.write("*\u02a4\3\2\2\2,\u02b0\3\2\2\2.\u02b2\3\2\2\2\60\u02ca")
         buf.write("\3\2\2\2\62\u02cc\3\2\2\2\64\u02ce\3\2\2\2\66\u02d3\3")
@@ -116,7 +117,7 @@ def serializedATN():
         buf.write("\3\3\2\2\2L`\5\6\4\2M`\5\b\5\2N`\5\n\6\2O`\5\f\7\2P`\5")
         buf.write("\22\n\2Q`\5\24\13\2R`\5\26\f\2S`\5\30\r\2T`\5\32\16\2")
         buf.write("U`\5\34\17\2V`\5\36\20\2W`\5 \21\2X`\5\16\b\2Y`\5\20\t")
-        buf.write("\2Z`\5\"\22\2[`\5$\23\2\\`\5&\24\2]`\5(\25\2^`\5*\26\2")
+        buf.write('\2Z`\5"\22\2[`\5$\23\2\\`\5&\24\2]`\5(\25\2^`\5*\26\2')
         buf.write("_L\3\2\2\2_M\3\2\2\2_N\3\2\2\2_O\3\2\2\2_P\3\2\2\2_Q\3")
         buf.write("\2\2\2_R\3\2\2\2_S\3\2\2\2_T\3\2\2\2_U\3\2\2\2_V\3\2\2")
         buf.write("\2_W\3\2\2\2_X\3\2\2\2_Y\3\2\2\2_Z\3\2\2\2_[\3\2\2\2_")
@@ -364,7 +365,7 @@ def serializedATN():
         buf.write("\u027b\u027d\5\62\32\2\u027c\u027b\3\2\2\2\u027c\u027d")
         buf.write("\3\2\2\2\u027d\u027f\3\2\2\2\u027e\u0280\7\36\2\2\u027f")
         buf.write("\u027e\3\2\2\2\u0280\u0281\3\2\2\2\u0281\u027f\3\2\2\2")
-        buf.write("\u0281\u0282\3\2\2\2\u0282\'\3\2\2\2\u0283\u0287\7\24")
+        buf.write("\u0281\u0282\3\2\2\2\u0282'\3\2\2\2\u0283\u0287\7\24")
         buf.write("\2\2\u0284\u0286\7\35\2\2\u0285\u0284\3\2\2\2\u0286\u0289")
         buf.write("\3\2\2\2\u0287\u0285\3\2\2\2\u0287\u0288\3\2\2\2\u0288")
         buf.write("\u028b\3\2\2\2\u0289\u0287\3\2\2\2\u028a\u028c\5\60\31")
@@ -434,28 +435,74 @@ def serializedATN():
         return buf.getvalue()
 
 
-class PigeonParser ( Parser ):
+class PigeonParser(Parser):
 
     grammarFileName = "Pigeon.g4"
 
     atn = ATNDeserializer().deserialize(serializedATN())
 
-    decisionsToDFA = [ DFA(ds, i) for i, ds in enumerate(atn.decisionToState) ]
+    decisionsToDFA = [DFA(ds, i) for i, ds in enumerate(atn.decisionToState)]
 
     sharedContextCache = PredictionContextCache()
 
-    literalNames = [ "<INVALID>", "'p'", "'r'", "'c'", "'t'", "'g'", "'f'", 
-                     "'s'", "'o'", "'d'", "'>'", "'<'", "'|'", "'3'", "'5'", 
-                     "'z'", "'x'", "'?'", "'='", "'v'", "'nl'", "'rep'", 
-                     "'-'", "'ind'" ]
+    literalNames = [
+        "<INVALID>",
+        "'p'",
+        "'r'",
+        "'c'",
+        "'t'",
+        "'g'",
+        "'f'",
+        "'s'",
+        "'o'",
+        "'d'",
+        "'>'",
+        "'<'",
+        "'|'",
+        "'3'",
+        "'5'",
+        "'z'",
+        "'x'",
+        "'?'",
+        "'='",
+        "'v'",
+        "'nl'",
+        "'rep'",
+        "'-'",
+        "'ind'",
+    ]
 
-    symbolicNames = [ "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
-                      "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
-                      "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
-                      "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
-                      "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
-                      "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
-                      "ID", "INT", "LINE_COMMENT", "WS", "NL" ]
+    symbolicNames = [
+        "<INVALID>",
+        "<INVALID>",
+        "<INVALID>",
+        "<INVALID>",
+        "<INVALID>",
+        "<INVALID>",
+        "<INVALID>",
+        "<INVALID>",
+        "<INVALID>",
+        "<INVALID>",
+        "<INVALID>",
+        "<INVALID>",
+        "<INVALID>",
+        "<INVALID>",
+        "<INVALID>",
+        "<INVALID>",
+        "<INVALID>",
+        "<INVALID>",
+        "<INVALID>",
+        "<INVALID>",
+        "<INVALID>",
+        "<INVALID>",
+        "<INVALID>",
+        "<INVALID>",
+        "ID",
+        "INT",
+        "LINE_COMMENT",
+        "WS",
+        "NL",
+    ]
 
     RULE_script = 0
     RULE_pigeoncommands = 1
@@ -488,133 +535,215 @@ class PigeonParser ( Parser ):
     RULE_rep2 = 28
     RULE_ind = 29
 
-    ruleNames =  [ "script", "pigeoncommands", "promoter", "repressor", 
-                   "codingseq", "transcription", "gene", "fseq", "stop", 
-                   "operator", "degredationtag", "righttriangle", "lefttriangle", 
-                   "bar", "three", "five", "zring", "xbar", "box", "scar", 
-                   "vector", "invert", "color", "label", "ignorecolor", 
-                   "commands", "arccommands", "rep", "rep2", "ind" ]
+    ruleNames = [
+        "script",
+        "pigeoncommands",
+        "promoter",
+        "repressor",
+        "codingseq",
+        "transcription",
+        "gene",
+        "fseq",
+        "stop",
+        "operator",
+        "degredationtag",
+        "righttriangle",
+        "lefttriangle",
+        "bar",
+        "three",
+        "five",
+        "zring",
+        "xbar",
+        "box",
+        "scar",
+        "vector",
+        "invert",
+        "color",
+        "label",
+        "ignorecolor",
+        "commands",
+        "arccommands",
+        "rep",
+        "rep2",
+        "ind",
+    ]
 
     EOF = Token.EOF
-    T__0=1
-    T__1=2
-    T__2=3
-    T__3=4
-    T__4=5
-    T__5=6
-    T__6=7
-    T__7=8
-    T__8=9
-    T__9=10
-    T__10=11
-    T__11=12
-    T__12=13
-    T__13=14
-    T__14=15
-    T__15=16
-    T__16=17
-    T__17=18
-    T__18=19
-    T__19=20
-    T__20=21
-    T__21=22
-    T__22=23
-    ID=24
-    INT=25
-    LINE_COMMENT=26
-    WS=27
-    NL=28
+    T__0 = 1
+    T__1 = 2
+    T__2 = 3
+    T__3 = 4
+    T__4 = 5
+    T__5 = 6
+    T__6 = 7
+    T__7 = 8
+    T__8 = 9
+    T__9 = 10
+    T__10 = 11
+    T__11 = 12
+    T__12 = 13
+    T__13 = 14
+    T__14 = 15
+    T__15 = 16
+    T__16 = 17
+    T__17 = 18
+    T__18 = 19
+    T__19 = 20
+    T__20 = 21
+    T__21 = 22
+    T__22 = 23
+    ID = 24
+    INT = 25
+    LINE_COMMENT = 26
+    WS = 27
+    NL = 28
 
-    def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
+    def __init__(self, input: TokenStream, output: TextIO = sys.stdout):
         super().__init__(input, output)
         self.checkVersion("4.8")
-        self._interp = ParserATNSimulator(self, self.atn, self.decisionsToDFA, self.sharedContextCache)
+        self._interp = ParserATNSimulator(
+            self, self.atn, self.decisionsToDFA, self.sharedContextCache
+        )
         self._predicates = None
 
-
-
-
     class ScriptContext(ParserRuleContext):
-
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(
+            self,
+            parser,
+            parent: ParserRuleContext = None,
+            invokingState: int = -1,
+        ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def EOF(self):
             return self.getToken(PigeonParser.EOF, 0)
 
-        def pigeoncommands(self, i:int=None):
+        def pigeoncommands(self, i: int = None):
             if i is None:
-                return self.getTypedRuleContexts(PigeonParser.PigeoncommandsContext)
+                return self.getTypedRuleContexts(
+                    PigeonParser.PigeoncommandsContext
+                )
             else:
-                return self.getTypedRuleContext(PigeonParser.PigeoncommandsContext,i)
+                return self.getTypedRuleContext(
+                    PigeonParser.PigeoncommandsContext, i
+                )
 
-
-        def arccommands(self, i:int=None):
+        def arccommands(self, i: int = None):
             if i is None:
-                return self.getTypedRuleContexts(PigeonParser.ArccommandsContext)
+                return self.getTypedRuleContexts(
+                    PigeonParser.ArccommandsContext
+                )
             else:
-                return self.getTypedRuleContext(PigeonParser.ArccommandsContext,i)
-
+                return self.getTypedRuleContext(
+                    PigeonParser.ArccommandsContext, i
+                )
 
         def getRuleIndex(self):
             return PigeonParser.RULE_script
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterScript" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterScript"):
                 listener.enterScript(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitScript" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitScript"):
                 listener.exitScript(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitScript" ):
+        def accept(self, visitor: ParseTreeVisitor):
+            if hasattr(visitor, "visitScript"):
                 return visitor.visitScript(self)
             else:
                 return visitor.visitChildren(self)
-
-
-
 
     def script(self):
 
         localctx = PigeonParser.ScriptContext(self, self._ctx, self.state)
         self.enterRule(localctx, 0, self.RULE_script)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 61 
+            self.state = 61
             self._errHandler.sync(self)
             _alt = 1
-            while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
+            while _alt != 2 and _alt != ATN.INVALID_ALT_NUMBER:
                 if _alt == 1:
                     self.state = 60
                     self.pigeoncommands()
 
                 else:
                     raise NoViableAltException(self)
-                self.state = 63 
+                self.state = 63
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,0,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input, 0, self._ctx)
 
             self.state = 70
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << PigeonParser.T__0) | (1 << PigeonParser.T__1) | (1 << PigeonParser.T__2) | (1 << PigeonParser.T__3) | (1 << PigeonParser.T__4) | (1 << PigeonParser.T__5) | (1 << PigeonParser.T__6) | (1 << PigeonParser.T__7) | (1 << PigeonParser.T__8) | (1 << PigeonParser.T__9) | (1 << PigeonParser.T__10) | (1 << PigeonParser.T__11) | (1 << PigeonParser.T__12) | (1 << PigeonParser.T__13) | (1 << PigeonParser.T__14) | (1 << PigeonParser.T__15) | (1 << PigeonParser.T__16) | (1 << PigeonParser.ID) | (1 << PigeonParser.INT))) != 0):
-                self.state = 66 
+            if ((_la) & ~0x3F) == 0 and (
+                (1 << _la)
+                & (
+                    (1 << PigeonParser.T__0)
+                    | (1 << PigeonParser.T__1)
+                    | (1 << PigeonParser.T__2)
+                    | (1 << PigeonParser.T__3)
+                    | (1 << PigeonParser.T__4)
+                    | (1 << PigeonParser.T__5)
+                    | (1 << PigeonParser.T__6)
+                    | (1 << PigeonParser.T__7)
+                    | (1 << PigeonParser.T__8)
+                    | (1 << PigeonParser.T__9)
+                    | (1 << PigeonParser.T__10)
+                    | (1 << PigeonParser.T__11)
+                    | (1 << PigeonParser.T__12)
+                    | (1 << PigeonParser.T__13)
+                    | (1 << PigeonParser.T__14)
+                    | (1 << PigeonParser.T__15)
+                    | (1 << PigeonParser.T__16)
+                    | (1 << PigeonParser.ID)
+                    | (1 << PigeonParser.INT)
+                )
+            ) != 0:
+                self.state = 66
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
                 while True:
                     self.state = 65
                     self.arccommands()
-                    self.state = 68 
+                    self.state = 68
                     self._errHandler.sync(self)
                     _la = self._input.LA(1)
-                    if not ((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << PigeonParser.T__0) | (1 << PigeonParser.T__1) | (1 << PigeonParser.T__2) | (1 << PigeonParser.T__3) | (1 << PigeonParser.T__4) | (1 << PigeonParser.T__5) | (1 << PigeonParser.T__6) | (1 << PigeonParser.T__7) | (1 << PigeonParser.T__8) | (1 << PigeonParser.T__9) | (1 << PigeonParser.T__10) | (1 << PigeonParser.T__11) | (1 << PigeonParser.T__12) | (1 << PigeonParser.T__13) | (1 << PigeonParser.T__14) | (1 << PigeonParser.T__15) | (1 << PigeonParser.T__16) | (1 << PigeonParser.ID) | (1 << PigeonParser.INT))) != 0)):
+                    if not (
+                        (
+                            ((_la) & ~0x3F) == 0
+                            and (
+                                (1 << _la)
+                                & (
+                                    (1 << PigeonParser.T__0)
+                                    | (1 << PigeonParser.T__1)
+                                    | (1 << PigeonParser.T__2)
+                                    | (1 << PigeonParser.T__3)
+                                    | (1 << PigeonParser.T__4)
+                                    | (1 << PigeonParser.T__5)
+                                    | (1 << PigeonParser.T__6)
+                                    | (1 << PigeonParser.T__7)
+                                    | (1 << PigeonParser.T__8)
+                                    | (1 << PigeonParser.T__9)
+                                    | (1 << PigeonParser.T__10)
+                                    | (1 << PigeonParser.T__11)
+                                    | (1 << PigeonParser.T__12)
+                                    | (1 << PigeonParser.T__13)
+                                    | (1 << PigeonParser.T__14)
+                                    | (1 << PigeonParser.T__15)
+                                    | (1 << PigeonParser.T__16)
+                                    | (1 << PigeonParser.ID)
+                                    | (1 << PigeonParser.INT)
+                                )
+                            )
+                            != 0
+                        )
+                    ):
                         break
-
-
 
             self.state = 72
             self.match(PigeonParser.EOF)
@@ -626,117 +755,106 @@ class PigeonParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class PigeoncommandsContext(ParserRuleContext):
-
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(
+            self,
+            parser,
+            parent: ParserRuleContext = None,
+            invokingState: int = -1,
+        ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def promoter(self):
-            return self.getTypedRuleContext(PigeonParser.PromoterContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.PromoterContext, 0)
 
         def repressor(self):
-            return self.getTypedRuleContext(PigeonParser.RepressorContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.RepressorContext, 0)
 
         def codingseq(self):
-            return self.getTypedRuleContext(PigeonParser.CodingseqContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.CodingseqContext, 0)
 
         def transcription(self):
-            return self.getTypedRuleContext(PigeonParser.TranscriptionContext,0)
-
+            return self.getTypedRuleContext(
+                PigeonParser.TranscriptionContext, 0
+            )
 
         def stop(self):
-            return self.getTypedRuleContext(PigeonParser.StopContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.StopContext, 0)
 
         def operator(self):
-            return self.getTypedRuleContext(PigeonParser.OperatorContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.OperatorContext, 0)
 
         def degredationtag(self):
-            return self.getTypedRuleContext(PigeonParser.DegredationtagContext,0)
-
+            return self.getTypedRuleContext(
+                PigeonParser.DegredationtagContext, 0
+            )
 
         def righttriangle(self):
-            return self.getTypedRuleContext(PigeonParser.RighttriangleContext,0)
-
+            return self.getTypedRuleContext(
+                PigeonParser.RighttriangleContext, 0
+            )
 
         def lefttriangle(self):
-            return self.getTypedRuleContext(PigeonParser.LefttriangleContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.LefttriangleContext, 0)
 
         def bar(self):
-            return self.getTypedRuleContext(PigeonParser.BarContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.BarContext, 0)
 
         def three(self):
-            return self.getTypedRuleContext(PigeonParser.ThreeContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.ThreeContext, 0)
 
         def five(self):
-            return self.getTypedRuleContext(PigeonParser.FiveContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.FiveContext, 0)
 
         def gene(self):
-            return self.getTypedRuleContext(PigeonParser.GeneContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.GeneContext, 0)
 
         def fseq(self):
-            return self.getTypedRuleContext(PigeonParser.FseqContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.FseqContext, 0)
 
         def zring(self):
-            return self.getTypedRuleContext(PigeonParser.ZringContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.ZringContext, 0)
 
         def xbar(self):
-            return self.getTypedRuleContext(PigeonParser.XbarContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.XbarContext, 0)
 
         def box(self):
-            return self.getTypedRuleContext(PigeonParser.BoxContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.BoxContext, 0)
 
         def scar(self):
-            return self.getTypedRuleContext(PigeonParser.ScarContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.ScarContext, 0)
 
         def vector(self):
-            return self.getTypedRuleContext(PigeonParser.VectorContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.VectorContext, 0)
 
         def getRuleIndex(self):
             return PigeonParser.RULE_pigeoncommands
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterPigeoncommands" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterPigeoncommands"):
                 listener.enterPigeoncommands(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitPigeoncommands" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitPigeoncommands"):
                 listener.exitPigeoncommands(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitPigeoncommands" ):
+        def accept(self, visitor: ParseTreeVisitor):
+            if hasattr(visitor, "visitPigeoncommands"):
                 return visitor.visitPigeoncommands(self)
             else:
                 return visitor.visitChildren(self)
 
-
-
-
     def pigeoncommands(self):
 
-        localctx = PigeonParser.PigeoncommandsContext(self, self._ctx, self.state)
+        localctx = PigeonParser.PigeoncommandsContext(
+            self, self._ctx, self.state
+        )
         self.enterRule(localctx, 2, self.RULE_pigeoncommands)
         try:
             self.state = 93
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,3,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 3, self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
                 self.state = 74
@@ -851,7 +969,6 @@ class PigeonParser ( Parser ):
                 self.vector()
                 pass
 
-
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -860,36 +977,35 @@ class PigeonParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class PromoterContext(ParserRuleContext):
-
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(
+            self,
+            parser,
+            parent: ParserRuleContext = None,
+            invokingState: int = -1,
+        ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def invert(self):
-            return self.getTypedRuleContext(PigeonParser.InvertContext,0)
+            return self.getTypedRuleContext(PigeonParser.InvertContext, 0)
 
-
-        def WS(self, i:int=None):
+        def WS(self, i: int = None):
             if i is None:
                 return self.getTokens(PigeonParser.WS)
             else:
                 return self.getToken(PigeonParser.WS, i)
 
         def label(self):
-            return self.getTypedRuleContext(PigeonParser.LabelContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.LabelContext, 0)
 
         def color(self):
-            return self.getTypedRuleContext(PigeonParser.ColorContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.ColorContext, 0)
 
         def ignorecolor(self):
-            return self.getTypedRuleContext(PigeonParser.IgnorecolorContext,0)
+            return self.getTypedRuleContext(PigeonParser.IgnorecolorContext, 0)
 
-
-        def NL(self, i:int=None):
+        def NL(self, i: int = None):
             if i is None:
                 return self.getTokens(PigeonParser.NL)
             else:
@@ -898,28 +1014,25 @@ class PigeonParser ( Parser ):
         def getRuleIndex(self):
             return PigeonParser.RULE_promoter
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterPromoter" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterPromoter"):
                 listener.enterPromoter(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitPromoter" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitPromoter"):
                 listener.exitPromoter(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitPromoter" ):
+        def accept(self, visitor: ParseTreeVisitor):
+            if hasattr(visitor, "visitPromoter"):
                 return visitor.visitPromoter(self)
             else:
                 return visitor.visitChildren(self)
-
-
-
 
     def promoter(self):
 
         localctx = PigeonParser.PromoterContext(self, self._ctx, self.state)
         self.enterRule(localctx, 4, self.RULE_promoter)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 99
@@ -940,62 +1053,63 @@ class PigeonParser ( Parser ):
 
             self.state = 102
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,5,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 5, self._ctx)
             if la_ == 1:
                 self.state = 101
                 self.match(PigeonParser.WS)
 
-
             self.state = 105
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,6,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 6, self._ctx)
             if la_ == 1:
                 self.state = 104
                 self.label()
 
-
             self.state = 108
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,7,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 7, self._ctx)
             if la_ == 1:
                 self.state = 107
                 self.match(PigeonParser.WS)
 
-
             self.state = 111
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << PigeonParser.T__12) | (1 << PigeonParser.T__13) | (1 << PigeonParser.INT))) != 0):
+            if ((_la) & ~0x3F) == 0 and (
+                (1 << _la)
+                & (
+                    (1 << PigeonParser.T__12)
+                    | (1 << PigeonParser.T__13)
+                    | (1 << PigeonParser.INT)
+                )
+            ) != 0:
                 self.state = 110
                 self.color()
-
 
             self.state = 114
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==PigeonParser.WS:
+            if _la == PigeonParser.WS:
                 self.state = 113
                 self.match(PigeonParser.WS)
-
 
             self.state = 117
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==PigeonParser.T__19:
+            if _la == PigeonParser.T__19:
                 self.state = 116
                 self.ignorecolor()
 
-
-            self.state = 120 
+            self.state = 120
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
                 self.state = 119
                 self.match(PigeonParser.NL)
-                self.state = 122 
+                self.state = 122
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not (_la==PigeonParser.NL):
+                if not (_la == PigeonParser.NL):
                     break
 
         except RecognitionException as re:
@@ -1006,36 +1120,35 @@ class PigeonParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class RepressorContext(ParserRuleContext):
-
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(
+            self,
+            parser,
+            parent: ParserRuleContext = None,
+            invokingState: int = -1,
+        ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def invert(self):
-            return self.getTypedRuleContext(PigeonParser.InvertContext,0)
+            return self.getTypedRuleContext(PigeonParser.InvertContext, 0)
 
-
-        def WS(self, i:int=None):
+        def WS(self, i: int = None):
             if i is None:
                 return self.getTokens(PigeonParser.WS)
             else:
                 return self.getToken(PigeonParser.WS, i)
 
         def label(self):
-            return self.getTypedRuleContext(PigeonParser.LabelContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.LabelContext, 0)
 
         def color(self):
-            return self.getTypedRuleContext(PigeonParser.ColorContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.ColorContext, 0)
 
         def ignorecolor(self):
-            return self.getTypedRuleContext(PigeonParser.IgnorecolorContext,0)
+            return self.getTypedRuleContext(PigeonParser.IgnorecolorContext, 0)
 
-
-        def NL(self, i:int=None):
+        def NL(self, i: int = None):
             if i is None:
                 return self.getTokens(PigeonParser.NL)
             else:
@@ -1044,28 +1157,25 @@ class PigeonParser ( Parser ):
         def getRuleIndex(self):
             return PigeonParser.RULE_repressor
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterRepressor" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterRepressor"):
                 listener.enterRepressor(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitRepressor" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitRepressor"):
                 listener.exitRepressor(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitRepressor" ):
+        def accept(self, visitor: ParseTreeVisitor):
+            if hasattr(visitor, "visitRepressor"):
                 return visitor.visitRepressor(self)
             else:
                 return visitor.visitChildren(self)
-
-
-
 
     def repressor(self):
 
         localctx = PigeonParser.RepressorContext(self, self._ctx, self.state)
         self.enterRule(localctx, 6, self.RULE_repressor)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 128
@@ -1086,62 +1196,63 @@ class PigeonParser ( Parser ):
 
             self.state = 131
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,13,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 13, self._ctx)
             if la_ == 1:
                 self.state = 130
                 self.match(PigeonParser.WS)
 
-
             self.state = 134
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,14,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 14, self._ctx)
             if la_ == 1:
                 self.state = 133
                 self.label()
 
-
             self.state = 137
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,15,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 15, self._ctx)
             if la_ == 1:
                 self.state = 136
                 self.match(PigeonParser.WS)
 
-
             self.state = 140
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << PigeonParser.T__12) | (1 << PigeonParser.T__13) | (1 << PigeonParser.INT))) != 0):
+            if ((_la) & ~0x3F) == 0 and (
+                (1 << _la)
+                & (
+                    (1 << PigeonParser.T__12)
+                    | (1 << PigeonParser.T__13)
+                    | (1 << PigeonParser.INT)
+                )
+            ) != 0:
                 self.state = 139
                 self.color()
-
 
             self.state = 143
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==PigeonParser.WS:
+            if _la == PigeonParser.WS:
                 self.state = 142
                 self.match(PigeonParser.WS)
-
 
             self.state = 146
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==PigeonParser.T__19:
+            if _la == PigeonParser.T__19:
                 self.state = 145
                 self.ignorecolor()
 
-
-            self.state = 149 
+            self.state = 149
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
                 self.state = 148
                 self.match(PigeonParser.NL)
-                self.state = 151 
+                self.state = 151
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not (_la==PigeonParser.NL):
+                if not (_la == PigeonParser.NL):
                     break
 
         except RecognitionException as re:
@@ -1152,36 +1263,35 @@ class PigeonParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class CodingseqContext(ParserRuleContext):
-
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(
+            self,
+            parser,
+            parent: ParserRuleContext = None,
+            invokingState: int = -1,
+        ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def invert(self):
-            return self.getTypedRuleContext(PigeonParser.InvertContext,0)
+            return self.getTypedRuleContext(PigeonParser.InvertContext, 0)
 
-
-        def WS(self, i:int=None):
+        def WS(self, i: int = None):
             if i is None:
                 return self.getTokens(PigeonParser.WS)
             else:
                 return self.getToken(PigeonParser.WS, i)
 
         def label(self):
-            return self.getTypedRuleContext(PigeonParser.LabelContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.LabelContext, 0)
 
         def color(self):
-            return self.getTypedRuleContext(PigeonParser.ColorContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.ColorContext, 0)
 
         def ignorecolor(self):
-            return self.getTypedRuleContext(PigeonParser.IgnorecolorContext,0)
+            return self.getTypedRuleContext(PigeonParser.IgnorecolorContext, 0)
 
-
-        def NL(self, i:int=None):
+        def NL(self, i: int = None):
             if i is None:
                 return self.getTokens(PigeonParser.NL)
             else:
@@ -1190,28 +1300,25 @@ class PigeonParser ( Parser ):
         def getRuleIndex(self):
             return PigeonParser.RULE_codingseq
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterCodingseq" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterCodingseq"):
                 listener.enterCodingseq(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitCodingseq" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitCodingseq"):
                 listener.exitCodingseq(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitCodingseq" ):
+        def accept(self, visitor: ParseTreeVisitor):
+            if hasattr(visitor, "visitCodingseq"):
                 return visitor.visitCodingseq(self)
             else:
                 return visitor.visitChildren(self)
-
-
-
 
     def codingseq(self):
 
         localctx = PigeonParser.CodingseqContext(self, self._ctx, self.state)
         self.enterRule(localctx, 8, self.RULE_codingseq)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 157
@@ -1232,62 +1339,63 @@ class PigeonParser ( Parser ):
 
             self.state = 160
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,21,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 21, self._ctx)
             if la_ == 1:
                 self.state = 159
                 self.match(PigeonParser.WS)
 
-
             self.state = 163
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,22,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 22, self._ctx)
             if la_ == 1:
                 self.state = 162
                 self.label()
 
-
             self.state = 166
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,23,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 23, self._ctx)
             if la_ == 1:
                 self.state = 165
                 self.match(PigeonParser.WS)
 
-
             self.state = 169
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << PigeonParser.T__12) | (1 << PigeonParser.T__13) | (1 << PigeonParser.INT))) != 0):
+            if ((_la) & ~0x3F) == 0 and (
+                (1 << _la)
+                & (
+                    (1 << PigeonParser.T__12)
+                    | (1 << PigeonParser.T__13)
+                    | (1 << PigeonParser.INT)
+                )
+            ) != 0:
                 self.state = 168
                 self.color()
-
 
             self.state = 172
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==PigeonParser.WS:
+            if _la == PigeonParser.WS:
                 self.state = 171
                 self.match(PigeonParser.WS)
-
 
             self.state = 175
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==PigeonParser.T__19:
+            if _la == PigeonParser.T__19:
                 self.state = 174
                 self.ignorecolor()
 
-
-            self.state = 178 
+            self.state = 178
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
                 self.state = 177
                 self.match(PigeonParser.NL)
-                self.state = 180 
+                self.state = 180
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not (_la==PigeonParser.NL):
+                if not (_la == PigeonParser.NL):
                     break
 
         except RecognitionException as re:
@@ -1298,36 +1406,35 @@ class PigeonParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class TranscriptionContext(ParserRuleContext):
-
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(
+            self,
+            parser,
+            parent: ParserRuleContext = None,
+            invokingState: int = -1,
+        ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def invert(self):
-            return self.getTypedRuleContext(PigeonParser.InvertContext,0)
+            return self.getTypedRuleContext(PigeonParser.InvertContext, 0)
 
-
-        def WS(self, i:int=None):
+        def WS(self, i: int = None):
             if i is None:
                 return self.getTokens(PigeonParser.WS)
             else:
                 return self.getToken(PigeonParser.WS, i)
 
         def label(self):
-            return self.getTypedRuleContext(PigeonParser.LabelContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.LabelContext, 0)
 
         def color(self):
-            return self.getTypedRuleContext(PigeonParser.ColorContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.ColorContext, 0)
 
         def ignorecolor(self):
-            return self.getTypedRuleContext(PigeonParser.IgnorecolorContext,0)
+            return self.getTypedRuleContext(PigeonParser.IgnorecolorContext, 0)
 
-
-        def NL(self, i:int=None):
+        def NL(self, i: int = None):
             if i is None:
                 return self.getTokens(PigeonParser.NL)
             else:
@@ -1336,28 +1443,27 @@ class PigeonParser ( Parser ):
         def getRuleIndex(self):
             return PigeonParser.RULE_transcription
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterTranscription" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterTranscription"):
                 listener.enterTranscription(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitTranscription" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitTranscription"):
                 listener.exitTranscription(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitTranscription" ):
+        def accept(self, visitor: ParseTreeVisitor):
+            if hasattr(visitor, "visitTranscription"):
                 return visitor.visitTranscription(self)
             else:
                 return visitor.visitChildren(self)
 
-
-
-
     def transcription(self):
 
-        localctx = PigeonParser.TranscriptionContext(self, self._ctx, self.state)
+        localctx = PigeonParser.TranscriptionContext(
+            self, self._ctx, self.state
+        )
         self.enterRule(localctx, 10, self.RULE_transcription)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 186
@@ -1378,62 +1484,63 @@ class PigeonParser ( Parser ):
 
             self.state = 189
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,29,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 29, self._ctx)
             if la_ == 1:
                 self.state = 188
                 self.match(PigeonParser.WS)
 
-
             self.state = 192
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,30,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 30, self._ctx)
             if la_ == 1:
                 self.state = 191
                 self.label()
 
-
             self.state = 195
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,31,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 31, self._ctx)
             if la_ == 1:
                 self.state = 194
                 self.match(PigeonParser.WS)
 
-
             self.state = 198
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << PigeonParser.T__12) | (1 << PigeonParser.T__13) | (1 << PigeonParser.INT))) != 0):
+            if ((_la) & ~0x3F) == 0 and (
+                (1 << _la)
+                & (
+                    (1 << PigeonParser.T__12)
+                    | (1 << PigeonParser.T__13)
+                    | (1 << PigeonParser.INT)
+                )
+            ) != 0:
                 self.state = 197
                 self.color()
-
 
             self.state = 201
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==PigeonParser.WS:
+            if _la == PigeonParser.WS:
                 self.state = 200
                 self.match(PigeonParser.WS)
-
 
             self.state = 204
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==PigeonParser.T__19:
+            if _la == PigeonParser.T__19:
                 self.state = 203
                 self.ignorecolor()
 
-
-            self.state = 207 
+            self.state = 207
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
                 self.state = 206
                 self.match(PigeonParser.NL)
-                self.state = 209 
+                self.state = 209
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not (_la==PigeonParser.NL):
+                if not (_la == PigeonParser.NL):
                     break
 
         except RecognitionException as re:
@@ -1444,36 +1551,35 @@ class PigeonParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class GeneContext(ParserRuleContext):
-
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(
+            self,
+            parser,
+            parent: ParserRuleContext = None,
+            invokingState: int = -1,
+        ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def invert(self):
-            return self.getTypedRuleContext(PigeonParser.InvertContext,0)
+            return self.getTypedRuleContext(PigeonParser.InvertContext, 0)
 
-
-        def WS(self, i:int=None):
+        def WS(self, i: int = None):
             if i is None:
                 return self.getTokens(PigeonParser.WS)
             else:
                 return self.getToken(PigeonParser.WS, i)
 
         def label(self):
-            return self.getTypedRuleContext(PigeonParser.LabelContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.LabelContext, 0)
 
         def color(self):
-            return self.getTypedRuleContext(PigeonParser.ColorContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.ColorContext, 0)
 
         def ignorecolor(self):
-            return self.getTypedRuleContext(PigeonParser.IgnorecolorContext,0)
+            return self.getTypedRuleContext(PigeonParser.IgnorecolorContext, 0)
 
-
-        def NL(self, i:int=None):
+        def NL(self, i: int = None):
             if i is None:
                 return self.getTokens(PigeonParser.NL)
             else:
@@ -1482,28 +1588,25 @@ class PigeonParser ( Parser ):
         def getRuleIndex(self):
             return PigeonParser.RULE_gene
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterGene" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterGene"):
                 listener.enterGene(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitGene" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitGene"):
                 listener.exitGene(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitGene" ):
+        def accept(self, visitor: ParseTreeVisitor):
+            if hasattr(visitor, "visitGene"):
                 return visitor.visitGene(self)
             else:
                 return visitor.visitChildren(self)
-
-
-
 
     def gene(self):
 
         localctx = PigeonParser.GeneContext(self, self._ctx, self.state)
         self.enterRule(localctx, 12, self.RULE_gene)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 215
@@ -1524,62 +1627,63 @@ class PigeonParser ( Parser ):
 
             self.state = 218
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,37,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 37, self._ctx)
             if la_ == 1:
                 self.state = 217
                 self.match(PigeonParser.WS)
 
-
             self.state = 221
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,38,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 38, self._ctx)
             if la_ == 1:
                 self.state = 220
                 self.label()
 
-
             self.state = 224
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,39,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 39, self._ctx)
             if la_ == 1:
                 self.state = 223
                 self.match(PigeonParser.WS)
 
-
             self.state = 227
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << PigeonParser.T__12) | (1 << PigeonParser.T__13) | (1 << PigeonParser.INT))) != 0):
+            if ((_la) & ~0x3F) == 0 and (
+                (1 << _la)
+                & (
+                    (1 << PigeonParser.T__12)
+                    | (1 << PigeonParser.T__13)
+                    | (1 << PigeonParser.INT)
+                )
+            ) != 0:
                 self.state = 226
                 self.color()
-
 
             self.state = 230
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==PigeonParser.WS:
+            if _la == PigeonParser.WS:
                 self.state = 229
                 self.match(PigeonParser.WS)
-
 
             self.state = 233
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==PigeonParser.T__19:
+            if _la == PigeonParser.T__19:
                 self.state = 232
                 self.ignorecolor()
 
-
-            self.state = 236 
+            self.state = 236
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
                 self.state = 235
                 self.match(PigeonParser.NL)
-                self.state = 238 
+                self.state = 238
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not (_la==PigeonParser.NL):
+                if not (_la == PigeonParser.NL):
                     break
 
         except RecognitionException as re:
@@ -1590,36 +1694,35 @@ class PigeonParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class FseqContext(ParserRuleContext):
-
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(
+            self,
+            parser,
+            parent: ParserRuleContext = None,
+            invokingState: int = -1,
+        ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def invert(self):
-            return self.getTypedRuleContext(PigeonParser.InvertContext,0)
+            return self.getTypedRuleContext(PigeonParser.InvertContext, 0)
 
-
-        def WS(self, i:int=None):
+        def WS(self, i: int = None):
             if i is None:
                 return self.getTokens(PigeonParser.WS)
             else:
                 return self.getToken(PigeonParser.WS, i)
 
         def label(self):
-            return self.getTypedRuleContext(PigeonParser.LabelContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.LabelContext, 0)
 
         def color(self):
-            return self.getTypedRuleContext(PigeonParser.ColorContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.ColorContext, 0)
 
         def ignorecolor(self):
-            return self.getTypedRuleContext(PigeonParser.IgnorecolorContext,0)
+            return self.getTypedRuleContext(PigeonParser.IgnorecolorContext, 0)
 
-
-        def NL(self, i:int=None):
+        def NL(self, i: int = None):
             if i is None:
                 return self.getTokens(PigeonParser.NL)
             else:
@@ -1628,28 +1731,25 @@ class PigeonParser ( Parser ):
         def getRuleIndex(self):
             return PigeonParser.RULE_fseq
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterFseq" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterFseq"):
                 listener.enterFseq(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitFseq" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitFseq"):
                 listener.exitFseq(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitFseq" ):
+        def accept(self, visitor: ParseTreeVisitor):
+            if hasattr(visitor, "visitFseq"):
                 return visitor.visitFseq(self)
             else:
                 return visitor.visitChildren(self)
-
-
-
 
     def fseq(self):
 
         localctx = PigeonParser.FseqContext(self, self._ctx, self.state)
         self.enterRule(localctx, 14, self.RULE_fseq)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 244
@@ -1670,62 +1770,63 @@ class PigeonParser ( Parser ):
 
             self.state = 247
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,45,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 45, self._ctx)
             if la_ == 1:
                 self.state = 246
                 self.match(PigeonParser.WS)
 
-
             self.state = 250
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,46,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 46, self._ctx)
             if la_ == 1:
                 self.state = 249
                 self.label()
 
-
             self.state = 253
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,47,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 47, self._ctx)
             if la_ == 1:
                 self.state = 252
                 self.match(PigeonParser.WS)
 
-
             self.state = 256
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << PigeonParser.T__12) | (1 << PigeonParser.T__13) | (1 << PigeonParser.INT))) != 0):
+            if ((_la) & ~0x3F) == 0 and (
+                (1 << _la)
+                & (
+                    (1 << PigeonParser.T__12)
+                    | (1 << PigeonParser.T__13)
+                    | (1 << PigeonParser.INT)
+                )
+            ) != 0:
                 self.state = 255
                 self.color()
-
 
             self.state = 259
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==PigeonParser.WS:
+            if _la == PigeonParser.WS:
                 self.state = 258
                 self.match(PigeonParser.WS)
-
 
             self.state = 262
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==PigeonParser.T__19:
+            if _la == PigeonParser.T__19:
                 self.state = 261
                 self.ignorecolor()
 
-
-            self.state = 265 
+            self.state = 265
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
                 self.state = 264
                 self.match(PigeonParser.NL)
-                self.state = 267 
+                self.state = 267
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not (_la==PigeonParser.NL):
+                if not (_la == PigeonParser.NL):
                     break
 
         except RecognitionException as re:
@@ -1736,32 +1837,32 @@ class PigeonParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class StopContext(ParserRuleContext):
-
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(
+            self,
+            parser,
+            parent: ParserRuleContext = None,
+            invokingState: int = -1,
+        ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def WS(self, i:int=None):
+        def WS(self, i: int = None):
             if i is None:
                 return self.getTokens(PigeonParser.WS)
             else:
                 return self.getToken(PigeonParser.WS, i)
 
         def label(self):
-            return self.getTypedRuleContext(PigeonParser.LabelContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.LabelContext, 0)
 
         def color(self):
-            return self.getTypedRuleContext(PigeonParser.ColorContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.ColorContext, 0)
 
         def ignorecolor(self):
-            return self.getTypedRuleContext(PigeonParser.IgnorecolorContext,0)
+            return self.getTypedRuleContext(PigeonParser.IgnorecolorContext, 0)
 
-
-        def NL(self, i:int=None):
+        def NL(self, i: int = None):
             if i is None:
                 return self.getTokens(PigeonParser.NL)
             else:
@@ -1770,74 +1871,76 @@ class PigeonParser ( Parser ):
         def getRuleIndex(self):
             return PigeonParser.RULE_stop
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterStop" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterStop"):
                 listener.enterStop(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitStop" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitStop"):
                 listener.exitStop(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitStop" ):
+        def accept(self, visitor: ParseTreeVisitor):
+            if hasattr(visitor, "visitStop"):
                 return visitor.visitStop(self)
             else:
                 return visitor.visitChildren(self)
-
-
-
 
     def stop(self):
 
         localctx = PigeonParser.StopContext(self, self._ctx, self.state)
         self.enterRule(localctx, 16, self.RULE_stop)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 269
             self.match(PigeonParser.T__6)
             self.state = 273
             self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,52,self._ctx)
-            while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
-                if _alt==1:
+            _alt = self._interp.adaptivePredict(self._input, 52, self._ctx)
+            while _alt != 2 and _alt != ATN.INVALID_ALT_NUMBER:
+                if _alt == 1:
                     self.state = 270
-                    self.match(PigeonParser.WS) 
+                    self.match(PigeonParser.WS)
                 self.state = 275
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,52,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input, 52, self._ctx)
 
             self.state = 277
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,53,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 53, self._ctx)
             if la_ == 1:
                 self.state = 276
                 self.label()
 
-
             self.state = 282
             self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,54,self._ctx)
-            while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
-                if _alt==1:
+            _alt = self._interp.adaptivePredict(self._input, 54, self._ctx)
+            while _alt != 2 and _alt != ATN.INVALID_ALT_NUMBER:
+                if _alt == 1:
                     self.state = 279
-                    self.match(PigeonParser.WS) 
+                    self.match(PigeonParser.WS)
                 self.state = 284
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,54,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input, 54, self._ctx)
 
             self.state = 286
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << PigeonParser.T__12) | (1 << PigeonParser.T__13) | (1 << PigeonParser.INT))) != 0):
+            if ((_la) & ~0x3F) == 0 and (
+                (1 << _la)
+                & (
+                    (1 << PigeonParser.T__12)
+                    | (1 << PigeonParser.T__13)
+                    | (1 << PigeonParser.INT)
+                )
+            ) != 0:
                 self.state = 285
                 self.color()
-
 
             self.state = 291
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==PigeonParser.WS:
+            while _la == PigeonParser.WS:
                 self.state = 288
                 self.match(PigeonParser.WS)
                 self.state = 293
@@ -1847,21 +1950,20 @@ class PigeonParser ( Parser ):
             self.state = 295
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==PigeonParser.T__19:
+            if _la == PigeonParser.T__19:
                 self.state = 294
                 self.ignorecolor()
 
-
-            self.state = 298 
+            self.state = 298
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
                 self.state = 297
                 self.match(PigeonParser.NL)
-                self.state = 300 
+                self.state = 300
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not (_la==PigeonParser.NL):
+                if not (_la == PigeonParser.NL):
                     break
 
         except RecognitionException as re:
@@ -1872,32 +1974,32 @@ class PigeonParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class OperatorContext(ParserRuleContext):
-
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(
+            self,
+            parser,
+            parent: ParserRuleContext = None,
+            invokingState: int = -1,
+        ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def WS(self, i:int=None):
+        def WS(self, i: int = None):
             if i is None:
                 return self.getTokens(PigeonParser.WS)
             else:
                 return self.getToken(PigeonParser.WS, i)
 
         def label(self):
-            return self.getTypedRuleContext(PigeonParser.LabelContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.LabelContext, 0)
 
         def color(self):
-            return self.getTypedRuleContext(PigeonParser.ColorContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.ColorContext, 0)
 
         def ignorecolor(self):
-            return self.getTypedRuleContext(PigeonParser.IgnorecolorContext,0)
+            return self.getTypedRuleContext(PigeonParser.IgnorecolorContext, 0)
 
-
-        def NL(self, i:int=None):
+        def NL(self, i: int = None):
             if i is None:
                 return self.getTokens(PigeonParser.NL)
             else:
@@ -1906,74 +2008,76 @@ class PigeonParser ( Parser ):
         def getRuleIndex(self):
             return PigeonParser.RULE_operator
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterOperator" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterOperator"):
                 listener.enterOperator(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitOperator" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitOperator"):
                 listener.exitOperator(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitOperator" ):
+        def accept(self, visitor: ParseTreeVisitor):
+            if hasattr(visitor, "visitOperator"):
                 return visitor.visitOperator(self)
             else:
                 return visitor.visitChildren(self)
-
-
-
 
     def operator(self):
 
         localctx = PigeonParser.OperatorContext(self, self._ctx, self.state)
         self.enterRule(localctx, 18, self.RULE_operator)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 302
             self.match(PigeonParser.T__7)
             self.state = 306
             self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,59,self._ctx)
-            while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
-                if _alt==1:
+            _alt = self._interp.adaptivePredict(self._input, 59, self._ctx)
+            while _alt != 2 and _alt != ATN.INVALID_ALT_NUMBER:
+                if _alt == 1:
                     self.state = 303
-                    self.match(PigeonParser.WS) 
+                    self.match(PigeonParser.WS)
                 self.state = 308
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,59,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input, 59, self._ctx)
 
             self.state = 310
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,60,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 60, self._ctx)
             if la_ == 1:
                 self.state = 309
                 self.label()
 
-
             self.state = 315
             self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,61,self._ctx)
-            while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
-                if _alt==1:
+            _alt = self._interp.adaptivePredict(self._input, 61, self._ctx)
+            while _alt != 2 and _alt != ATN.INVALID_ALT_NUMBER:
+                if _alt == 1:
                     self.state = 312
-                    self.match(PigeonParser.WS) 
+                    self.match(PigeonParser.WS)
                 self.state = 317
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,61,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input, 61, self._ctx)
 
             self.state = 319
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << PigeonParser.T__12) | (1 << PigeonParser.T__13) | (1 << PigeonParser.INT))) != 0):
+            if ((_la) & ~0x3F) == 0 and (
+                (1 << _la)
+                & (
+                    (1 << PigeonParser.T__12)
+                    | (1 << PigeonParser.T__13)
+                    | (1 << PigeonParser.INT)
+                )
+            ) != 0:
                 self.state = 318
                 self.color()
-
 
             self.state = 324
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==PigeonParser.WS:
+            while _la == PigeonParser.WS:
                 self.state = 321
                 self.match(PigeonParser.WS)
                 self.state = 326
@@ -1983,21 +2087,20 @@ class PigeonParser ( Parser ):
             self.state = 328
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==PigeonParser.T__19:
+            if _la == PigeonParser.T__19:
                 self.state = 327
                 self.ignorecolor()
 
-
-            self.state = 331 
+            self.state = 331
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
                 self.state = 330
                 self.match(PigeonParser.NL)
-                self.state = 333 
+                self.state = 333
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not (_la==PigeonParser.NL):
+                if not (_la == PigeonParser.NL):
                     break
 
         except RecognitionException as re:
@@ -2008,32 +2111,32 @@ class PigeonParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class DegredationtagContext(ParserRuleContext):
-
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(
+            self,
+            parser,
+            parent: ParserRuleContext = None,
+            invokingState: int = -1,
+        ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def WS(self, i:int=None):
+        def WS(self, i: int = None):
             if i is None:
                 return self.getTokens(PigeonParser.WS)
             else:
                 return self.getToken(PigeonParser.WS, i)
 
         def label(self):
-            return self.getTypedRuleContext(PigeonParser.LabelContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.LabelContext, 0)
 
         def color(self):
-            return self.getTypedRuleContext(PigeonParser.ColorContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.ColorContext, 0)
 
         def ignorecolor(self):
-            return self.getTypedRuleContext(PigeonParser.IgnorecolorContext,0)
+            return self.getTypedRuleContext(PigeonParser.IgnorecolorContext, 0)
 
-
-        def NL(self, i:int=None):
+        def NL(self, i: int = None):
             if i is None:
                 return self.getTokens(PigeonParser.NL)
             else:
@@ -2042,74 +2145,78 @@ class PigeonParser ( Parser ):
         def getRuleIndex(self):
             return PigeonParser.RULE_degredationtag
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterDegredationtag" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterDegredationtag"):
                 listener.enterDegredationtag(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitDegredationtag" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitDegredationtag"):
                 listener.exitDegredationtag(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitDegredationtag" ):
+        def accept(self, visitor: ParseTreeVisitor):
+            if hasattr(visitor, "visitDegredationtag"):
                 return visitor.visitDegredationtag(self)
             else:
                 return visitor.visitChildren(self)
 
-
-
-
     def degredationtag(self):
 
-        localctx = PigeonParser.DegredationtagContext(self, self._ctx, self.state)
+        localctx = PigeonParser.DegredationtagContext(
+            self, self._ctx, self.state
+        )
         self.enterRule(localctx, 20, self.RULE_degredationtag)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 335
             self.match(PigeonParser.T__8)
             self.state = 339
             self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,66,self._ctx)
-            while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
-                if _alt==1:
+            _alt = self._interp.adaptivePredict(self._input, 66, self._ctx)
+            while _alt != 2 and _alt != ATN.INVALID_ALT_NUMBER:
+                if _alt == 1:
                     self.state = 336
-                    self.match(PigeonParser.WS) 
+                    self.match(PigeonParser.WS)
                 self.state = 341
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,66,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input, 66, self._ctx)
 
             self.state = 343
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,67,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 67, self._ctx)
             if la_ == 1:
                 self.state = 342
                 self.label()
 
-
             self.state = 348
             self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,68,self._ctx)
-            while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
-                if _alt==1:
+            _alt = self._interp.adaptivePredict(self._input, 68, self._ctx)
+            while _alt != 2 and _alt != ATN.INVALID_ALT_NUMBER:
+                if _alt == 1:
                     self.state = 345
-                    self.match(PigeonParser.WS) 
+                    self.match(PigeonParser.WS)
                 self.state = 350
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,68,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input, 68, self._ctx)
 
             self.state = 352
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << PigeonParser.T__12) | (1 << PigeonParser.T__13) | (1 << PigeonParser.INT))) != 0):
+            if ((_la) & ~0x3F) == 0 and (
+                (1 << _la)
+                & (
+                    (1 << PigeonParser.T__12)
+                    | (1 << PigeonParser.T__13)
+                    | (1 << PigeonParser.INT)
+                )
+            ) != 0:
                 self.state = 351
                 self.color()
-
 
             self.state = 357
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==PigeonParser.WS:
+            while _la == PigeonParser.WS:
                 self.state = 354
                 self.match(PigeonParser.WS)
                 self.state = 359
@@ -2119,21 +2226,20 @@ class PigeonParser ( Parser ):
             self.state = 361
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==PigeonParser.T__19:
+            if _la == PigeonParser.T__19:
                 self.state = 360
                 self.ignorecolor()
 
-
-            self.state = 364 
+            self.state = 364
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
                 self.state = 363
                 self.match(PigeonParser.NL)
-                self.state = 366 
+                self.state = 366
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not (_la==PigeonParser.NL):
+                if not (_la == PigeonParser.NL):
                     break
 
         except RecognitionException as re:
@@ -2144,32 +2250,32 @@ class PigeonParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class RighttriangleContext(ParserRuleContext):
-
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(
+            self,
+            parser,
+            parent: ParserRuleContext = None,
+            invokingState: int = -1,
+        ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def WS(self, i:int=None):
+        def WS(self, i: int = None):
             if i is None:
                 return self.getTokens(PigeonParser.WS)
             else:
                 return self.getToken(PigeonParser.WS, i)
 
         def label(self):
-            return self.getTypedRuleContext(PigeonParser.LabelContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.LabelContext, 0)
 
         def color(self):
-            return self.getTypedRuleContext(PigeonParser.ColorContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.ColorContext, 0)
 
         def ignorecolor(self):
-            return self.getTypedRuleContext(PigeonParser.IgnorecolorContext,0)
+            return self.getTypedRuleContext(PigeonParser.IgnorecolorContext, 0)
 
-
-        def NL(self, i:int=None):
+        def NL(self, i: int = None):
             if i is None:
                 return self.getTokens(PigeonParser.NL)
             else:
@@ -2178,74 +2284,78 @@ class PigeonParser ( Parser ):
         def getRuleIndex(self):
             return PigeonParser.RULE_righttriangle
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterRighttriangle" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterRighttriangle"):
                 listener.enterRighttriangle(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitRighttriangle" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitRighttriangle"):
                 listener.exitRighttriangle(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitRighttriangle" ):
+        def accept(self, visitor: ParseTreeVisitor):
+            if hasattr(visitor, "visitRighttriangle"):
                 return visitor.visitRighttriangle(self)
             else:
                 return visitor.visitChildren(self)
 
-
-
-
     def righttriangle(self):
 
-        localctx = PigeonParser.RighttriangleContext(self, self._ctx, self.state)
+        localctx = PigeonParser.RighttriangleContext(
+            self, self._ctx, self.state
+        )
         self.enterRule(localctx, 22, self.RULE_righttriangle)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 368
             self.match(PigeonParser.T__9)
             self.state = 372
             self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,73,self._ctx)
-            while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
-                if _alt==1:
+            _alt = self._interp.adaptivePredict(self._input, 73, self._ctx)
+            while _alt != 2 and _alt != ATN.INVALID_ALT_NUMBER:
+                if _alt == 1:
                     self.state = 369
-                    self.match(PigeonParser.WS) 
+                    self.match(PigeonParser.WS)
                 self.state = 374
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,73,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input, 73, self._ctx)
 
             self.state = 376
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,74,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 74, self._ctx)
             if la_ == 1:
                 self.state = 375
                 self.label()
 
-
             self.state = 381
             self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,75,self._ctx)
-            while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
-                if _alt==1:
+            _alt = self._interp.adaptivePredict(self._input, 75, self._ctx)
+            while _alt != 2 and _alt != ATN.INVALID_ALT_NUMBER:
+                if _alt == 1:
                     self.state = 378
-                    self.match(PigeonParser.WS) 
+                    self.match(PigeonParser.WS)
                 self.state = 383
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,75,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input, 75, self._ctx)
 
             self.state = 385
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << PigeonParser.T__12) | (1 << PigeonParser.T__13) | (1 << PigeonParser.INT))) != 0):
+            if ((_la) & ~0x3F) == 0 and (
+                (1 << _la)
+                & (
+                    (1 << PigeonParser.T__12)
+                    | (1 << PigeonParser.T__13)
+                    | (1 << PigeonParser.INT)
+                )
+            ) != 0:
                 self.state = 384
                 self.color()
-
 
             self.state = 390
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==PigeonParser.WS:
+            while _la == PigeonParser.WS:
                 self.state = 387
                 self.match(PigeonParser.WS)
                 self.state = 392
@@ -2255,21 +2365,20 @@ class PigeonParser ( Parser ):
             self.state = 394
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==PigeonParser.T__19:
+            if _la == PigeonParser.T__19:
                 self.state = 393
                 self.ignorecolor()
 
-
-            self.state = 397 
+            self.state = 397
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
                 self.state = 396
                 self.match(PigeonParser.NL)
-                self.state = 399 
+                self.state = 399
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not (_la==PigeonParser.NL):
+                if not (_la == PigeonParser.NL):
                     break
 
         except RecognitionException as re:
@@ -2280,32 +2389,32 @@ class PigeonParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class LefttriangleContext(ParserRuleContext):
-
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(
+            self,
+            parser,
+            parent: ParserRuleContext = None,
+            invokingState: int = -1,
+        ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def WS(self, i:int=None):
+        def WS(self, i: int = None):
             if i is None:
                 return self.getTokens(PigeonParser.WS)
             else:
                 return self.getToken(PigeonParser.WS, i)
 
         def label(self):
-            return self.getTypedRuleContext(PigeonParser.LabelContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.LabelContext, 0)
 
         def color(self):
-            return self.getTypedRuleContext(PigeonParser.ColorContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.ColorContext, 0)
 
         def ignorecolor(self):
-            return self.getTypedRuleContext(PigeonParser.IgnorecolorContext,0)
+            return self.getTypedRuleContext(PigeonParser.IgnorecolorContext, 0)
 
-
-        def NL(self, i:int=None):
+        def NL(self, i: int = None):
             if i is None:
                 return self.getTokens(PigeonParser.NL)
             else:
@@ -2314,74 +2423,76 @@ class PigeonParser ( Parser ):
         def getRuleIndex(self):
             return PigeonParser.RULE_lefttriangle
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterLefttriangle" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterLefttriangle"):
                 listener.enterLefttriangle(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitLefttriangle" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitLefttriangle"):
                 listener.exitLefttriangle(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitLefttriangle" ):
+        def accept(self, visitor: ParseTreeVisitor):
+            if hasattr(visitor, "visitLefttriangle"):
                 return visitor.visitLefttriangle(self)
             else:
                 return visitor.visitChildren(self)
-
-
-
 
     def lefttriangle(self):
 
         localctx = PigeonParser.LefttriangleContext(self, self._ctx, self.state)
         self.enterRule(localctx, 24, self.RULE_lefttriangle)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 401
             self.match(PigeonParser.T__10)
             self.state = 405
             self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,80,self._ctx)
-            while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
-                if _alt==1:
+            _alt = self._interp.adaptivePredict(self._input, 80, self._ctx)
+            while _alt != 2 and _alt != ATN.INVALID_ALT_NUMBER:
+                if _alt == 1:
                     self.state = 402
-                    self.match(PigeonParser.WS) 
+                    self.match(PigeonParser.WS)
                 self.state = 407
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,80,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input, 80, self._ctx)
 
             self.state = 409
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,81,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 81, self._ctx)
             if la_ == 1:
                 self.state = 408
                 self.label()
 
-
             self.state = 414
             self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,82,self._ctx)
-            while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
-                if _alt==1:
+            _alt = self._interp.adaptivePredict(self._input, 82, self._ctx)
+            while _alt != 2 and _alt != ATN.INVALID_ALT_NUMBER:
+                if _alt == 1:
                     self.state = 411
-                    self.match(PigeonParser.WS) 
+                    self.match(PigeonParser.WS)
                 self.state = 416
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,82,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input, 82, self._ctx)
 
             self.state = 418
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << PigeonParser.T__12) | (1 << PigeonParser.T__13) | (1 << PigeonParser.INT))) != 0):
+            if ((_la) & ~0x3F) == 0 and (
+                (1 << _la)
+                & (
+                    (1 << PigeonParser.T__12)
+                    | (1 << PigeonParser.T__13)
+                    | (1 << PigeonParser.INT)
+                )
+            ) != 0:
                 self.state = 417
                 self.color()
-
 
             self.state = 423
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==PigeonParser.WS:
+            while _la == PigeonParser.WS:
                 self.state = 420
                 self.match(PigeonParser.WS)
                 self.state = 425
@@ -2391,21 +2502,20 @@ class PigeonParser ( Parser ):
             self.state = 427
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==PigeonParser.T__19:
+            if _la == PigeonParser.T__19:
                 self.state = 426
                 self.ignorecolor()
 
-
-            self.state = 430 
+            self.state = 430
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
                 self.state = 429
                 self.match(PigeonParser.NL)
-                self.state = 432 
+                self.state = 432
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not (_la==PigeonParser.NL):
+                if not (_la == PigeonParser.NL):
                     break
 
         except RecognitionException as re:
@@ -2416,32 +2526,32 @@ class PigeonParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class BarContext(ParserRuleContext):
-
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(
+            self,
+            parser,
+            parent: ParserRuleContext = None,
+            invokingState: int = -1,
+        ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def WS(self, i:int=None):
+        def WS(self, i: int = None):
             if i is None:
                 return self.getTokens(PigeonParser.WS)
             else:
                 return self.getToken(PigeonParser.WS, i)
 
         def label(self):
-            return self.getTypedRuleContext(PigeonParser.LabelContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.LabelContext, 0)
 
         def color(self):
-            return self.getTypedRuleContext(PigeonParser.ColorContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.ColorContext, 0)
 
         def ignorecolor(self):
-            return self.getTypedRuleContext(PigeonParser.IgnorecolorContext,0)
+            return self.getTypedRuleContext(PigeonParser.IgnorecolorContext, 0)
 
-
-        def NL(self, i:int=None):
+        def NL(self, i: int = None):
             if i is None:
                 return self.getTokens(PigeonParser.NL)
             else:
@@ -2450,74 +2560,76 @@ class PigeonParser ( Parser ):
         def getRuleIndex(self):
             return PigeonParser.RULE_bar
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterBar" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterBar"):
                 listener.enterBar(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitBar" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitBar"):
                 listener.exitBar(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitBar" ):
+        def accept(self, visitor: ParseTreeVisitor):
+            if hasattr(visitor, "visitBar"):
                 return visitor.visitBar(self)
             else:
                 return visitor.visitChildren(self)
-
-
-
 
     def bar(self):
 
         localctx = PigeonParser.BarContext(self, self._ctx, self.state)
         self.enterRule(localctx, 26, self.RULE_bar)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 434
             self.match(PigeonParser.T__11)
             self.state = 438
             self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,87,self._ctx)
-            while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
-                if _alt==1:
+            _alt = self._interp.adaptivePredict(self._input, 87, self._ctx)
+            while _alt != 2 and _alt != ATN.INVALID_ALT_NUMBER:
+                if _alt == 1:
                     self.state = 435
-                    self.match(PigeonParser.WS) 
+                    self.match(PigeonParser.WS)
                 self.state = 440
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,87,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input, 87, self._ctx)
 
             self.state = 442
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,88,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 88, self._ctx)
             if la_ == 1:
                 self.state = 441
                 self.label()
 
-
             self.state = 447
             self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,89,self._ctx)
-            while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
-                if _alt==1:
+            _alt = self._interp.adaptivePredict(self._input, 89, self._ctx)
+            while _alt != 2 and _alt != ATN.INVALID_ALT_NUMBER:
+                if _alt == 1:
                     self.state = 444
-                    self.match(PigeonParser.WS) 
+                    self.match(PigeonParser.WS)
                 self.state = 449
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,89,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input, 89, self._ctx)
 
             self.state = 451
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << PigeonParser.T__12) | (1 << PigeonParser.T__13) | (1 << PigeonParser.INT))) != 0):
+            if ((_la) & ~0x3F) == 0 and (
+                (1 << _la)
+                & (
+                    (1 << PigeonParser.T__12)
+                    | (1 << PigeonParser.T__13)
+                    | (1 << PigeonParser.INT)
+                )
+            ) != 0:
                 self.state = 450
                 self.color()
-
 
             self.state = 456
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==PigeonParser.WS:
+            while _la == PigeonParser.WS:
                 self.state = 453
                 self.match(PigeonParser.WS)
                 self.state = 458
@@ -2527,21 +2639,20 @@ class PigeonParser ( Parser ):
             self.state = 460
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==PigeonParser.T__19:
+            if _la == PigeonParser.T__19:
                 self.state = 459
                 self.ignorecolor()
 
-
-            self.state = 463 
+            self.state = 463
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
                 self.state = 462
                 self.match(PigeonParser.NL)
-                self.state = 465 
+                self.state = 465
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not (_la==PigeonParser.NL):
+                if not (_la == PigeonParser.NL):
                     break
 
         except RecognitionException as re:
@@ -2552,36 +2663,35 @@ class PigeonParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class ThreeContext(ParserRuleContext):
-
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(
+            self,
+            parser,
+            parent: ParserRuleContext = None,
+            invokingState: int = -1,
+        ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def invert(self):
-            return self.getTypedRuleContext(PigeonParser.InvertContext,0)
+            return self.getTypedRuleContext(PigeonParser.InvertContext, 0)
 
-
-        def WS(self, i:int=None):
+        def WS(self, i: int = None):
             if i is None:
                 return self.getTokens(PigeonParser.WS)
             else:
                 return self.getToken(PigeonParser.WS, i)
 
         def label(self):
-            return self.getTypedRuleContext(PigeonParser.LabelContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.LabelContext, 0)
 
         def color(self):
-            return self.getTypedRuleContext(PigeonParser.ColorContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.ColorContext, 0)
 
         def ignorecolor(self):
-            return self.getTypedRuleContext(PigeonParser.IgnorecolorContext,0)
+            return self.getTypedRuleContext(PigeonParser.IgnorecolorContext, 0)
 
-
-        def NL(self, i:int=None):
+        def NL(self, i: int = None):
             if i is None:
                 return self.getTokens(PigeonParser.NL)
             else:
@@ -2590,82 +2700,83 @@ class PigeonParser ( Parser ):
         def getRuleIndex(self):
             return PigeonParser.RULE_three
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterThree" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterThree"):
                 listener.enterThree(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitThree" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitThree"):
                 listener.exitThree(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitThree" ):
+        def accept(self, visitor: ParseTreeVisitor):
+            if hasattr(visitor, "visitThree"):
                 return visitor.visitThree(self)
             else:
                 return visitor.visitChildren(self)
-
-
-
 
     def three(self):
 
         localctx = PigeonParser.ThreeContext(self, self._ctx, self.state)
         self.enterRule(localctx, 28, self.RULE_three)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 468
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==PigeonParser.T__10:
+            if _la == PigeonParser.T__10:
                 self.state = 467
                 self.invert()
-
 
             self.state = 470
             self.match(PigeonParser.T__12)
             self.state = 474
             self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,95,self._ctx)
-            while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
-                if _alt==1:
+            _alt = self._interp.adaptivePredict(self._input, 95, self._ctx)
+            while _alt != 2 and _alt != ATN.INVALID_ALT_NUMBER:
+                if _alt == 1:
                     self.state = 471
-                    self.match(PigeonParser.WS) 
+                    self.match(PigeonParser.WS)
                 self.state = 476
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,95,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input, 95, self._ctx)
 
             self.state = 478
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,96,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 96, self._ctx)
             if la_ == 1:
                 self.state = 477
                 self.label()
 
-
             self.state = 483
             self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,97,self._ctx)
-            while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
-                if _alt==1:
+            _alt = self._interp.adaptivePredict(self._input, 97, self._ctx)
+            while _alt != 2 and _alt != ATN.INVALID_ALT_NUMBER:
+                if _alt == 1:
                     self.state = 480
-                    self.match(PigeonParser.WS) 
+                    self.match(PigeonParser.WS)
                 self.state = 485
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,97,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input, 97, self._ctx)
 
             self.state = 487
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << PigeonParser.T__12) | (1 << PigeonParser.T__13) | (1 << PigeonParser.INT))) != 0):
+            if ((_la) & ~0x3F) == 0 and (
+                (1 << _la)
+                & (
+                    (1 << PigeonParser.T__12)
+                    | (1 << PigeonParser.T__13)
+                    | (1 << PigeonParser.INT)
+                )
+            ) != 0:
                 self.state = 486
                 self.color()
-
 
             self.state = 492
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==PigeonParser.WS:
+            while _la == PigeonParser.WS:
                 self.state = 489
                 self.match(PigeonParser.WS)
                 self.state = 494
@@ -2675,21 +2786,20 @@ class PigeonParser ( Parser ):
             self.state = 496
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==PigeonParser.T__19:
+            if _la == PigeonParser.T__19:
                 self.state = 495
                 self.ignorecolor()
 
-
-            self.state = 499 
+            self.state = 499
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
                 self.state = 498
                 self.match(PigeonParser.NL)
-                self.state = 501 
+                self.state = 501
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not (_la==PigeonParser.NL):
+                if not (_la == PigeonParser.NL):
                     break
 
         except RecognitionException as re:
@@ -2700,36 +2810,35 @@ class PigeonParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class FiveContext(ParserRuleContext):
-
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(
+            self,
+            parser,
+            parent: ParserRuleContext = None,
+            invokingState: int = -1,
+        ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def invert(self):
-            return self.getTypedRuleContext(PigeonParser.InvertContext,0)
+            return self.getTypedRuleContext(PigeonParser.InvertContext, 0)
 
-
-        def WS(self, i:int=None):
+        def WS(self, i: int = None):
             if i is None:
                 return self.getTokens(PigeonParser.WS)
             else:
                 return self.getToken(PigeonParser.WS, i)
 
         def label(self):
-            return self.getTypedRuleContext(PigeonParser.LabelContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.LabelContext, 0)
 
         def color(self):
-            return self.getTypedRuleContext(PigeonParser.ColorContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.ColorContext, 0)
 
         def ignorecolor(self):
-            return self.getTypedRuleContext(PigeonParser.IgnorecolorContext,0)
+            return self.getTypedRuleContext(PigeonParser.IgnorecolorContext, 0)
 
-
-        def NL(self, i:int=None):
+        def NL(self, i: int = None):
             if i is None:
                 return self.getTokens(PigeonParser.NL)
             else:
@@ -2738,82 +2847,83 @@ class PigeonParser ( Parser ):
         def getRuleIndex(self):
             return PigeonParser.RULE_five
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterFive" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterFive"):
                 listener.enterFive(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitFive" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitFive"):
                 listener.exitFive(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitFive" ):
+        def accept(self, visitor: ParseTreeVisitor):
+            if hasattr(visitor, "visitFive"):
                 return visitor.visitFive(self)
             else:
                 return visitor.visitChildren(self)
-
-
-
 
     def five(self):
 
         localctx = PigeonParser.FiveContext(self, self._ctx, self.state)
         self.enterRule(localctx, 30, self.RULE_five)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 504
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==PigeonParser.T__10:
+            if _la == PigeonParser.T__10:
                 self.state = 503
                 self.invert()
-
 
             self.state = 506
             self.match(PigeonParser.T__13)
             self.state = 510
             self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,103,self._ctx)
-            while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
-                if _alt==1:
+            _alt = self._interp.adaptivePredict(self._input, 103, self._ctx)
+            while _alt != 2 and _alt != ATN.INVALID_ALT_NUMBER:
+                if _alt == 1:
                     self.state = 507
-                    self.match(PigeonParser.WS) 
+                    self.match(PigeonParser.WS)
                 self.state = 512
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,103,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input, 103, self._ctx)
 
             self.state = 514
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,104,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 104, self._ctx)
             if la_ == 1:
                 self.state = 513
                 self.label()
 
-
             self.state = 519
             self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,105,self._ctx)
-            while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
-                if _alt==1:
+            _alt = self._interp.adaptivePredict(self._input, 105, self._ctx)
+            while _alt != 2 and _alt != ATN.INVALID_ALT_NUMBER:
+                if _alt == 1:
                     self.state = 516
-                    self.match(PigeonParser.WS) 
+                    self.match(PigeonParser.WS)
                 self.state = 521
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,105,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input, 105, self._ctx)
 
             self.state = 523
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << PigeonParser.T__12) | (1 << PigeonParser.T__13) | (1 << PigeonParser.INT))) != 0):
+            if ((_la) & ~0x3F) == 0 and (
+                (1 << _la)
+                & (
+                    (1 << PigeonParser.T__12)
+                    | (1 << PigeonParser.T__13)
+                    | (1 << PigeonParser.INT)
+                )
+            ) != 0:
                 self.state = 522
                 self.color()
-
 
             self.state = 528
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==PigeonParser.WS:
+            while _la == PigeonParser.WS:
                 self.state = 525
                 self.match(PigeonParser.WS)
                 self.state = 530
@@ -2823,21 +2933,20 @@ class PigeonParser ( Parser ):
             self.state = 532
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==PigeonParser.T__19:
+            if _la == PigeonParser.T__19:
                 self.state = 531
                 self.ignorecolor()
 
-
-            self.state = 535 
+            self.state = 535
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
                 self.state = 534
                 self.match(PigeonParser.NL)
-                self.state = 537 
+                self.state = 537
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not (_la==PigeonParser.NL):
+                if not (_la == PigeonParser.NL):
                     break
 
         except RecognitionException as re:
@@ -2848,36 +2957,35 @@ class PigeonParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class ZringContext(ParserRuleContext):
-
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(
+            self,
+            parser,
+            parent: ParserRuleContext = None,
+            invokingState: int = -1,
+        ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def invert(self):
-            return self.getTypedRuleContext(PigeonParser.InvertContext,0)
+            return self.getTypedRuleContext(PigeonParser.InvertContext, 0)
 
-
-        def WS(self, i:int=None):
+        def WS(self, i: int = None):
             if i is None:
                 return self.getTokens(PigeonParser.WS)
             else:
                 return self.getToken(PigeonParser.WS, i)
 
         def label(self):
-            return self.getTypedRuleContext(PigeonParser.LabelContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.LabelContext, 0)
 
         def color(self):
-            return self.getTypedRuleContext(PigeonParser.ColorContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.ColorContext, 0)
 
         def ignorecolor(self):
-            return self.getTypedRuleContext(PigeonParser.IgnorecolorContext,0)
+            return self.getTypedRuleContext(PigeonParser.IgnorecolorContext, 0)
 
-
-        def NL(self, i:int=None):
+        def NL(self, i: int = None):
             if i is None:
                 return self.getTokens(PigeonParser.NL)
             else:
@@ -2886,82 +2994,83 @@ class PigeonParser ( Parser ):
         def getRuleIndex(self):
             return PigeonParser.RULE_zring
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterZring" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterZring"):
                 listener.enterZring(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitZring" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitZring"):
                 listener.exitZring(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitZring" ):
+        def accept(self, visitor: ParseTreeVisitor):
+            if hasattr(visitor, "visitZring"):
                 return visitor.visitZring(self)
             else:
                 return visitor.visitChildren(self)
-
-
-
 
     def zring(self):
 
         localctx = PigeonParser.ZringContext(self, self._ctx, self.state)
         self.enterRule(localctx, 32, self.RULE_zring)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 540
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==PigeonParser.T__10:
+            if _la == PigeonParser.T__10:
                 self.state = 539
                 self.invert()
-
 
             self.state = 542
             self.match(PigeonParser.T__14)
             self.state = 546
             self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,111,self._ctx)
-            while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
-                if _alt==1:
+            _alt = self._interp.adaptivePredict(self._input, 111, self._ctx)
+            while _alt != 2 and _alt != ATN.INVALID_ALT_NUMBER:
+                if _alt == 1:
                     self.state = 543
-                    self.match(PigeonParser.WS) 
+                    self.match(PigeonParser.WS)
                 self.state = 548
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,111,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input, 111, self._ctx)
 
             self.state = 550
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,112,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 112, self._ctx)
             if la_ == 1:
                 self.state = 549
                 self.label()
 
-
             self.state = 555
             self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,113,self._ctx)
-            while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
-                if _alt==1:
+            _alt = self._interp.adaptivePredict(self._input, 113, self._ctx)
+            while _alt != 2 and _alt != ATN.INVALID_ALT_NUMBER:
+                if _alt == 1:
                     self.state = 552
-                    self.match(PigeonParser.WS) 
+                    self.match(PigeonParser.WS)
                 self.state = 557
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,113,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input, 113, self._ctx)
 
             self.state = 559
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << PigeonParser.T__12) | (1 << PigeonParser.T__13) | (1 << PigeonParser.INT))) != 0):
+            if ((_la) & ~0x3F) == 0 and (
+                (1 << _la)
+                & (
+                    (1 << PigeonParser.T__12)
+                    | (1 << PigeonParser.T__13)
+                    | (1 << PigeonParser.INT)
+                )
+            ) != 0:
                 self.state = 558
                 self.color()
-
 
             self.state = 564
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==PigeonParser.WS:
+            while _la == PigeonParser.WS:
                 self.state = 561
                 self.match(PigeonParser.WS)
                 self.state = 566
@@ -2971,21 +3080,20 @@ class PigeonParser ( Parser ):
             self.state = 568
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==PigeonParser.T__19:
+            if _la == PigeonParser.T__19:
                 self.state = 567
                 self.ignorecolor()
 
-
-            self.state = 571 
+            self.state = 571
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
                 self.state = 570
                 self.match(PigeonParser.NL)
-                self.state = 573 
+                self.state = 573
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not (_la==PigeonParser.NL):
+                if not (_la == PigeonParser.NL):
                     break
 
         except RecognitionException as re:
@@ -2996,32 +3104,32 @@ class PigeonParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class XbarContext(ParserRuleContext):
-
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(
+            self,
+            parser,
+            parent: ParserRuleContext = None,
+            invokingState: int = -1,
+        ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def WS(self, i:int=None):
+        def WS(self, i: int = None):
             if i is None:
                 return self.getTokens(PigeonParser.WS)
             else:
                 return self.getToken(PigeonParser.WS, i)
 
         def label(self):
-            return self.getTypedRuleContext(PigeonParser.LabelContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.LabelContext, 0)
 
         def color(self):
-            return self.getTypedRuleContext(PigeonParser.ColorContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.ColorContext, 0)
 
         def ignorecolor(self):
-            return self.getTypedRuleContext(PigeonParser.IgnorecolorContext,0)
+            return self.getTypedRuleContext(PigeonParser.IgnorecolorContext, 0)
 
-
-        def NL(self, i:int=None):
+        def NL(self, i: int = None):
             if i is None:
                 return self.getTokens(PigeonParser.NL)
             else:
@@ -3030,74 +3138,76 @@ class PigeonParser ( Parser ):
         def getRuleIndex(self):
             return PigeonParser.RULE_xbar
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterXbar" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterXbar"):
                 listener.enterXbar(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitXbar" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitXbar"):
                 listener.exitXbar(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitXbar" ):
+        def accept(self, visitor: ParseTreeVisitor):
+            if hasattr(visitor, "visitXbar"):
                 return visitor.visitXbar(self)
             else:
                 return visitor.visitChildren(self)
-
-
-
 
     def xbar(self):
 
         localctx = PigeonParser.XbarContext(self, self._ctx, self.state)
         self.enterRule(localctx, 34, self.RULE_xbar)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 575
             self.match(PigeonParser.T__15)
             self.state = 579
             self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,118,self._ctx)
-            while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
-                if _alt==1:
+            _alt = self._interp.adaptivePredict(self._input, 118, self._ctx)
+            while _alt != 2 and _alt != ATN.INVALID_ALT_NUMBER:
+                if _alt == 1:
                     self.state = 576
-                    self.match(PigeonParser.WS) 
+                    self.match(PigeonParser.WS)
                 self.state = 581
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,118,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input, 118, self._ctx)
 
             self.state = 583
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,119,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 119, self._ctx)
             if la_ == 1:
                 self.state = 582
                 self.label()
 
-
             self.state = 588
             self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,120,self._ctx)
-            while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
-                if _alt==1:
+            _alt = self._interp.adaptivePredict(self._input, 120, self._ctx)
+            while _alt != 2 and _alt != ATN.INVALID_ALT_NUMBER:
+                if _alt == 1:
                     self.state = 585
-                    self.match(PigeonParser.WS) 
+                    self.match(PigeonParser.WS)
                 self.state = 590
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,120,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input, 120, self._ctx)
 
             self.state = 592
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << PigeonParser.T__12) | (1 << PigeonParser.T__13) | (1 << PigeonParser.INT))) != 0):
+            if ((_la) & ~0x3F) == 0 and (
+                (1 << _la)
+                & (
+                    (1 << PigeonParser.T__12)
+                    | (1 << PigeonParser.T__13)
+                    | (1 << PigeonParser.INT)
+                )
+            ) != 0:
                 self.state = 591
                 self.color()
-
 
             self.state = 597
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==PigeonParser.WS:
+            while _la == PigeonParser.WS:
                 self.state = 594
                 self.match(PigeonParser.WS)
                 self.state = 599
@@ -3107,21 +3217,20 @@ class PigeonParser ( Parser ):
             self.state = 601
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==PigeonParser.T__19:
+            if _la == PigeonParser.T__19:
                 self.state = 600
                 self.ignorecolor()
 
-
-            self.state = 604 
+            self.state = 604
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
                 self.state = 603
                 self.match(PigeonParser.NL)
-                self.state = 606 
+                self.state = 606
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not (_la==PigeonParser.NL):
+                if not (_la == PigeonParser.NL):
                     break
 
         except RecognitionException as re:
@@ -3132,32 +3241,32 @@ class PigeonParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class BoxContext(ParserRuleContext):
-
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(
+            self,
+            parser,
+            parent: ParserRuleContext = None,
+            invokingState: int = -1,
+        ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def WS(self, i:int=None):
+        def WS(self, i: int = None):
             if i is None:
                 return self.getTokens(PigeonParser.WS)
             else:
                 return self.getToken(PigeonParser.WS, i)
 
         def label(self):
-            return self.getTypedRuleContext(PigeonParser.LabelContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.LabelContext, 0)
 
         def color(self):
-            return self.getTypedRuleContext(PigeonParser.ColorContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.ColorContext, 0)
 
         def ignorecolor(self):
-            return self.getTypedRuleContext(PigeonParser.IgnorecolorContext,0)
+            return self.getTypedRuleContext(PigeonParser.IgnorecolorContext, 0)
 
-
-        def NL(self, i:int=None):
+        def NL(self, i: int = None):
             if i is None:
                 return self.getTokens(PigeonParser.NL)
             else:
@@ -3166,74 +3275,76 @@ class PigeonParser ( Parser ):
         def getRuleIndex(self):
             return PigeonParser.RULE_box
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterBox" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterBox"):
                 listener.enterBox(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitBox" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitBox"):
                 listener.exitBox(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitBox" ):
+        def accept(self, visitor: ParseTreeVisitor):
+            if hasattr(visitor, "visitBox"):
                 return visitor.visitBox(self)
             else:
                 return visitor.visitChildren(self)
-
-
-
 
     def box(self):
 
         localctx = PigeonParser.BoxContext(self, self._ctx, self.state)
         self.enterRule(localctx, 36, self.RULE_box)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 608
             self.match(PigeonParser.T__16)
             self.state = 612
             self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,125,self._ctx)
-            while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
-                if _alt==1:
+            _alt = self._interp.adaptivePredict(self._input, 125, self._ctx)
+            while _alt != 2 and _alt != ATN.INVALID_ALT_NUMBER:
+                if _alt == 1:
                     self.state = 609
-                    self.match(PigeonParser.WS) 
+                    self.match(PigeonParser.WS)
                 self.state = 614
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,125,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input, 125, self._ctx)
 
             self.state = 616
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,126,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 126, self._ctx)
             if la_ == 1:
                 self.state = 615
                 self.label()
 
-
             self.state = 621
             self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,127,self._ctx)
-            while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
-                if _alt==1:
+            _alt = self._interp.adaptivePredict(self._input, 127, self._ctx)
+            while _alt != 2 and _alt != ATN.INVALID_ALT_NUMBER:
+                if _alt == 1:
                     self.state = 618
-                    self.match(PigeonParser.WS) 
+                    self.match(PigeonParser.WS)
                 self.state = 623
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,127,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input, 127, self._ctx)
 
             self.state = 625
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << PigeonParser.T__12) | (1 << PigeonParser.T__13) | (1 << PigeonParser.INT))) != 0):
+            if ((_la) & ~0x3F) == 0 and (
+                (1 << _la)
+                & (
+                    (1 << PigeonParser.T__12)
+                    | (1 << PigeonParser.T__13)
+                    | (1 << PigeonParser.INT)
+                )
+            ) != 0:
                 self.state = 624
                 self.color()
-
 
             self.state = 630
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==PigeonParser.WS:
+            while _la == PigeonParser.WS:
                 self.state = 627
                 self.match(PigeonParser.WS)
                 self.state = 632
@@ -3243,21 +3354,20 @@ class PigeonParser ( Parser ):
             self.state = 634
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==PigeonParser.T__19:
+            if _la == PigeonParser.T__19:
                 self.state = 633
                 self.ignorecolor()
 
-
-            self.state = 637 
+            self.state = 637
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
                 self.state = 636
                 self.match(PigeonParser.NL)
-                self.state = 639 
+                self.state = 639
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not (_la==PigeonParser.NL):
+                if not (_la == PigeonParser.NL):
                     break
 
         except RecognitionException as re:
@@ -3268,32 +3378,32 @@ class PigeonParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class ScarContext(ParserRuleContext):
-
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(
+            self,
+            parser,
+            parent: ParserRuleContext = None,
+            invokingState: int = -1,
+        ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def WS(self, i:int=None):
+        def WS(self, i: int = None):
             if i is None:
                 return self.getTokens(PigeonParser.WS)
             else:
                 return self.getToken(PigeonParser.WS, i)
 
         def label(self):
-            return self.getTypedRuleContext(PigeonParser.LabelContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.LabelContext, 0)
 
         def color(self):
-            return self.getTypedRuleContext(PigeonParser.ColorContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.ColorContext, 0)
 
         def ignorecolor(self):
-            return self.getTypedRuleContext(PigeonParser.IgnorecolorContext,0)
+            return self.getTypedRuleContext(PigeonParser.IgnorecolorContext, 0)
 
-
-        def NL(self, i:int=None):
+        def NL(self, i: int = None):
             if i is None:
                 return self.getTokens(PigeonParser.NL)
             else:
@@ -3302,74 +3412,76 @@ class PigeonParser ( Parser ):
         def getRuleIndex(self):
             return PigeonParser.RULE_scar
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterScar" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterScar"):
                 listener.enterScar(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitScar" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitScar"):
                 listener.exitScar(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitScar" ):
+        def accept(self, visitor: ParseTreeVisitor):
+            if hasattr(visitor, "visitScar"):
                 return visitor.visitScar(self)
             else:
                 return visitor.visitChildren(self)
-
-
-
 
     def scar(self):
 
         localctx = PigeonParser.ScarContext(self, self._ctx, self.state)
         self.enterRule(localctx, 38, self.RULE_scar)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 641
             self.match(PigeonParser.T__17)
             self.state = 645
             self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,132,self._ctx)
-            while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
-                if _alt==1:
+            _alt = self._interp.adaptivePredict(self._input, 132, self._ctx)
+            while _alt != 2 and _alt != ATN.INVALID_ALT_NUMBER:
+                if _alt == 1:
                     self.state = 642
-                    self.match(PigeonParser.WS) 
+                    self.match(PigeonParser.WS)
                 self.state = 647
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,132,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input, 132, self._ctx)
 
             self.state = 649
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,133,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 133, self._ctx)
             if la_ == 1:
                 self.state = 648
                 self.label()
 
-
             self.state = 654
             self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,134,self._ctx)
-            while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
-                if _alt==1:
+            _alt = self._interp.adaptivePredict(self._input, 134, self._ctx)
+            while _alt != 2 and _alt != ATN.INVALID_ALT_NUMBER:
+                if _alt == 1:
                     self.state = 651
-                    self.match(PigeonParser.WS) 
+                    self.match(PigeonParser.WS)
                 self.state = 656
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,134,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input, 134, self._ctx)
 
             self.state = 658
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << PigeonParser.T__12) | (1 << PigeonParser.T__13) | (1 << PigeonParser.INT))) != 0):
+            if ((_la) & ~0x3F) == 0 and (
+                (1 << _la)
+                & (
+                    (1 << PigeonParser.T__12)
+                    | (1 << PigeonParser.T__13)
+                    | (1 << PigeonParser.INT)
+                )
+            ) != 0:
                 self.state = 657
                 self.color()
-
 
             self.state = 663
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==PigeonParser.WS:
+            while _la == PigeonParser.WS:
                 self.state = 660
                 self.match(PigeonParser.WS)
                 self.state = 665
@@ -3379,21 +3491,20 @@ class PigeonParser ( Parser ):
             self.state = 667
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==PigeonParser.T__19:
+            if _la == PigeonParser.T__19:
                 self.state = 666
                 self.ignorecolor()
 
-
-            self.state = 670 
+            self.state = 670
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
                 self.state = 669
                 self.match(PigeonParser.NL)
-                self.state = 672 
+                self.state = 672
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not (_la==PigeonParser.NL):
+                if not (_la == PigeonParser.NL):
                     break
 
         except RecognitionException as re:
@@ -3404,10 +3515,13 @@ class PigeonParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class VectorContext(ParserRuleContext):
-
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(
+            self,
+            parser,
+            parent: ParserRuleContext = None,
+            invokingState: int = -1,
+        ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -3415,10 +3529,9 @@ class PigeonParser ( Parser ):
             return self.getToken(PigeonParser.WS, 0)
 
         def label(self):
-            return self.getTypedRuleContext(PigeonParser.LabelContext,0)
+            return self.getTypedRuleContext(PigeonParser.LabelContext, 0)
 
-
-        def NL(self, i:int=None):
+        def NL(self, i: int = None):
             if i is None:
                 return self.getTokens(PigeonParser.NL)
             else:
@@ -3427,28 +3540,25 @@ class PigeonParser ( Parser ):
         def getRuleIndex(self):
             return PigeonParser.RULE_vector
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterVector" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterVector"):
                 listener.enterVector(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitVector" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitVector"):
                 listener.exitVector(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitVector" ):
+        def accept(self, visitor: ParseTreeVisitor):
+            if hasattr(visitor, "visitVector"):
                 return visitor.visitVector(self)
             else:
                 return visitor.visitChildren(self)
-
-
-
 
     def vector(self):
 
         localctx = PigeonParser.VectorContext(self, self._ctx, self.state)
         self.enterRule(localctx, 40, self.RULE_vector)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 674
@@ -3456,29 +3566,50 @@ class PigeonParser ( Parser ):
             self.state = 676
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if _la==PigeonParser.WS:
+            if _la == PigeonParser.WS:
                 self.state = 675
                 self.match(PigeonParser.WS)
-
 
             self.state = 679
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << PigeonParser.T__0) | (1 << PigeonParser.T__1) | (1 << PigeonParser.T__2) | (1 << PigeonParser.T__3) | (1 << PigeonParser.T__4) | (1 << PigeonParser.T__5) | (1 << PigeonParser.T__6) | (1 << PigeonParser.T__7) | (1 << PigeonParser.T__8) | (1 << PigeonParser.T__9) | (1 << PigeonParser.T__10) | (1 << PigeonParser.T__11) | (1 << PigeonParser.T__12) | (1 << PigeonParser.T__13) | (1 << PigeonParser.T__14) | (1 << PigeonParser.T__15) | (1 << PigeonParser.T__16) | (1 << PigeonParser.ID) | (1 << PigeonParser.INT))) != 0):
+            if ((_la) & ~0x3F) == 0 and (
+                (1 << _la)
+                & (
+                    (1 << PigeonParser.T__0)
+                    | (1 << PigeonParser.T__1)
+                    | (1 << PigeonParser.T__2)
+                    | (1 << PigeonParser.T__3)
+                    | (1 << PigeonParser.T__4)
+                    | (1 << PigeonParser.T__5)
+                    | (1 << PigeonParser.T__6)
+                    | (1 << PigeonParser.T__7)
+                    | (1 << PigeonParser.T__8)
+                    | (1 << PigeonParser.T__9)
+                    | (1 << PigeonParser.T__10)
+                    | (1 << PigeonParser.T__11)
+                    | (1 << PigeonParser.T__12)
+                    | (1 << PigeonParser.T__13)
+                    | (1 << PigeonParser.T__14)
+                    | (1 << PigeonParser.T__15)
+                    | (1 << PigeonParser.T__16)
+                    | (1 << PigeonParser.ID)
+                    | (1 << PigeonParser.INT)
+                )
+            ) != 0:
                 self.state = 678
                 self.label()
 
-
-            self.state = 682 
+            self.state = 682
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
                 self.state = 681
                 self.match(PigeonParser.NL)
-                self.state = 684 
+                self.state = 684
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not (_la==PigeonParser.NL):
+                if not (_la == PigeonParser.NL):
                     break
 
         except RecognitionException as re:
@@ -3489,33 +3620,32 @@ class PigeonParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class InvertContext(ParserRuleContext):
-
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(
+            self,
+            parser,
+            parent: ParserRuleContext = None,
+            invokingState: int = -1,
+        ):
             super().__init__(parent, invokingState)
             self.parser = parser
-
 
         def getRuleIndex(self):
             return PigeonParser.RULE_invert
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterInvert" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterInvert"):
                 listener.enterInvert(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitInvert" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitInvert"):
                 listener.exitInvert(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitInvert" ):
+        def accept(self, visitor: ParseTreeVisitor):
+            if hasattr(visitor, "visitInvert"):
                 return visitor.visitInvert(self)
             else:
                 return visitor.visitChildren(self)
-
-
-
 
     def invert(self):
 
@@ -3533,10 +3663,13 @@ class PigeonParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class ColorContext(ParserRuleContext):
-
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(
+            self,
+            parser,
+            parent: ParserRuleContext = None,
+            invokingState: int = -1,
+        ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
@@ -3546,33 +3679,43 @@ class PigeonParser ( Parser ):
         def getRuleIndex(self):
             return PigeonParser.RULE_color
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterColor" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterColor"):
                 listener.enterColor(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitColor" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitColor"):
                 listener.exitColor(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitColor" ):
+        def accept(self, visitor: ParseTreeVisitor):
+            if hasattr(visitor, "visitColor"):
                 return visitor.visitColor(self)
             else:
                 return visitor.visitChildren(self)
-
-
-
 
     def color(self):
 
         localctx = PigeonParser.ColorContext(self, self._ctx, self.state)
         self.enterRule(localctx, 44, self.RULE_color)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 688
             _la = self._input.LA(1)
-            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << PigeonParser.T__12) | (1 << PigeonParser.T__13) | (1 << PigeonParser.INT))) != 0)):
+            if not (
+                (
+                    ((_la) & ~0x3F) == 0
+                    and (
+                        (1 << _la)
+                        & (
+                            (1 << PigeonParser.T__12)
+                            | (1 << PigeonParser.T__13)
+                            | (1 << PigeonParser.INT)
+                        )
+                    )
+                    != 0
+                )
+            ):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
@@ -3585,14 +3728,17 @@ class PigeonParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class LabelContext(ParserRuleContext):
-
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(
+            self,
+            parser,
+            parent: ParserRuleContext = None,
+            invokingState: int = -1,
+        ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def ID(self, i:int=None):
+        def ID(self, i: int = None):
             if i is None:
                 return self.getTokens(PigeonParser.ID)
             else:
@@ -3602,57 +3748,51 @@ class PigeonParser ( Parser ):
             return self.getToken(PigeonParser.INT, 0)
 
         def commands(self):
-            return self.getTypedRuleContext(PigeonParser.CommandsContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.CommandsContext, 0)
 
         def getRuleIndex(self):
             return PigeonParser.RULE_label
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterLabel" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterLabel"):
                 listener.enterLabel(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitLabel" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitLabel"):
                 listener.exitLabel(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitLabel" ):
+        def accept(self, visitor: ParseTreeVisitor):
+            if hasattr(visitor, "visitLabel"):
                 return visitor.visitLabel(self)
             else:
                 return visitor.visitChildren(self)
-
-
-
 
     def label(self):
 
         localctx = PigeonParser.LabelContext(self, self._ctx, self.state)
         self.enterRule(localctx, 46, self.RULE_label)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 712
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,144,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 144, self._ctx)
             if la_ == 1:
                 self.state = 690
                 self.match(PigeonParser.ID)
                 self.state = 692
                 self._errHandler.sync(self)
-                la_ = self._interp.adaptivePredict(self._input,142,self._ctx)
+                la_ = self._interp.adaptivePredict(self._input, 142, self._ctx)
                 if la_ == 1:
                     self.state = 691
                     self.match(PigeonParser.INT)
 
-
                 self.state = 695
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if _la==PigeonParser.ID:
+                if _la == PigeonParser.ID:
                     self.state = 694
                     self.match(PigeonParser.ID)
-
 
                 pass
 
@@ -3698,7 +3838,6 @@ class PigeonParser ( Parser ):
                 self.match(PigeonParser.ID)
                 pass
 
-
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -3707,33 +3846,32 @@ class PigeonParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class IgnorecolorContext(ParserRuleContext):
-
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(
+            self,
+            parser,
+            parent: ParserRuleContext = None,
+            invokingState: int = -1,
+        ):
             super().__init__(parent, invokingState)
             self.parser = parser
-
 
         def getRuleIndex(self):
             return PigeonParser.RULE_ignorecolor
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterIgnorecolor" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterIgnorecolor"):
                 listener.enterIgnorecolor(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitIgnorecolor" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitIgnorecolor"):
                 listener.exitIgnorecolor(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitIgnorecolor" ):
+        def accept(self, visitor: ParseTreeVisitor):
+            if hasattr(visitor, "visitIgnorecolor"):
                 return visitor.visitIgnorecolor(self)
             else:
                 return visitor.visitChildren(self)
-
-
-
 
     def ignorecolor(self):
 
@@ -3751,44 +3889,70 @@ class PigeonParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class CommandsContext(ParserRuleContext):
-
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(
+            self,
+            parser,
+            parent: ParserRuleContext = None,
+            invokingState: int = -1,
+        ):
             super().__init__(parent, invokingState)
             self.parser = parser
-
 
         def getRuleIndex(self):
             return PigeonParser.RULE_commands
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterCommands" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterCommands"):
                 listener.enterCommands(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitCommands" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitCommands"):
                 listener.exitCommands(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitCommands" ):
+        def accept(self, visitor: ParseTreeVisitor):
+            if hasattr(visitor, "visitCommands"):
                 return visitor.visitCommands(self)
             else:
                 return visitor.visitChildren(self)
-
-
-
 
     def commands(self):
 
         localctx = PigeonParser.CommandsContext(self, self._ctx, self.state)
         self.enterRule(localctx, 50, self.RULE_commands)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 716
             _la = self._input.LA(1)
-            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << PigeonParser.T__0) | (1 << PigeonParser.T__1) | (1 << PigeonParser.T__2) | (1 << PigeonParser.T__3) | (1 << PigeonParser.T__4) | (1 << PigeonParser.T__5) | (1 << PigeonParser.T__6) | (1 << PigeonParser.T__7) | (1 << PigeonParser.T__8) | (1 << PigeonParser.T__9) | (1 << PigeonParser.T__10) | (1 << PigeonParser.T__11) | (1 << PigeonParser.T__12) | (1 << PigeonParser.T__13) | (1 << PigeonParser.T__14) | (1 << PigeonParser.T__15) | (1 << PigeonParser.T__16))) != 0)):
+            if not (
+                (
+                    ((_la) & ~0x3F) == 0
+                    and (
+                        (1 << _la)
+                        & (
+                            (1 << PigeonParser.T__0)
+                            | (1 << PigeonParser.T__1)
+                            | (1 << PigeonParser.T__2)
+                            | (1 << PigeonParser.T__3)
+                            | (1 << PigeonParser.T__4)
+                            | (1 << PigeonParser.T__5)
+                            | (1 << PigeonParser.T__6)
+                            | (1 << PigeonParser.T__7)
+                            | (1 << PigeonParser.T__8)
+                            | (1 << PigeonParser.T__9)
+                            | (1 << PigeonParser.T__10)
+                            | (1 << PigeonParser.T__11)
+                            | (1 << PigeonParser.T__12)
+                            | (1 << PigeonParser.T__13)
+                            | (1 << PigeonParser.T__14)
+                            | (1 << PigeonParser.T__15)
+                            | (1 << PigeonParser.T__16)
+                        )
+                    )
+                    != 0
+                )
+            ):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
@@ -3801,44 +3965,41 @@ class PigeonParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class ArccommandsContext(ParserRuleContext):
-
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(
+            self,
+            parser,
+            parent: ParserRuleContext = None,
+            invokingState: int = -1,
+        ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
         def rep(self):
-            return self.getTypedRuleContext(PigeonParser.RepContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.RepContext, 0)
 
         def ind(self):
-            return self.getTypedRuleContext(PigeonParser.IndContext,0)
-
+            return self.getTypedRuleContext(PigeonParser.IndContext, 0)
 
         def rep2(self):
-            return self.getTypedRuleContext(PigeonParser.Rep2Context,0)
-
+            return self.getTypedRuleContext(PigeonParser.Rep2Context, 0)
 
         def getRuleIndex(self):
             return PigeonParser.RULE_arccommands
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterArccommands" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterArccommands"):
                 listener.enterArccommands(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitArccommands" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitArccommands"):
                 listener.exitArccommands(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitArccommands" ):
+        def accept(self, visitor: ParseTreeVisitor):
+            if hasattr(visitor, "visitArccommands"):
                 return visitor.visitArccommands(self)
             else:
                 return visitor.visitChildren(self)
-
-
-
 
     def arccommands(self):
 
@@ -3847,7 +4008,7 @@ class PigeonParser ( Parser ):
         try:
             self.state = 721
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,145,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input, 145, self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
                 self.state = 718
@@ -3866,7 +4027,6 @@ class PigeonParser ( Parser ):
                 self.rep2()
                 pass
 
-
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -3875,27 +4035,29 @@ class PigeonParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class RepContext(ParserRuleContext):
-
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(
+            self,
+            parser,
+            parent: ParserRuleContext = None,
+            invokingState: int = -1,
+        ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def label(self, i:int=None):
+        def label(self, i: int = None):
             if i is None:
                 return self.getTypedRuleContexts(PigeonParser.LabelContext)
             else:
-                return self.getTypedRuleContext(PigeonParser.LabelContext,i)
+                return self.getTypedRuleContext(PigeonParser.LabelContext, i)
 
-
-        def WS(self, i:int=None):
+        def WS(self, i: int = None):
             if i is None:
                 return self.getTokens(PigeonParser.WS)
             else:
                 return self.getToken(PigeonParser.WS, i)
 
-        def NL(self, i:int=None):
+        def NL(self, i: int = None):
             if i is None:
                 return self.getTokens(PigeonParser.NL)
             else:
@@ -3904,28 +4066,25 @@ class PigeonParser ( Parser ):
         def getRuleIndex(self):
             return PigeonParser.RULE_rep
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterRep" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterRep"):
                 listener.enterRep(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitRep" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitRep"):
                 listener.exitRep(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitRep" ):
+        def accept(self, visitor: ParseTreeVisitor):
+            if hasattr(visitor, "visitRep"):
                 return visitor.visitRep(self)
             else:
                 return visitor.visitChildren(self)
-
-
-
 
     def rep(self):
 
         localctx = PigeonParser.RepContext(self, self._ctx, self.state)
         self.enterRule(localctx, 54, self.RULE_rep)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 723
@@ -3938,16 +4097,16 @@ class PigeonParser ( Parser ):
             self.match(PigeonParser.WS)
             self.state = 727
             self.label()
-            self.state = 729 
+            self.state = 729
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
                 self.state = 728
                 self.match(PigeonParser.NL)
-                self.state = 731 
+                self.state = 731
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not (_la==PigeonParser.NL):
+                if not (_la == PigeonParser.NL):
                     break
 
         except RecognitionException as re:
@@ -3958,27 +4117,29 @@ class PigeonParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class Rep2Context(ParserRuleContext):
-
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(
+            self,
+            parser,
+            parent: ParserRuleContext = None,
+            invokingState: int = -1,
+        ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def label(self, i:int=None):
+        def label(self, i: int = None):
             if i is None:
                 return self.getTypedRuleContexts(PigeonParser.LabelContext)
             else:
-                return self.getTypedRuleContext(PigeonParser.LabelContext,i)
+                return self.getTypedRuleContext(PigeonParser.LabelContext, i)
 
-
-        def WS(self, i:int=None):
+        def WS(self, i: int = None):
             if i is None:
                 return self.getTokens(PigeonParser.WS)
             else:
                 return self.getToken(PigeonParser.WS, i)
 
-        def NL(self, i:int=None):
+        def NL(self, i: int = None):
             if i is None:
                 return self.getTokens(PigeonParser.NL)
             else:
@@ -3987,28 +4148,25 @@ class PigeonParser ( Parser ):
         def getRuleIndex(self):
             return PigeonParser.RULE_rep2
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterRep2" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterRep2"):
                 listener.enterRep2(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitRep2" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitRep2"):
                 listener.exitRep2(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitRep2" ):
+        def accept(self, visitor: ParseTreeVisitor):
+            if hasattr(visitor, "visitRep2"):
                 return visitor.visitRep2(self)
             else:
                 return visitor.visitChildren(self)
-
-
-
 
     def rep2(self):
 
         localctx = PigeonParser.Rep2Context(self, self._ctx, self.state)
         self.enterRule(localctx, 56, self.RULE_rep2)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 733
@@ -4025,16 +4183,16 @@ class PigeonParser ( Parser ):
             self.match(PigeonParser.T__21)
             self.state = 739
             self.label()
-            self.state = 741 
+            self.state = 741
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
                 self.state = 740
                 self.match(PigeonParser.NL)
-                self.state = 743 
+                self.state = 743
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not (_la==PigeonParser.NL):
+                if not (_la == PigeonParser.NL):
                     break
 
         except RecognitionException as re:
@@ -4045,27 +4203,29 @@ class PigeonParser ( Parser ):
             self.exitRule()
         return localctx
 
-
     class IndContext(ParserRuleContext):
-
-        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+        def __init__(
+            self,
+            parser,
+            parent: ParserRuleContext = None,
+            invokingState: int = -1,
+        ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def label(self, i:int=None):
+        def label(self, i: int = None):
             if i is None:
                 return self.getTypedRuleContexts(PigeonParser.LabelContext)
             else:
-                return self.getTypedRuleContext(PigeonParser.LabelContext,i)
+                return self.getTypedRuleContext(PigeonParser.LabelContext, i)
 
-
-        def WS(self, i:int=None):
+        def WS(self, i: int = None):
             if i is None:
                 return self.getTokens(PigeonParser.WS)
             else:
                 return self.getToken(PigeonParser.WS, i)
 
-        def NL(self, i:int=None):
+        def NL(self, i: int = None):
             if i is None:
                 return self.getTokens(PigeonParser.NL)
             else:
@@ -4074,28 +4234,25 @@ class PigeonParser ( Parser ):
         def getRuleIndex(self):
             return PigeonParser.RULE_ind
 
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterInd" ):
+        def enterRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "enterInd"):
                 listener.enterInd(self)
 
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitInd" ):
+        def exitRule(self, listener: ParseTreeListener):
+            if hasattr(listener, "exitInd"):
                 listener.exitInd(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitInd" ):
+        def accept(self, visitor: ParseTreeVisitor):
+            if hasattr(visitor, "visitInd"):
                 return visitor.visitInd(self)
             else:
                 return visitor.visitChildren(self)
-
-
-
 
     def ind(self):
 
         localctx = PigeonParser.IndContext(self, self._ctx, self.state)
         self.enterRule(localctx, 58, self.RULE_ind)
-        self._la = 0 # Token type
+        self._la = 0  # Token type
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 745
@@ -4108,16 +4265,16 @@ class PigeonParser ( Parser ):
             self.match(PigeonParser.WS)
             self.state = 749
             self.label()
-            self.state = 751 
+            self.state = 751
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while True:
                 self.state = 750
                 self.match(PigeonParser.NL)
-                self.state = 753 
+                self.state = 753
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not (_la==PigeonParser.NL):
+                if not (_la == PigeonParser.NL):
                     break
 
         except RecognitionException as re:
@@ -4127,8 +4284,3 @@ class PigeonParser ( Parser ):
         finally:
             self.exitRule()
         return localctx
-
-
-
-
-

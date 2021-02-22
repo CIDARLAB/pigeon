@@ -1,0 +1,6 @@
+p Cph8 6
+? OmpR 4
+p Pomp 2
+? LacZ 2
+# Arcs
+OmpR ing Pomp

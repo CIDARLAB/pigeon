@@ -10,11 +10,11 @@ from matplotlib import gridspec
 # class to maintain pigeon script parsing and image generation
 class Pigeon(object):
 
-    format = ''
+    format = ""
     fig = plt.figure()
 
     # if no image format is specified when you instantiate the class it will use the default svg format
-    def __init__(self, format='svg'):
+    def __init__(self, format="svg"):
         self.format = format
         pass
 
@@ -36,24 +36,31 @@ class Pigeon(object):
         design = HtmlPigeonListener.getDesignList(htmlPigeon)
         arcs = HtmlPigeonListener.getArcList(htmlPigeon)
 
-        fig = plt.figure(figsize=(design.__len__()/3, 2))
+        fig = plt.figure(figsize=(design.__len__() / 3, 2))
         gs = gridspec.GridSpec(1, 1)
         axis = plt.subplot(gs[0])
 
         print("Deisgn Length: " + str(design.__len__()))
         print("Arcs Length: " + str(arcs.__len__()))
 
-        start, end = dr.renderDNA(axis, design, part_renderers, regs = arcs, reg_renderers=dr.std_reg_renderers(), plot_vector=htmlPigeon.has_vector, vector_label=htmlPigeon.vector_label)
+        start, end = dr.renderDNA(
+            axis,
+            design,
+            part_renderers,
+            regs=arcs,
+            reg_renderers=dr.std_reg_renderers(),
+            plot_vector=htmlPigeon.has_vector,
+            vector_label=htmlPigeon.vector_label,
+        )
         axis.set_xlim([start, end])
         axis.set_ylim([-(30 + design.__len__()), (30 + design.__len__())])
-        axis.set_aspect('equal')
-        axis.axis('off')
+        axis.set_aspect("equal")
+        axis.axis("off")
         self.fig = fig
         pass
 
     # Saves Pigeon's fig using the function input values for name and location
     def save(self, location, name):
-        save_path = location + name + '.' + self.format
-        self.fig.savefig(save_path, dpi=300) # Save as png file
+        save_path = location + name + "." + self.format
+        self.fig.savefig(save_path, dpi=300)  # Save as png file
         pass
-
