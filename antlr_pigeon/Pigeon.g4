@@ -79,7 +79,7 @@ arccommands
 
 rep : label WS 'rep' WS label NL+;
 rep2: label WS 'rep' WS label'-'label NL+;
-ind : label WS 'ind' WS label NL+;
+ind : label WS 'ing' WS label NL+;
 
 
 /*
