@@ -1,6 +1,6 @@
 import argparse
-import Pigeon
-from PigeonGraph import PigeonGraph
+from pigeon.Pigeon import Pigeon
+from pigeon.PigeonGraph import PigeonGraph
 
 def main():
 
@@ -28,7 +28,7 @@ def main():
     if (args.name):
         imgname = args.name
 
-    with open (args.pigeon_script, "r") as myfile:
+    with open (args.pigeon_script, "r", encoding="utf-8") as myfile:
         data=myfile.read()
 
     if args.graph == True:
@@ -36,7 +36,7 @@ def main():
         p_graph.parseAndGenerateImage(data)
         p_graph.save(imglocation, imgname)
     else:
-        parser = Pigeon.Pigeon(imgformat)
+        parser = Pigeon(imgformat)
         parser.parseAndGenerateImage(data)
         parser.save(imglocation, imgname)
 

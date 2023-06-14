@@ -1,3 +1,26 @@
+# Pigeon
+
+## Installation
+
+You need to make sure that the following dependencies are installed:
+
+```
+graphviz
+```
+
+### From PyPI
+
+`pip install pigeon`
+
+You can then use the command line interface as `pigeon -name=my_image -format=png -location=/path/to/myFolder pigeon_script.txt`
+
+
+### From source
+
+1. Clone the repository
+2. Install dependencies `pip install -e .` or   `poetry install`
+3. If using poetry, you can use the shell with `poetry shell`
+
 ## Command Line Interface
 To run Pigeon from the command line:
 
@@ -16,9 +39,9 @@ There are also additional config options you can specify when using pigeon. Thos
 3. image location 
 
 For example:
-
+```
     python cmdline.py -name=my_image -format=png -location=/path/to/myFolder pigeon_script.txt
-    
+```
 will generate an image "my_image.png" and save it in /myFolder
 
 
@@ -28,26 +51,21 @@ will generate an image "my_image.png" and save it in /myFolder
 2. import Pigeon (see class specs in Pigeon.py)
 3. To create a parser and generate and save the image:
 
-
-    parser = Pigeon.Pigeon(image_format) // if no format specified default is svg
-    parser.parseAndGenerateImage(script_string)   // the script is passed as a string to the parsing function
-    parser.save(image_location, image_name)  // saves the image with name 'image_name' at the folder specified by 'image_location'
-    
- 
-## Binary Executable (Krishna/Ryuichi) 
-
-1. ... 
-  
+```
+parser = Pigeon.Pigeon(image_format) // if no format specified default is svg
+parser.parseAndGenerateImage(script_string)   // the script is passed as a string to the parsing function
+parser.save(image_location, image_name)  // saves the image with name 'image_name' at the folder specified by 'image_location'
+```
 
 
-## Web Setup (Krishna probably)
+## Web Setup (To be updated)
 
 Set Flask variables:
-
+```
     export FLASK_ENV=development
     export FLASK_APP=server.py
-  
+```
 And run the application:
-
+```
     flask run
-
+```
