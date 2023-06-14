@@ -8,27 +8,29 @@ You need to make sure that the following dependencies are installed:
 graphviz
 ```
 
-### From PyPI
-
-`pip install pigeon`
-
-You can then use the command line interface as `pigeon -name=my_image -format=png -location=/path/to/myFolder pigeon_script.txt`
-
 
 ### From source
 
 1. Clone the repository
-2. Install dependencies `pip install -e .` or   `poetry install`
-3. If using poetry, you can use the shell with `poetry shell`
+2. Install project and dependencies `pip install -e .`  or   `poetry install` (if you want to actively edit the project)
+3. If using poetry, you can use the shell with `poetry shell` and then run `pigeon <your_pigeon_script>.txt` to generate the SVG's
+
+In the scenario that you just want to install and use the project and not do any development, just run  `pip install .`
 
 ## Command Line Interface
 To run Pigeon from the command line:
 
-    python cmdline.py <your_pigeon_script>.txt
-    
+If you install the project then a softlink for `pigeon` should be added. If you have trouble running it, you can use `python cmdline.py` instead.
+
+```
+pigeon <your_pigeon_script>.txt
+```
+
 This will run pigeon in the default settings which generate an svg with the same name as the pigeon script passed in, and save it in the project repo. For example if you enter:
     
-    python cmdline.py pigeon_script.txt
+```
+pigeon pigeon_script.txt
+```
 
 Where pigeon_script.txt is a text file in the project folder, then pigeon will generate and save an image called pigeon_script.svg in the same folder. 
 
