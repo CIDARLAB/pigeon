@@ -1,5 +1,5 @@
 import argparse
-import Pigeon
+import pigeon.Pigeon
 from PigeonGraph import PigeonGraph
 
 def main():

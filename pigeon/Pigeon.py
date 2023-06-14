@@ -3,7 +3,7 @@ from antlr4 import InputStream, CommonTokenStream, ParseTreeWalker
 from antlr_pigeon.PigeonLexer import PigeonLexer
 from antlr_pigeon.PigeonParser import PigeonParser
 from PigeonListener import PigeonListener
-import dnaplotlib as dpl
+import pigeon.dnaplotlib as dpl
 import matplotlib.pyplot as plt
 from matplotlib import gridspec
 
