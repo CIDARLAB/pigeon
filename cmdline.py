@@ -28,7 +28,7 @@ def main():
     if (args.name):
         imgname = args.name
 
-    with open (args.pigeon_script, "r") as myfile:
+    with open (args.pigeon_script, "r", encoding="utf-8") as myfile:
         data=myfile.read()
 
     if args.graph == True:
