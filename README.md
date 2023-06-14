@@ -6,7 +6,7 @@ Pigeon is a tool that generates SBOL compliant visualizations from text scripts.
 
 Make sure you have the following dependency installed:
 
-- graphviz
+- graphviz [Detailed Instructions](https://pygraphviz.github.io/documentation/stable/install.html)
 
 ### From source
 
