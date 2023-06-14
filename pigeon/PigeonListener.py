@@ -1,7 +1,7 @@
 import sys
 from antlr4 import *
-from antlr_pigeon.PigeonParser import PigeonParser
-from antlr_pigeon.PigeonListener import PigeonListener
+from pigeon.antlr_pigeon.PigeonParser import PigeonParser
+from pigeon.antlr_pigeon.PigeonListener import PigeonListener
 
 
 # HTML Pigeon Listener could take as input some type of design list

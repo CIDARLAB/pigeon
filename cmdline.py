@@ -1,6 +1,6 @@
 import argparse
-import pigeon.Pigeon
-from PigeonGraph import PigeonGraph
+from pigeon.Pigeon import Pigeon
+from pigeon.PigeonGraph import PigeonGraph
 
 def main():
 
@@ -36,7 +36,7 @@ def main():
         p_graph.parseAndGenerateImage(data)
         p_graph.save(imglocation, imgname)
     else:
-        parser = Pigeon.Pigeon(imgformat)
+        parser = Pigeon(imgformat)
         parser.parseAndGenerateImage(data)
         parser.save(imglocation, imgname)
 

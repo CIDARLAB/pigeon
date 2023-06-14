@@ -1,4 +1,4 @@
-from Pigeon import Pigeon
+from pigeon.Pigeon import Pigeon
 import re
 import pygraphviz as pgv
 import os
