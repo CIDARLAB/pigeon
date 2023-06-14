@@ -1,3 +1,20 @@
+# Pigeon
+
+## Installation
+
+### From PyPI
+
+`pip install pigeon`
+
+You can then use the command line interface as `pigeon -name=my_image -format=png -location=/path/to/myFolder pigeon_script.txt`
+
+
+### From source
+
+1. Clone the repository
+2. Install dependencies `pip install -e .` or   `poetry install`
+3. If using poetry, you can use the shell with `poetry shell`
+
 ## Command Line Interface
 To run Pigeon from the command line:
 
@@ -33,14 +50,9 @@ will generate an image "my_image.png" and save it in /myFolder
     parser.parseAndGenerateImage(script_string)   // the script is passed as a string to the parsing function
     parser.save(image_location, image_name)  // saves the image with name 'image_name' at the folder specified by 'image_location'
     
- 
-## Binary Executable (Krishna/Ryuichi) 
-
-1. ... 
-  
 
 
-## Web Setup (Krishna probably)
+## Web Setup (To be updated)
 
 Set Flask variables:
 
