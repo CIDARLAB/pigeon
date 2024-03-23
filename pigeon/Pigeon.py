@@ -41,8 +41,8 @@ class Pigeon(object):
         gs = gridspec.GridSpec(1, 1)
         axis = plt.subplot(gs[0])
 
-        print("Deisgn Length: " + str(len(design)))
-        print("Arcs Length: " + str(len(arcs)))
+        print(f"Design Length: {len(design)}")
+        print(f"Arcs Length: {len(arcs)}")
 
         start, end = dr.renderDNA(axis, design, part_renderers, regs = arcs, reg_renderers=dr.std_reg_renderers(), plot_vector=pigeon_listener.has_vector, vector_label=pigeon_listener.vector_label)
         axis.set_xlim([start, end])
