@@ -62,6 +62,15 @@ parser.parseAndGenerateImage(script_string) # The script is passed as a string t
 parser.save(image_location, image_name) # Saves the image with the name 'image_name' in the folder specified by 'image_location'.
 ```
 
+## Testing
+
+The tests are using [pytest-mpl](https://github.com/matplotlib/pytest-mpl) to check if the examples remain the same (image comparison with some tolerance).
+The tests are run with github actions but you can also run it manually:
+
+```shell
+pytest --mpl
+```
+
 ## Web Setup (To be updated)
 
 To set up Pigeon with Flask, follow these steps:
