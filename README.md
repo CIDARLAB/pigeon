@@ -52,7 +52,7 @@ This will generate an image named `my_image.png` and save it in the `/myFolder` 
 
 To integrate Pigeon into your code, follow these steps:
 
-1. Check `requirements.txt` to ensure all required dependencies are installed.
+1. Check `pyproject.toml` to ensure all required dependencies are installed.
 2. Import Pigeon (see class specifications in `Pigeon.py`).
 3. Create a parser, generate and save the image using the following code:
 
